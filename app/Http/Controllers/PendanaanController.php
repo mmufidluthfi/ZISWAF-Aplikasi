@@ -23,9 +23,9 @@ class PendanaanController extends Controller
 	    return view('details-pendanaan')->withPendanaan($pendanaan);
 	}
 
-	public function getKategoriPendanaan($kategori){
+	public function getKategoriPendanaan($kategori){	    
 	    $pendanaank  = Pendanaan::find($kategori);
-	    return view('kategori')->withKategoriPendanaan($pendanaank);
+    	return view('kategori')->withPendanaank($pendanaank);
 	}
 
 	// public function getPendanaanKategori($kategori){

@@ -31,7 +31,6 @@ Route::get('/details-pendanaan/{id_pendanaan}', 'PendanaanController@getPendanaa
 //Halaman Berdasarkan Kategori
 Route::get('/kategori/{kategori}', 'PendanaanController@getKategoriPendanaan');
 
-
 //Halaman Pendanaan
 Route::get('/donasi', function () {
     return view('donasi');
@@ -65,4 +64,10 @@ Route::get('/tos', function () {
 //Halaman Contact Us
 Route::get('/contact', function () {
     return view('contact');
+});
+
+
+//DASHBOARD
+Route::get('/dashboard/home', function () {
+    return view('dashboard');
 });
