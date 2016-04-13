@@ -1,7 +1,6 @@
-@extends('layouts.dashboardapp')
+@extends('dashboard.dashboard')
 
-@section('contentdashboard')
-
+	@section('content')
 	<section class="content">
 		<section class="widget" style="height: 550px; min-height:400px">
 			<header>

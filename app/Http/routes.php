@@ -66,8 +66,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-
 //DASHBOARD
+//Dashboard Home
 Route::get('/dashboard/home', function () {
-    return view('dashboard');
+    return view('dashboard.dashboard-home');
 });

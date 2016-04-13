@@ -50,7 +50,7 @@
 	<br/><br/><center><img src="../images/logo_white.png "/></center>
 </nav>
 
-	@yield('contentdashboard')
+	@yield('content')
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 	<script src="{{ URL::asset('dashboard/js/jquery.wysiwyg.js')}}"></script>

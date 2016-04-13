@@ -1,6 +1,6 @@
-@extends('layouts.dashboardapp')
+@extends('dashboard.dashboard')
 
-@section('contentdashboard')
+	@section('content')
 	<section class="content">
 		<section class="widget">
 			<header>
