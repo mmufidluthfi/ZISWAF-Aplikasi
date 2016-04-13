@@ -1,82 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="ZISWAF Crowdfunding | Zakat | Infaq | Sadaqah | Waqaf" />
+    <meta name="description" content="Aplikasi Pendanaan untuk Zakat, Infaq, Sadaqah dan Waqaf untuk kegiatan ZISWAF Produktif khusu UMKM">
+    <meta name="author" content="Mufid | Reicka | Nana | Elzar">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title>Laravel</title>
+    <!-- Title -->
+    <title>ZISWAF Crowdfunding</title>
 
-    <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{{URL::to('/')}}/images/favico.png">
 
-    <!-- Styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-    <style>
-        body {
-            font-family: 'Lato';
-        }
+    <!-- Bootstrap -->
+    <link href="{{ URL::asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('css/font-awesome.min.css')}}" rel="stylesheet">
 
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    <!-- Lightbox -->
+    <link href="{{ URL::asset('css/ekko-lightbox.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('css/dark.css')}}" rel="stylesheet">
+
+    <!-- Calendar -->
+    <link href="{{ URL::asset('css/zabuto_calendar.min.css')}}" rel="stylesheet">
+
+    <!-- Template -->
+    <link href="{{ URL::asset('style.css')}}" rel="stylesheet">
+
+    <!-- Custom Color -->
+    <link href="{{ URL::asset('css/color.css')}}" rel="stylesheet">
+
+    <!-- Custom Box -->
+    <link href="{{ URL::asset('css/box.css')}}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+</script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
+</script>
+<![endif]-->
 </head>
-<body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+<body>
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
+    <!-- preloader -->
+    <div class='preloader'>
+        <div class="preloader-content-wrapper">
+            <div class="preloader-content">
+                <i class="fa fa-cog fa-3x fa-spin"></i>
             </div>
         </div>
-    </nav>
+    </div>
+    <!-- .preloader -->
 
-    @yield('content')
+    <!-- top bar -->
+    <header class="top-bar">
+        <div class="container">
+            <div class="row">
 
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+                <!-- languages -->
+                <div class="col-md-4 col-xs-6">
+                    <div class="languages nav-root">
+
+                        <!-- trigger -->
+                        <div class="pt-nav-trigger">
+                            <button><i class="fa fa-globe"></i> English <i class="fa fa-angle-down"></i>
+                            </button>
+                        </div>
+                        <!-- trigger -->
+
+                        <!-- menu list -->
+                        <nav class="pt-nav">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-globe"></i> Indonesia <i class="fa fa-angle-down"></i></a></li>
+                            </ul>
+                            <!-- .menu list -->
+                        </nav>
+
+                    </div>
+                </div>
+                <!-- .languages -->
+
+                <!-- add info -->
+                <div class="col-md-8 col-xs-12 clearfix">
+                    <div class="add-info">
+
+                        <!-- menu list -->
+                        <nav>
+                            <ul class="list-inline">
+                                <li><a href="#"><i class="fa fa-phone"></i> +628 5351 4567 11</a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i> mufid@idcloudhost.com</a>
+                                </li>
+                            </ul>
+                            <!-- .menu list -->
+                        </nav>
+
+                    </div>
+                </div>
+                <!-- .add info -->
+
+            </div>
+        </div>
+    </header>
+    <!-- .top bar -->
+
+    <!-- main header -->
+    <header class="main-header">
+
+        <div class="container">
+            <div class="row">
+
+                <!-- logo -->
+                <div class="col-md-2">
+                    <div class="logo">
+                        <a href="{{ url('/') }}">
+                            <img src="{{URL::to('/')}}/images/logo.png" title="GoRise" alt="GoRise" />
+                        </a>
+                    </div>
+                </div>
+                <!-- .logo -->
+
+                <!-- main nav -->
+                <div class="col-md-10">
+                    <div class="main-nav nav-root">
+
+                        <!-- trigger -->
+                        <div class="pt-nav-trigger">
+                            <button><i class="fa fa-bars"></i>Navigation
+                            </button>
+                        </div>
+
+                        <!-- trigger -->
+                        <nav class="pt-nav clearfix">
+
+                            
+                            <!-- menu list -->
+                            <ul class="clearfix">
+                                @if (Auth::guest())
+                                    <li><a href="{{ url('/login') }}">Masuk</a></li>
+                                    <li><a href="{{ url('/register') }}">Daftar</a></li>
+                                    <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
+                                @else
+                                    <li><a href="#">{{ Auth::user()->name }}</a></li>
+                                    <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
+                                @endif
+                            </ul>
+                            <!-- .menu list -->
+
+                        </nav>
+                    </div>
+                </div>
+                <!-- .main nav -->
+
+            </div>
+        </div>
+    </header>
+    <!-- .main-header -->
+
+        @yield('content')
+
+    <!-- logo & social -->
+    <section class="blue-background">
+        <div class="container">
+            <div class="row">
+
+                <!-- logo -->
+                <div class="col-md-6 col-xs-6 text-left">
+                    <div class="logo-white">
+                        <a href="#">
+                            <img src="{{URL::to('/')}}/images/logo_white.png" title="" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <!-- .logo -->
+
+                <!-- social -->
+                <div class="col-md-6 col-xs-6 text-right">
+                    <ul class="social list-inline list-unstyled">
+                        <li><a href="#"><i class="fa fa-twitter-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-google-plus-square"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- .social -->
+
+            </div>
+        </div>
+    </section>
+    <!-- .logo & social -->
+
+
+    <!-- footer -->
+    <footer class="dark-background">
+        <div class="container">
+            <div class="row">
+
+                <!-- footer menu -->
+                <div class="col-md-6 col-xs-6 text-left">
+                    <ul class="list-unstyled list-inline">
+                        <li>
+                            <a href="{{ url('/') }}">Home</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/about') }}">About</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/faq') }}">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/tos') }}">TOS</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/contact') }}">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- footer menu -->
+
+                <!-- copyrights -->
+                <div class="col-md-6 col-xs-6 text-right">
+                    <p>&copy; 2016 ZISWAF Funding - All rights reserved - made by Mufid</p>
+                </div>
+                <!-- .copyrights -->
+            </div>
+        </div>
+    </footer>
+    <!-- .footer -->
+
+    <!-- jQuery (necessary for Bootstrap 's JavaScript plugins) -->
+    <script src="{{ URL::asset('js/jquery-1.11.1.min.js')}}"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ URL::asset('js/jquery.nicescroll.min.js')}}"></script>
+    <script src="{{ URL::asset('js/bootstrap.min.js')}}"></script>
+
+    <!-- Include all template custom js -->
+    <script src="{{ URL::asset('js/jquery.downCount.js')}}"></script>
+    <script src="{{ URL::asset('js/bootstrap-slider.js')}}"></script>
+    <script src="{{ URL::asset('js/zabuto_calendar.min.js')}}"></script>
+    <script src="{{ URL::asset('js/ekko-lightbox.js')}}"></script>
+    <script src="{{ URL::asset('js/custom.js')}}"></script>
 </body>
+
 </html>
