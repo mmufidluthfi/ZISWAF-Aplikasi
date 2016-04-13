@@ -16,13 +16,12 @@
 //     return view('home');
 // });
 
-Route::get('/', 'PendanaanController@getAllPendanaan');
-
 Route::auth();
 
 //Halaman Welcome
 Route::get('/welcome', 'HomeController@index');
 
+Route::get('/', 'PendanaanController@getAllPendanaan');
 
 Route::get('/pendanaan', 'PendanaanController@getAllPendanaans1');
 
@@ -38,6 +37,15 @@ Route::get('/donasi', function () {
     return view('donasi');
 });
 
+//Halaman Pembayaran Donasi
+Route::get('/donasi-payment', function () {
+    return view('donasi-payment');
+});
+
+//Halaman Invoice Donasi
+Route::get('/donasi-invoice', function () {
+    return view('donasi-invoice');
+});
 
 //Halaman About
 Route::get('/about', function () {
