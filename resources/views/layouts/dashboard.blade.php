@@ -16,23 +16,29 @@
 
 	<!--[if IE]><link rel="stylesheet" href="css/ie.css" media="all" /><![endif]-->
 	<!--[if lt IE 9]><link rel="stylesheet" href="css/lt-ie-9.css" media="all" /><![endif]-->
+
+@if (Auth::guest())
+	<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
+@else
+
 </head>
 <body>
-<div class="testing">
-	<header class="main">
-		<a href="../"><h1><strong>ZISWAF Crowdfunding</strong> Dashboard</h1></a>
-		<input type="text" value="search" />
-	</header>
-	<section class="user">
-		<div class="profile-img">
-			<p><img src="../images/investor/default.png" alt="" height="40" width="40" /> Selamat Datang MMufidLuthfi</p>
-		</div>
-		<div class="buttons">
-			<button class="ico-font">&#9206;</button>
-			<span class="button blue"><a href="{{ url('/login')}}">Logout</a></span>
-		</div>
-	</section>
-</div>
+	<div class="testing">
+		<header class="main">
+			<a href="../"><h1><strong>ZISWAF Crowdfunding</strong> Dashboard</h1></a>
+			<input type="text" value="search" />
+		</header>
+		<section class="user">
+			<div class="profile-img">
+				<p><img src="../images/investor/default.png" alt="" height="40" width="40" /> Selamat Datang <strong>{{ Auth::user()->name }}</strong></p>
+			</div>
+			<div class="buttons">
+				<button class="ico-font">&#9206;</button>
+				<span class="button blue"><a href="{{ url('/logout') }}">Logout</a></span>
+			</div>
+		</section>
+	</div>
+	
 <nav>
 	<ul>
 		<li class="section"><a href="{{ url('/dashboard/home')}}"><span class="icon">&#128711;</span> Dashboard</a></li>
@@ -74,6 +80,9 @@
 	    next:    '.right-btn'
 	});
 	</script>
+
+@endif
+
 </body>
 </html>
 

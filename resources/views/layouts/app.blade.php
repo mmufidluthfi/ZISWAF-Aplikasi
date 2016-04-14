@@ -148,7 +148,7 @@
                                     <li><a href="{{ url('/register') }}">Daftar</a></li>
                                     <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
                                 @else
-                                    <li><a href="#">{{ Auth::user()->name }}</a></li>
+                                    <li><a href="{{url('/dashboard/home')}}"><img width="30" height="30" src="{{URL::to('images/Dashboard.png')}}">   {{ Auth::user()->name }}</a></li>
                                     <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
                                 @endif
                             </ul>

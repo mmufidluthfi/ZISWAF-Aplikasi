@@ -249,8 +249,8 @@
 
                                                                 <!-- rised slider meta -->
                                                                 <div class="slider-meta clearfix">
-                                                                    <span class="pull-left">{{ $pendanaan->sementara_dana}}</span>
-                                                                    <span class="pull-right">{{ $pendanaan->total_dana}}</span>
+                                                                    <span class="pull-left">Rp {{ $pendanaan->sementara_dana}}</span>
+                                                                    <span class="pull-right">Rp {{ $pendanaan->total_dana}}</span>
                                                                 </div>
                                                                 <!-- .rised slider meta -->
 
@@ -283,6 +283,24 @@
 
     </section>
     <!-- .latest causes -->
+
+    <!-- full width promo -->
+    <section class="box-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full-promo text-center">
+                        <h2>
+                            <strong>Bersama Menciptakan Masa Depan</strong>
+                        </h2>
+                        <h6>Pendanaan ZISWAF Crowdfunding sudah melibatkan +4000 Orang Berdonasi</h6>
+                        <a class="button-normal blue" href="{{ url('/pendanaan')}}">Donasi Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- .full width promo -->
 
 
 @endsection

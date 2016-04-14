@@ -21,6 +21,7 @@ Route::auth();
 //Halaman Welcome
 Route::get('/welcome', 'HomeController@index');
 
+
 Route::get('/', 'PendanaanController@getAllPendanaan');
 
 Route::get('/pendanaan', 'PendanaanController@getAllPendanaans1');
@@ -32,9 +33,14 @@ Route::get('/details-pendanaan/{id_pendanaan}', 'PendanaanController@getPendanaa
 Route::get('/kategori/{kategori}', 'PendanaanController@getKategoriPendanaan');
 
 //Halaman Pendanaan
-Route::get('/donasi', function () {
-    return view('donasi');
-});
+// Route::get('/donasi', function () {
+//     return view('donasi');
+// });
+
+Route::get('/donasi/{id_pendanaan}', 'PendanaanController@getDonasiPendanaan');
+
+// Route::get('/donasi/{id_pendanaan}', 'PendanaanController@index');
+
 
 //Halaman Pembayaran Donasi
 Route::get('/donasi-payment', function () {

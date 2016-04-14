@@ -99,11 +99,11 @@
                                                 <div class="clearfix">
                                                     <p class="pull-left lead">
                                                         <span class="light-grey">Raised:</span>
-                                                        $ {{ $pendanaan->sementara_dana}}
+                                                        Rp {{ $pendanaan->sementara_dana}}
                                                     </p>
                                                     <p class="pull-right lead">
                                                         <span class="light-grey">Goal:</span>
-                                                        $ {{ $pendanaan->total_dana}}
+                                                        Rp {{ $pendanaan->total_dana}}
                                                     </p>
                                                 </div>
                                                 <!-- .rised slider meta -->
@@ -236,7 +236,7 @@
                                 <div class="box">
 
                                     <!-- widget box -->
-                                    <h4 class="text-center"><a href="{{ url('/donasi')}}">Donasi Sekarang</a>
+                                    <h4 class="text-center"><a href="{{ url('/donasi')}}/{{$pendanaan->id_pendanaan}}">Donasi Sekarang</a>
                                     </h4>
                                     <!-- .widget box -->
 

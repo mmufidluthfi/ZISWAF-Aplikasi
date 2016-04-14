@@ -41,20 +41,53 @@
                             <div class="donate-form">
 
                                 <div class="content comments">
-                                    <h3 class="grey"><a href="#">Help this child to have bright future</a></h3> 
-                                    <h6 class="grey">Kategori: Zakat</h6>
+                                    <h3 class="grey">{{$pendanaand->nama_proyek}}</h3> 
+                                    <h6 class="grey">Kategori: {{$pendanaand->kategori}}</h6>
                                 </div>
                                 <hr class="inline-hr" />
 
                                 <!-- form -->
                                 <div class="content">
-                                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}" >
                                     {!! csrf_field() !!}
+
+                                    @if (Auth::guest())
+                                        <!-- widget box -->
+                                        <div class="widget-box">
+                                            <div class="form-group row">
+                                                <div class="col-md-12">
+                                                    <center><h3 class="grey"><h3>Silahkan Login :</h3></center>
+                                                </div>
+                                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/donasi/3')}}">
+                                                    
+                                                    <div class="col-md-6">
+                                                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail Address"/>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <input type="password" class="form-control" name="password" placeholder="Password"/>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-12"><br/>
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-btn fa-sign-in"></i>Login
+                                                            </button>
+
+                                                            Belum Punya Akun? <a class="btn btn-link" href="{{ url('/register') }}"><b>Daftar</b></a>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- .widget box -->
+
+                                    @else
+                                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}" >
 
                                         <!-- widget box -->
                                         <div class="widget-box">
                                             <div class="form-group">
-                                                <center><h3 class="grey"><h3>Nominal Pendanaan:</h3></center>
+                                                <center><h3 class="grey"><h3>Nominal Pendanaan</h3></center>
                                                 <div class="col-md-2">
                                                     <h4>Rp</h4>
                                                 </div>
@@ -65,47 +98,9 @@
                                         </div>
                                         <!-- .widget box -->
 
-
-                                    @if (Auth::guest())
-                                        <!-- widget box -->
-                                        <div class="widget-box">
-                                            <div class="form-group row">
-                                                <div class="col-md-12">
-                                                    <center><h3 class="grey"><h3>Biodata Investor:</h3></center>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control" placeholder="Nama Lengkap" name="name" value="{{ old('name') }}"/>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="email" class="form-control" placeholder="Email"  name="email" value="{{ old('email') }}"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- .widget box -->
-
-                                        <!-- widget box -->
-                                        <div class="widget-box">
-                                            <div class="form-group row">
-                                                <div class="col-md-6">
-                                                    <input type="password" class="form-control" name="password" placeholder="Password" />
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- .widget box -->
-
-                                        <!-- widget box -->
-                                        <div class="widget-box">
-                                                    Sudah Punya Akun? <a href="{{ url('/login') }}">Login</a>
-                                        </div>
-                                        <!-- .widget box -->
-
-                                    @else
-                                        <center><h3>{{ Auth::user()->name }}</h3></center>
-                                    @endif
-
+                                        <center><h3>Informasi Donatur</h3></center>
+                                        <center><h6>{{ Auth::user()->name }}</h6></center>
+                                        
                                         <!-- widget box -->
                                             <div class="form-group">
                                                     <button type="submit" class="button-normal full blue">
@@ -113,8 +108,10 @@
                                                     </button>
                                             </div>                                    
                                         <!-- .widget-box -->
+                                        </form>
+                                    @endif
 
-                                    </form>
+                                    
                                 </div>
                                 <!-- .form -->
 

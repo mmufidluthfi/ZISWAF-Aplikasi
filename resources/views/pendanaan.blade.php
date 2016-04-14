@@ -140,8 +140,8 @@
 
                                                         <!-- rised slider meta -->
                                                         <div class="slider-meta clearfix">
-                                                            <span class="pull-left">$ {{$pd->sementara_dana}}</span>
-                                                            <span class="pull-right">$ {{$pd->total_dana}}</span>
+                                                            <span class="pull-left">Rp {{$pd->sementara_dana}}</span>
+                                                            <span class="pull-right">Rp {{$pd->total_dana}}</span>
                                                         </div>
                                                         <!-- .rised slider meta -->
 
