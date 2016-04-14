@@ -25,37 +25,37 @@
 	</header>
 	<section class="user">
 		<div class="profile-img">
-			<p><img src="images/uiface2.png" alt="" height="40" width="40" /> Selamat Datang MMufidLuthfi</p>
+			<p><img src="../images/investor/default.png" alt="" height="40" width="40" /> Selamat Datang MMufidLuthfi</p>
 		</div>
 		<div class="buttons">
 			<button class="ico-font">&#9206;</button>
-			<span class="button blue"><a href="../login.html">Logout</a></span>
+			<span class="button blue"><a href="{{ url('/login')}}">Logout</a></span>
 		</div>
 	</section>
 </div>
 <nav>
 	<ul>
-		<li class="section"><a href="index.html"><span class="icon">&#128711;</span> Dashboard</a></li>
-		<li ><a href="pendanaan.html"><span class="icon">&#127758;</span> Pendanaan</a></li>
-		<li ><a href="laporan.html"><span class="icon">&#128203;</span> Laporan</a></li>
+		<li class="section"><a href="{{ url('/dashboard/home')}}"><span class="icon">&#128711;</span> Dashboard</a></li>
+		<li ><a href="{{ url('/dashboard/pendanaan')}}"><span class="icon">&#127758;</span> Pendanaan</a></li>
+		<li ><a href="{{ url('/dashboard/laporan')}}"><span class="icon">&#128203;</span> Laporan</a></li>
 		<li>
 			<a href="#"><span class="icon">&#9881;</span>Pengaturan</a>
 			<ul class="submenu">
-				<li><a href="profile.html">Edit Profile</a></li>
-				<li><a href="profile-foto.html">Ganti Foto</a></li>
-				<li><a href="profile-password.html">Ganti Password</a></li>
+				<li><a href="{{ url('/dashboard/edit-profile')}}">Edit Profile</a></li>
+				<li><a href="{{ url('/dashboard/edit-foto')}}">Ganti Foto</a></li>
+				<li><a href="{{ url('/dashboard/edit-password')}}">Ganti Password</a></li>
 			</ul>
 		</li>
 	</ul>
-	<br/><br/><center><img src="../images/logo_white.png "/></center>
+	<br/><br/><center><img src="{{URL::to('/')}}../images/logo_white.png "/></center>
 </nav>
 
 	@yield('content')
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script src="{{ URL::asset('dashboard/js/cycle.js')}}"></script>
 	<script src="{{ URL::asset('dashboard/js/jquery.wysiwyg.js')}}"></script>
-	<script src="{{ URL::asset('dashboard/js/custom.js')}}"></script>
-	<script src="{{ URL::asset('dashboard/js/cycle.js"></script>
+	<script src="{{ URL::asset('dashboard/js/custom.js')}}"></script>	
 	<script src="{{ URL::asset('dashboard/js/jquery.checkbox.min.js')}}"></script>
 	<script src="{{ URL::asset('dashboard/js/flot.js')}}"></script>
 	<script src="{{ URL::asset('dashboard/js/flot.resize.js')}}"></script>

@@ -1,7 +1,9 @@
-@extends('dashboard.dashboard')
+@extends('layouts.dashboard')
 
 	@section('content')
-		<p>test</p>
+		<section class="content">
+			<center><h1>SELAMAT DATANG</h1></center>
+		</section>
 	
 @endsection
 

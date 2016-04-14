@@ -48,7 +48,7 @@
                                 	Nominal : Rp 50000<br/>
                                 	Status : Belum Transfer<br/>
                                 </p>
-                                <center><a href="dashboard/"><img src="images/Dashboard.png"><br/>Kembali ke Halaman Dashboard</a></center>
+                                <center><a href="{{url('/dashboard/home')}}"><img src="images/Dashboard.png"><br/>Kembali ke Halaman Dashboard</a></center>
                             </div>
                         </div>
                     </div>

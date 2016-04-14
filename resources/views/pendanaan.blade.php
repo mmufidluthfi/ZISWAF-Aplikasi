@@ -119,7 +119,7 @@
 
                                                         <!-- cause meta -->
                                                         <div class="meta clearfix">
-                                                            <a class="pull-left" href="{{ url('/details-pendanaan')}}?Zakat">{{$pd->kategori}}</a>
+                                                            <a class="pull-left" href="{{URL::to('/kategori')}}/{{$pd->kategori}}">{{$pd->kategori}}</a>
                                                             <a class="pull-right share-trigger" data-rel="tooltip" title="Share Cause" href="javascript:;"><i class="fa fa-share-alt"></i></a>
                                                         </div>
                                                         <!-- .cause meta -->
@@ -229,13 +229,13 @@
                                         <div class="widget-dropdown">
                                             <a class="button-normal full blue left-text" href="#" data-toggle="dropdown">Kategori <i class="fa fa-angle-down pull-right"></i></a>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Zakat <i class="fa fa-angle-right pull-right"></i></a>
+                                                <li><a href="{{URL::to('/kategori')}}/Zakat">Zakat <i class="fa fa-angle-right pull-right"></i></a>
                                                 </li>
-                                                <li><a href="#">Infaq<i class="fa fa-angle-right pull-right"></i></a>
+                                                <li><a href="{{URL::to('/kategori')}}/Infaq">Infaq<i class="fa fa-angle-right pull-right"></i></a>
                                                 </li>
-                                                <li><a href="#">Sadaqah<i class="fa fa-angle-right pull-right"></i></a>
+                                                <li><a href="{{URL::to('/kategori')}}/Sadaqah">Sadaqah<i class="fa fa-angle-right pull-right"></i></a>
                                                 </li>
-                                                <li><a href="#">Waqaf<i class="fa fa-angle-right pull-right"></i></a>
+                                                <li><a href="{{URL::to('/kategori')}}/Waqaf">Waqaf<i class="fa fa-angle-right pull-right"></i></a>
                                                 </li>
                                             </ul>
                                         </div>

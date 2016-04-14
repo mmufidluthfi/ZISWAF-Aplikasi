@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Pendanaan;
 use App\Http\Requests;
 
+use DB;
+use App\Http\Controllers\Controller;
+
 class PendanaanController extends Controller
 {
     public function getAllPendanaan(){
@@ -23,8 +26,10 @@ class PendanaanController extends Controller
 	    return view('details-pendanaan')->withPendanaan($pendanaan);
 	}
 
+
 	public function getKategoriPendanaan($kategori){	    
-	    $pendanaank  = Pendanaan::find($kategori);
+		$pendanaank = DB::table('pendanaan')->where('kategori', '=', $kategori)->get();
+	    // $pendanaank  = Pendanaan::find($kategori); 
     	return view('kategori')->withPendanaank($pendanaank);
 	}
 

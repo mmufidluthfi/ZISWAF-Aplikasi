@@ -71,3 +71,29 @@ Route::get('/contact', function () {
 Route::get('/dashboard/home', function () {
     return view('dashboard.dashboard-home');
 });
+
+//Dashboard Pendanaan
+Route::get('/dashboard/pendanaan', function () {
+    return view('dashboard.dashboard-pendanaan');
+});
+
+//Dashboard Laporan
+Route::get('/dashboard/laporan', function () {
+    return view('dashboard.dashboard-laporan');
+});
+
+//Dashboard Edit Profile
+Route::get('/dashboard/edit-profile', function () {
+    return view('dashboard.dashboard-editprofile');
+});
+
+//Dashboard Edit Foto
+Route::get('/dashboard/edit-foto', function () {
+    return view('dashboard.dashboard-editfoto');
+});
+
+//Dashboard Edit Password
+Route::get('/dashboard/edit-password', function () {
+    return view('dashboard.dashboard-editpassword');
+});
+
