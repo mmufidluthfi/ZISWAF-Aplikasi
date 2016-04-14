@@ -9,6 +9,8 @@ use App\Http\Requests;
 use DB;
 use App\Http\Controllers\Controller;
 
+use App\Users;
+
 class PendanaanController extends Controller
 {
     public function getAllPendanaan(){
@@ -26,16 +28,20 @@ class PendanaanController extends Controller
 	    return view('details-pendanaan')->withPendanaan($pendanaan);
 	}
 
-
 	public function getKategoriPendanaan($kategori){	    
 		$pendanaank = DB::table('pendanaan')->where('kategori', '=', $kategori)->get();
-	    // $pendanaank  = Pendanaan::find($kategori); 
     	return view('kategori')->withPendanaank($pendanaank);
 	}
 
 	public function getDonasiPendanaan($id_pendanaan){	    
 		$pendanaand  = Pendanaan::find($id_pendanaan);
     	return view('donasi')->withPendanaand($pendanaand);
+	}
+
+	//Dashboard Pendanaan
+	public function getInformasiPendanaan($id){
+		$informasipendanaan = DB::table('users')->where('id', '=', $id)->get();
+    	return view('dashboard.dashboard-pendanaan')->withInformasiPendanaan($informasipendanaan);
 	}
 
 }

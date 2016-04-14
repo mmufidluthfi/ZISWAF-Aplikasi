@@ -79,9 +79,12 @@ Route::get('/dashboard/home', function () {
 });
 
 //Dashboard Pendanaan
-Route::get('/dashboard/pendanaan', function () {
-    return view('dashboard.dashboard-pendanaan');
-});
+// Route::get('/dashboard/pendanaan', function () {
+//     return view('dashboard.dashboard-pendanaan');
+// });
+
+Route::get('/dashboard/pendanaan/{id}', 'PendanaanController@getInformasiPendanaan');
+
 
 //Dashboard Laporan
 Route::get('/dashboard/laporan', function () {
