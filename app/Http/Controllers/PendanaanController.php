@@ -52,7 +52,8 @@ class PendanaanController extends Controller
 		            ->get();
 
 	  	var_dump($pendanaantransaksi);
-	  	// return view('dashboard.dashboard-pendanaan')->withPendanaantransaksi($pendanaantransaksi);
+	  	//return view('dashboard.dashboard-pendanaan')->withPendanaantransaksi($pendanaantransaksi);
+	    
 	    // return view('dashboard.dashboard-pendanaan',['infotransaksi' => $infotransaksi],['pendanaantransaksi' => $pendanaantransaksi],['usertransaksi' => $usertransaksi]);  
 		// return view('dashboard.dashboard-pendanaan',['pendanaantransaksi' => $pendanaantransaksi]);
 	 }
@@ -69,7 +70,7 @@ class PendanaanController extends Controller
 		            ->get();
 
 	  	var_dump($pendanaanlaporan);
-	 	
+	 	//return view('dashboard.dashboard-laporan')->withPendanaanlaporan($pendanaanlaporan);
 	 }
 
 
