@@ -39,10 +39,10 @@
 						</tr>
 					</thead>
 						<tbody>
-							@foreach($pendanaanTransaksi as $pdt)
+							@foreach($pendanaantransaksi as $pdt)
 							<tr>
-								<td>Urgent surgery needed for this child</td>
-								<td>Zakat</td>
+								<td>{{$pdt->nama_proyek}}</td>
+								<td>{{$pdt->nama_pj}}</td>
 								<td>Rp 1000000</td>
 								<td>01/4/2016</td>
 								<td><button class="green">Sukses</button></td>
