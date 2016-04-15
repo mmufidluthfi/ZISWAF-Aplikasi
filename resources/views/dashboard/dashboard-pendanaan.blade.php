@@ -39,14 +39,15 @@
 						</tr>
 					</thead>
 						<tbody>
-							@foreach($infotransaksi as $pdi)
-							<tr>
-								<td>JUDUL PENDANAAN</td>
-								<td>KATEGORI</td>
-								<td>Rp {{$pdi->nominal}}</td>
-								<td>{{$pdi->tanggal_transaksi}}</td>
-								<td><!-- <button class="green"> -->{{$pdi->status}}<!-- </button> --></td>
-							</tr>
+
+							@foreach($pendanaantransaksi as $pdt)
+									<tr>
+										<td>{{$pdt->pendanaan.nama_proyek}}</td>
+										<td>{{$pdt->pendanaan.kategori}}</td>
+										<td>Rp {{$pdt->transaksi.nominal}}</td>
+										<td>{{$pdt->transaksi.tanggal_transaksi}}</td>
+										<td><!-- <button class="green"> -->{{$pdt->transaksi.status}}<!-- </button> --></td>
+									</tr>
 							@endforeach
 						</tbody>
 					</table>

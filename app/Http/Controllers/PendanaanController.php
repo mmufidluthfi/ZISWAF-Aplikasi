@@ -39,13 +39,21 @@ class PendanaanController extends Controller
 	}
 
 	//Dashboard Pendanaan
-	 public function getInformasiPendanaan($id){
-	  $usertransaksi = DB::table('users')->where('id', '=', $id)->get();
-	  $infotransaksi = DB::table('transaksi')->where('id', '=', $id)->get();
+	public function getInformasiPendanaan($id){
+	  // $usertransaksi = DB::table('users')->where('id', '=', $id)->get();
+	  // $infotransaksi = DB::table('transaksi')->where('id', '=', $usertransaksi[0]->id)->get();
+	  // $pendanaantransaksi = DB::table('pendanaan')->where('id_pendanaan', '=', $infotransaksi[0]->id_pendanaan)->get();
 
-	  $pendanaantransaksi = DB::table('pendanaan')->where('id_pendanaan', '=', $infotransaksi[0]->id_pendanaan)->get();
-	  // var_dump($pendanaantransaksi);
-	  return view('dashboard.dashboard-pendanaan',['infotransaksi' => $infotransaksi],['pendanaantransaksi' => $pendanaantransaksi],['usertransaksi' => $usertransaksi]);  
+		$pendanaantransaksi = DB::table('transaksi')
+		            ->join('users', 'transaksi.id', '=', 'users.id')
+		            ->join('pendanaan', 'transaksi.id_pendanaan', '=', 'pendanaan.id_pendanaan')
+		            ->select('users.id', 'pendanaan.nama_proyek', 'pendanaan.kategori', 'transaksi.*')
+		            ->where('transaksi.id', '=', $id)
+		            ->get();
+
+	  	var_dump($pendanaantransaksi);
+	  // return view('dashboard.dashboard-pendanaan',['infotransaksi' => $infotransaksi],['pendanaantransaksi' => $pendanaantransaksi],['usertransaksi' => $usertransaksi]);  
+		// return view('dashboard.dashboard-pendanaan',['pendanaantransaksi' => $pendanaantransaksi]);
 	 }
 
 }
