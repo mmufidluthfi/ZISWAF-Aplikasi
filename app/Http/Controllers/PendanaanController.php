@@ -39,9 +39,14 @@ class PendanaanController extends Controller
 	}
 
 	//Dashboard Pendanaan
-	public function getInformasiPendanaan($id){
-		$informasipendanaan = DB::table('users')->where('id', '=', $id)->get();
-    	return view('dashboard.dashboard-pendanaan')->withInformasiPendanaan($informasipendanaan);
-	}
+	 public function getInformasiPendanaan($id){
+	  $usertransaksi = DB::table('users')->where('id', '=', $id)->get();
+	  $infotransaksi = DB::table('transaksi')->where('id', '=', $id)->get();
+
+	  $pendanaantransaksi = DB::table('pendanaan')->where('id_pendanaan', '=', $infotransaksi[0]->id_pendanaan)->get();
+	  var_dump($pendanaantransaksi);
+	  // return view('dashboard.dashboard-pendanaan')->withInformasiPendanaan($pendanaantransaksi);  
+	   
+	 }
 
 }

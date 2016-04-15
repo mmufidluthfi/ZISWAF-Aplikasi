@@ -4,7 +4,7 @@
 	<nav>
 		<ul>
 			<li><a href="{{ url('/dashboard/home')}}"><span class="icon">&#128711;</span> Dashboard</a></li>
-			<li><a href="{{ url('/dashboard/pendanaan')}}"><span class="icon">&#127758;</span> Pendanaan</a></li>
+			<li><a href="{{ url('/dashboard/pendanaan')}}/{{ Auth::user()->id }}"><span class="icon">&#127758;</span> Pendanaan</a></li>
 			<li class="section"><a href="{{ url('/dashboard/laporan')}}"><span class="icon">&#128203;</span> Laporan</a></li>
 			<li>
 				<a href="#"><span class="icon">&#9881;</span>Pengaturan</a>

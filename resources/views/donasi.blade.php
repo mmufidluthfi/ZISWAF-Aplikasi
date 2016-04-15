@@ -57,7 +57,7 @@
                                                 <div class="col-md-12">
                                                     <center><h3 class="grey"><h3>Silahkan Login :</h3></center>
                                                 </div>
-                                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/donasi/3')}}">
+                                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/donasi')}}/{{$pendanaand->id_pendanaan}}">
                                                     
                                                     <div class="col-md-6">
                                                         <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail Address"/>
