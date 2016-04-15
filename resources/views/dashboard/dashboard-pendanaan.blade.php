@@ -39,6 +39,7 @@
 						</tr>
 					</thead>
 						<tbody>
+							@foreach($pendanaanTransaksi as $pdt)
 							<tr>
 								<td>Urgent surgery needed for this child</td>
 								<td>Zakat</td>
@@ -46,20 +47,7 @@
 								<td>01/4/2016</td>
 								<td><button class="green">Sukses</button></td>
 							</tr>
-							<tr>
-								<td>Help this mother to buy new house</td>
-								<td>Infaq</td>
-								<td>Rp 200000</td>
-								<td>02/4/2016</td>
-								<td><button class="orange">Pending</button></td>
-							</tr>
-							<tr>
-								<td>Education center need your help a.s.a.p.</td>
-								<td>Sadaqah</td>
-								<td>Rp 100000</td>
-								<td>03/4/2016</td>
-								<td><button class="red">Gagal</button></td>
-							</tr>
+							@endforeach
 						</tbody>
 					</table>
 			</div>
