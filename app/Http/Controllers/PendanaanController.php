@@ -52,8 +52,25 @@ class PendanaanController extends Controller
 		            ->get();
 
 	  	var_dump($pendanaantransaksi);
-	  // return view('dashboard.dashboard-pendanaan',['infotransaksi' => $infotransaksi],['pendanaantransaksi' => $pendanaantransaksi],['usertransaksi' => $usertransaksi]);  
+	  	// return view('dashboard.dashboard-pendanaan')->withPendanaantransaksi($pendanaantransaksi);
+	    // return view('dashboard.dashboard-pendanaan',['infotransaksi' => $infotransaksi],['pendanaantransaksi' => $pendanaantransaksi],['usertransaksi' => $usertransaksi]);  
 		// return view('dashboard.dashboard-pendanaan',['pendanaantransaksi' => $pendanaantransaksi]);
 	 }
+
+	//Dashboard Laporan
+	public function getInformasiLaporan($id){
+
+		$pendanaanlaporan = DB::table('laporan')
+		            ->join('pendanaan', 'laporan.id_pendanaan', '=', 'pendanaan.id_pendanaan')
+		            ->join('transaksi', 'transaksi.id_pendanaan', '=', 'pendanaan.id_pendanaan')
+		            ->join('users', 'users.id', '=', 'transaksi.id')
+		            ->select('pendanaan.nama_proyek', 'pendanaan.nama_pj', 'laporan.deskripsi_laporan', 'laporan.waktu_laporan' , 'laporan.file_laporan')
+		            ->where('users.id', '=', $id)
+		            ->get();
+
+	  	var_dump($pendanaanlaporan);
+	 	
+	 }
+
 
 }

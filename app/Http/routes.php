@@ -85,11 +85,13 @@ Route::get('/dashboard/home', function () {
 
 Route::get('/dashboard/pendanaan/{id}', 'PendanaanController@getInformasiPendanaan');
 
+Route::get('/dashboard/laporan/{id}', 'PendanaanController@getInformasiLaporan');
+
 
 //Dashboard Laporan
-Route::get('/dashboard/laporan', function () {
-    return view('dashboard.dashboard-laporan');
-});
+// Route::get('/dashboard/laporan', function () {
+//     return view('dashboard.dashboard-laporan');
+// });
 
 //Dashboard Edit Profile
 Route::get('/dashboard/edit-profile', function () {
