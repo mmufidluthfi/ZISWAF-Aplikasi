@@ -8,7 +8,7 @@ class transaksi extends Model
 {
     public $table = "transaksi";
   	
-  	protected $fillable = ['nominal','konfirmasi','status'];
+  	protected $fillable = ['nominal','konfirmasi','status','tanggal'];
   	
   	protected $primaryKey = 'id_transaksi';
 }
