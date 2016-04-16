@@ -10,6 +10,7 @@ use DB;
 use App\Http\Controllers\Controller;
 
 use App\Users;
+use Session;
 
 class PendanaanController extends Controller
 {
@@ -72,6 +73,22 @@ class PendanaanController extends Controller
 	  	var_dump($pendanaanlaporan);
 	 	//return view('dashboard.dashboard-laporan')->withPendanaanlaporan($pendanaanlaporan);
 	 }
+
+	//Halaman Donasi Payment
+	public function getDonasiPayment($id_pendanaan){	    
+		$pendanaanpayment  = Pendanaan::find($id_pendanaan);
+		$pendanaannominal = Session::get('message-nominal');
+    	//return view('donasi-payment')->withPendanaanpayment($pendanaanpayment);
+    	return view('donasi-payment',['pendanaanpayment' => $pendanaanpayment],['pendanaannominal' => $pendanaannominal]);
+	}
+
+	//Halaman Donasi Invoice
+	public function getDonasiInvoice($id_pendanaan){	    
+		$pendanaaninvoice  = Pendanaan::find($id_pendanaan);
+		$pendanaannominal = Session::get('message-nominal');
+    	//return view('donasi-invoice')->withPendanaaninvoice($pendanaaninvoice);
+    	return view('donasi-invoice',['pendanaaninvoice' => $pendanaaninvoice],['pendanaannominal' => $pendanaannominal]); 
+	}
 
 
 }

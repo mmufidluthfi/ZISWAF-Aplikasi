@@ -41,11 +41,11 @@
                             <div class="donate-form">
 
                                 <div class="content comments">
-                                    <h3 class="grey"><a href="#">Help this child to have bright future</a></h3> 
-                                    <h6 class="grey">Kategori: Zakat</h6>
+                                    <h3 class="grey">{{$pendanaanpayment->nama_proyek}}</h3> 
+                                    <h6 class="grey">Kategori: {{$pendanaanpayment->kategori}}</h6>
                                 </div>
 
-                                <center><h3><a class="button-normal full blue">Rp <?php echo Session::get('message-nominal');?>,-</a></h3>
+                                <center><h3><a class="button-normal full blue">Rp {{$pendanaannominal}},-</a></h3>
                                 <p><i>Transfer sebesar Nominal Diatas</i></p></center>
 
                                 <hr class="inline-hr" />
@@ -99,6 +99,8 @@
                                         <center><h3>Konfirmasi Pembayaran:</h3></center>
 
                                         <form enctype="multipart/form-data">
+
+
                                             <div class="col-md-3">
                                             </div>
                                             <div class="col-md-5">
@@ -111,17 +113,26 @@
                                             <div class="form-group">
                                                     <div class="col-md-6">
                                                         <button type="submit" class="button-normal full blue">
-                                                        <i class="fa fa-btn fa-user"></i>Upload Bukti
-                                                    </button>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <button type="submit" class="button-normal full blue">
-                                                        <i class="fa fa-btn fa-user"></i>Lewati 
-                                                    </button>
+                                                            <i class="fa fa-btn fa-user"></i>Upload Bukti
+                                                        </button>
                                                     </div>
                                             </div>                                    
                                         <!-- .widget-box -->
-                                        </form>  
+                                        </form>
+
+                                            <div class="form-group">
+
+                                                    <div class="col-md-6">
+                                                    </div>
+                                                    
+                                                    <div class="col-md-6">
+                                                        <a href="/donasi-invoice/{{$pendanaanpayment->id_pendanaan}}"><button type="submit" class="button-normal full blue">
+                                                            <i class="fa fa-btn fa-user"></i>Lewati
+                                                        </button></a>
+                                                    </div>
+                                            </div>
+                                            <center><p><br/>Silahkan tekan tombol <b>Lewati</b>, jika ingin mengkonfirmasi nanti</p></center>
+
                                     </div>
                                 </div>
                                 <!-- .widget box -->

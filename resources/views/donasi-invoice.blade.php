@@ -41,14 +41,14 @@
                             <br/><center><h3>Invoice Pendanaan</h3></center>
 
                             <div class="content comments">
-                                <h3 class="grey"><a href="#">Help this child to have bright future</a></h3> 
-                                <h6 class="grey">Kategori: Zakat</h6>
+                                <h3 class="grey">{{$pendanaaninvoice->nama_proyek}}</h3> 
+                                <h6 class="grey">Kategori: {{$pendanaaninvoice->kategori}}</h6>
                                 <p>
-                                	Nama : Muhammad Mufid Luthfi<br/>
-                                	Nominal : Rp 50000<br/>
+                                	Nama : {{Auth::user()->name}}<br/>
+                                	Nominal : Rp {{$pendanaannominal}},-<br/>
                                 	Status : Belum Transfer<br/>
                                 </p>
-                                <center><a href="{{url('/dashboard/home')}}"><img src="images/Dashboard.png"><br/>Kembali ke Halaman Dashboard</a></center>
+                                <center><a href="{{url('/dashboard/home')}}"><img src="{{URL::to('/')}}/images/Dashboard.png"><br/>Kembali ke Halaman Dashboard</a></center>
                             </div>
                         </div>
                     </div>

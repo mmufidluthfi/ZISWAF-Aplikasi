@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-use App\Http\Requests;
 use DB;
+use App\Pendanaan;
+
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class TransaksiController extends Controller
@@ -38,9 +40,15 @@ class TransaksiController extends Controller
 
     		$i = DB::table('transaksi')->insert($datatransaksi);
     		if ($i > 0) {
-
-    		  \Session::flash('message-nominal', $post['nominal']);
-    		  return redirect('donasi-payment');
+    			
+    			$id_halamanpendanaan = $post['id_pendanaan'];
+    			//$halamandonasipayment = echo "donasi-payment/$id_halamanpendanaan";
+	    		  \Session::flash('message-nominal', $post['nominal']);
+	    		  \Session::flash('message-idpendanaan', $id_halamanpendanaan);
+    		  
+    		  //return redirect()->back()->with($halamandonasipayment);
+    		  //return redirect()->action('App\Http\Controllers\PendanaanController@getDonasiPayment', [1]);
+    		  return redirect('donasi-payment/');
     		} 
     		
 

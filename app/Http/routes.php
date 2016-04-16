@@ -39,18 +39,22 @@ Route::get('/kategori/{kategori}', 'PendanaanController@getKategoriPendanaan');
 
 Route::get('/donasi/{id_pendanaan}', 'PendanaanController@getDonasiPendanaan');
 
+Route::get('/donasi-payment/{id_pendanaan}', 'PendanaanController@getDonasiPayment');
+
+Route::get('/donasi-invoice/{id_pendanaan}', 'PendanaanController@getDonasiInvoice');
+
 // Route::get('/donasi/{id_pendanaan}', 'PendanaanController@index');
 
 
 //Halaman Pembayaran Donasi
-Route::get('/donasi-payment', function () {
-    return view('donasi-payment');
-});
+// Route::get('/donasi-payment', function () {
+//     return view('donasi-payment');
+// });
 
 //Halaman Invoice Donasi
-Route::get('/donasi-invoice', function () {
-    return view('donasi-invoice');
-});
+// Route::get('/donasi-invoice', function () {
+//     return view('donasi-invoice');
+// });
 
 //Halaman About
 Route::get('/about', function () {
