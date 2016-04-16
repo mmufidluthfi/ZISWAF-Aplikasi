@@ -45,7 +45,7 @@
                                     <h6 class="grey">Kategori: Zakat</h6>
                                 </div>
 
-                                <center><h3><a class="button-normal full blue">Rp 50000,-</a></h3>
+                                <center><h3><a class="button-normal full blue">Rp <?php echo Session::get('message-nominal');?>,-</a></h3>
                                 <p><i>Transfer sebesar Nominal Diatas</i></p></center>
 
                                 <hr class="inline-hr" />

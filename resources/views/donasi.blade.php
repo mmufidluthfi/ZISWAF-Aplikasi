@@ -55,10 +55,17 @@
                                         <div class="widget-box">
                                             <div class="form-group row">
                                                 <div class="col-md-12">
-                                                    <center><h3 class="grey"><h3>Silahkan Login :</h3></center>
+                                                    <center><h3 class="grey"><h3>Silahkan Login Terlebih Dahulu:</h3></center><br/>
                                                 </div>
 
-                                                <center><a href="{{ url('/login') }}"><img width="60%" src="{{URL::to('/')}}/images/login-donasi.png"/></a></center>
+                                                <div class="col-md-6">
+                                                    <center><a href="{{ url('/login') }}"><img width="80%" src="{{URL::to('/')}}/images/login-donatur.png"/></a></center>
+                                                </div>
+
+                                                 <div class="col-md-6">
+                                                    <center><a href="{{ url('/register') }}"><img width="80%" src="{{URL::to('/')}}/images/register-donatur.png"/></a></center>
+                                                </div>
+
                                                 <!-- <form class="form-horizontal" role="form" method="POST" action="{{ url('/donasi')}}/{{$pendanaand->id_pendanaan}}">
                                                     
                                                     <div class="col-md-6">
@@ -84,7 +91,14 @@
                                         <!-- .widget box -->
 
                                     @else
-                                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}" >
+                                        <form class="form-horizontal" role="form" method="POST" action="{{action('TransaksiController@save_nominal')}}" >
+                                            {!! csrf_field() !!}
+
+                                        <input type="hidden" name="id" value="{{Auth::user()->id}}" />
+                                        <input type="hidden" name="id_pendanaan" value="{{$pendanaand->id_pendanaan}}" />
+                                        <input type="hidden" name="konfirmasi" value="belum" />
+                                        <input type="hidden" name="status" value="0" />
+                                        <input type="hidden" name="tanggal_transaksi" value="tanggal_transaksi" />
 
                                         <!-- widget box -->
                                         <div class="widget-box">
@@ -94,7 +108,11 @@
                                                     <h4>Rp</h4>
                                                 </div>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" placeholder="Masukkan Nominal Donasi" />
+                                                    <input name="nominal" type="text" class="form-control" placeholder="Masukkan Nominal Donasi" />
+                                                </div>
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-10">
+                                                    <p style="color:red"><b>{{$errors->first('nominal')}}</b></p>
                                                 </div>
                                             </div>
                                         </div>

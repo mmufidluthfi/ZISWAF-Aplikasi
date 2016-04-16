@@ -92,8 +92,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'nominal_transaksi' => [
+            'required' => 'Silahkan Isi Nominal Transaksi',
+            'integer' => 'Nominal Transaksi Berbentuk Angka',
         ],
     ],
 
