@@ -41,13 +41,7 @@
 						<tbody>
 
 							@foreach($pendanaantransaksi as $pdt)
-									<tr>
-										<td>{{$pdt->pendanaan.nama_proyek}}</td>
-										<td>{{$pdt->pendanaan.kategori}}</td>
-										<td>Rp {{$pdt->transaksi.nominal}}</td>
-										<td>{{$pdt->transaksi.tanggal_transaksi}}</td>
-										<td><!-- <button class="green"> -->{{$pdt->transaksi.status}}<!-- </button> --></td>
-									</tr>
+									{{$pdt->pendanaan.nama_proyek}}
 							@endforeach
 						</tbody>
 					</table>

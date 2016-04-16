@@ -57,7 +57,9 @@
                                                 <div class="col-md-12">
                                                     <center><h3 class="grey"><h3>Silahkan Login :</h3></center>
                                                 </div>
-                                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/donasi')}}/{{$pendanaand->id_pendanaan}}">
+
+                                                <center><a href="{{ url('/login') }}"><img width="60%" src="{{URL::to('/')}}/images/login-donasi.png"/></a></center>
+                                                <!-- <form class="form-horizontal" role="form" method="POST" action="{{ url('/donasi')}}/{{$pendanaand->id_pendanaan}}">
                                                     
                                                     <div class="col-md-6">
                                                         <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail Address"/>
@@ -76,7 +78,7 @@
                                                             Belum Punya Akun? <a class="btn btn-link" href="{{ url('/register') }}"><b>Daftar</b></a>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </form> -->
                                             </div>
                                         </div>
                                         <!-- .widget box -->
