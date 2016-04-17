@@ -13,6 +13,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Input;
 
+use Carbon\Carbon;
+
 
 class TransaksiController extends Controller
 {
@@ -38,17 +40,21 @@ class TransaksiController extends Controller
     		return redirect()->back()->withErrors($v->errors());
     	} else {
     		//var_dump($post);
+
+            $datetransaksi = Carbon::now()->format('Y-m-d H:i:s');
+
     		$datatransaksi = array(
     				'id'                => $post['id'], 
     				'id_pendanaan'      => $post['id_pendanaan'], 
     				'nominal'           => $post['nominal'], 
     				'konfirmasi'        => $post['konfirmasi'], 
     				'status'            => $post['status'], 
-    				'tanggal_transaksi' => $post['tanggal_transaksi'], 
+    				'tanggal_transaksi' => $datetransaksi, 
     			);
 
     		//$i = DB::table('transaksi')->insert($datatransaksi);
 
+            //DB::table('transaksi')->insert(['tanggal_transaksi' => Carbon::now()->format('Y-m-d H:i:s');]);
             $i = DB::table('transaksi')->insertGetId($datatransaksi);
             //$lastInsertedId= $datatransaksi->id_transaksi;
             //var_dump($i);
