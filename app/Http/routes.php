@@ -11,50 +11,37 @@
 |
 */
 
-//Halaman Utama
-// Route::get('/', function () {
-//     return view('home');
-// });
-
 Route::auth();
 
 //Halaman Welcome
 Route::get('/welcome', 'HomeController@index');
 
-
+//Pendanaan (Halaman Utama)
 Route::get('/', 'PendanaanController@getAllPendanaan');
 
+//Pendanaan (Halaman List Pendanaan)
 Route::get('/pendanaan', 'PendanaanController@getAllPendanaans1');
 
-//Halaman Detail Pendanaan
+//Pendanaan (Halaman Detail Pendanaan)
 Route::get('/details-pendanaan/{id_pendanaan}', 'PendanaanController@getPendanaan');
 
-//Halaman Berdasarkan Kategori
+//Pendanaan (Halaman Berdasarkan Kategori)
 Route::get('/kategori/{kategori}', 'PendanaanController@getKategoriPendanaan');
 
-//Halaman Pendanaan
-// Route::get('/donasi', function () {
-//     return view('donasi');
-// });
-
+//Halaman Donasi
+//Halaman Donasi by ID
 Route::get('/donasi/{id_pendanaan}', 'PendanaanController@getDonasiPendanaan');
+Route::post('save_nominal','TransaksiController@save_nominal');
 
+//Halaman Donasi by Payment
 Route::get('/donasi-payment/{id_pendanaan}', 'PendanaanController@getDonasiPayment');
+Route::post('upload', 'TransaksiController@upload');
 
+//Halaman Donasi by Invoice
 Route::get('/donasi-invoice/{id_pendanaan}', 'PendanaanController@getDonasiInvoice');
 
-// Route::get('/donasi/{id_pendanaan}', 'PendanaanController@index');
 
-
-//Halaman Pembayaran Donasi
-// Route::get('/donasi-payment', function () {
-//     return view('donasi-payment');
-// });
-
-//Halaman Invoice Donasi
-// Route::get('/donasi-invoice', function () {
-//     return view('donasi-invoice');
-// });
+//Another Page
 
 //Halaman About
 Route::get('/about', function () {
@@ -83,36 +70,16 @@ Route::get('/dashboard/home', function () {
 });
 
 //Dashboard Pendanaan
-// Route::get('/dashboard/pendanaan', function () {
-//     return view('dashboard.dashboard-pendanaan');
-// });
-
 Route::get('/dashboard/pendanaan/{id}', 'PendanaanController@getInformasiPendanaan');
 
+//Dashboard Laporan
 Route::get('/dashboard/laporan/{id}', 'PendanaanController@getInformasiLaporan');
 
-
-//Dashboard Laporan
-// Route::get('/dashboard/laporan', function () {
-//     return view('dashboard.dashboard-laporan');
-// });
-
-//Dashboard Edit Profile
-Route::get('/dashboard/edit-profile', function () {
-    return view('dashboard.dashboard-editprofile');
+//Dashboard Pengaturan
+Route::get('/dashboard/pengaturan', function () {
+    return view('dashboard.dashboard-pengaturan');
 });
 
-//Dashboard Edit Foto
-Route::get('/dashboard/edit-foto', function () {
-    return view('dashboard.dashboard-editfoto');
-});
+Route::post('uploadfoto', 'UsersController@uploadfoto');
 
-//Dashboard Edit Password
-Route::get('/dashboard/edit-password', function () {
-    return view('dashboard.dashboard-editpassword');
-});
-
-Route::post('save_nominal','TransaksiController@save_nominal');
-
-Route::post('upload', 'TransaksiController@upload');
 

@@ -66,7 +66,7 @@ class TransaksiController extends Controller
     		  
     		  //return redirect()->back()->with($halamandonasipayment);
     		  //return redirect()->action('App\Http\Controllers\PendanaanController@getDonasiPayment', [1]);
-    		  return redirect('donasi-payment/'); //masih error di redirect by id
+    		  return redirect('donasi-payment/'.$id_halamanpendanaan); //masih error di redirect by id
     		} 
     		
 
