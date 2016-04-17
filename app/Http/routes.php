@@ -112,6 +112,7 @@ Route::get('/dashboard/edit-password', function () {
     return view('dashboard.dashboard-editpassword');
 });
 
-
 Route::post('save_nominal','TransaksiController@save_nominal');
+
+Route::post('upload', 'TransaksiController@upload');
 

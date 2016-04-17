@@ -45,7 +45,7 @@
                                 <h6 class="grey">Kategori: {{$pendanaaninvoice->kategori}}</h6>
                                 <p>
                                 	Nama : {{Auth::user()->name}}<br/>
-                                	Nominal : Rp {{$pendanaannominal}},-<br/>
+                                	Nominal : Rp <?php echo Session::get('nominal-status'); ?>,-<br/>
                                 	Status : Belum Transfer<br/>
                                 </p>
                                 <center><a href="{{url('/dashboard/home')}}"><img src="{{URL::to('/')}}/images/Dashboard.png"><br/>Kembali ke Halaman Dashboard</a></center>

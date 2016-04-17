@@ -98,35 +98,39 @@
                                     <div class="form-group row">
                                         <center><h3>Konfirmasi Pembayaran:</h3></center>
 
-                                        <form enctype="multipart/form-data">
-
+                                        <form action="{{ URL::to('upload') }}" method="post" enctype="multipart/form-data">
+                                            {!! csrf_field() !!}
 
                                             <div class="col-md-3">
                                             </div>
                                             <div class="col-md-5">
-                                                <input type="file" name="fileToUpload" id="fileToUpload">
+                                                <input type="file" name="file" id="file">
                                             </div>
                                             <div class="col-md-3">
                                             </div>
 
-                                        <!-- widget box -->
+                                            <!-- widget box -->
                                             <div class="form-group">
                                                     <div class="col-md-6">
-                                                        <button type="submit" class="button-normal full blue">
+                                                        <button type="submit" value="Upload" name="submit" class="button-normal full blue">
                                                             <i class="fa fa-btn fa-user"></i>Upload Bukti
                                                         </button>
                                                     </div>
                                             </div>                                    
-                                        <!-- .widget-box -->
+                                            <!-- .widget-box -->
+
+                                            <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                                            <input type="hidden" value="<?php echo Session::get('message-idtransaksi'); ?>" name="id_transaksiDonasi">
+                                            
                                         </form>
 
                                             <div class="form-group">
-
                                                     <div class="col-md-6">
                                                     </div>
                                                     
                                                     <div class="col-md-6">
-                                                        <a href="/donasi-invoice/{{$pendanaanpayment->id_pendanaan}}"><button type="submit" class="button-normal full blue">
+                                                        <?php \Session::flash('nominal-status', $pendanaannominal); ?>
+                                                        <a href="{{URL::to('/donasi-invoice')}}/{{$pendanaanpayment->id_pendanaan}}"><button type="submit" class="button-normal full blue">
                                                             <i class="fa fa-btn fa-user"></i>Lewati
                                                         </button></a>
                                                     </div>

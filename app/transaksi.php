@@ -11,4 +11,5 @@ class transaksi extends Model
   	protected $fillable = ['nominal','konfirmasi','status','tanggal'];
   	
   	protected $primaryKey = 'id_transaksi';
+	
 }
