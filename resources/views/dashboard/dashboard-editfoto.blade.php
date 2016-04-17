@@ -1,6 +1,11 @@
 @extends('layouts.dashboard')
 
-	@section('content')
+@section('content')
+	@if (Auth::guest())
+
+		<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
+
+	@else
 	<nav>
 		<ul>
 			<li><a href="{{ url('/dashboard/home')}}"><span class="icon">&#128711;</span> Dashboard</a></li>
@@ -56,6 +61,8 @@
 			</section>
 		</div>
 	</section>
+
+	@endif
 		
 @endsection
 

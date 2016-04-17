@@ -74,19 +74,29 @@ class TransaksiController extends Controller
 
     }
 
-    public function upload(){
-
-            
+    public function upload(Request $request){
 
                 if(Input::hasFile('file')){
 
+                        $postgambar = $request->all();
+
                         $file = Input::file('file');
                         $file->move('transaksi', $file->getClientOriginalName());
+                        $namafile = $file->getClientOriginalName();
 
-                        var_dump($file);
-                        //echo 'Uploaded';
-                        //echo '<img src="transaksi/'. $file->getClientOriginalName().'"/>';
-                        //var_dump($file);
+                        $datatransaksiGambar = array(
+                                'id_transaksi'      => $postgambar['id_transaksiDonasi'], 
+                                'url_gambar'        => $namafile, 
+                            );
+
+                        $bukti_transaksiDonasi = DB::table('bukti_transaksi')->insert($datatransaksiGambar);
+
+                        DB::table('transaksi')->where('id_transaksi', $postgambar['id_transaksiDonasi'])->update(['konfirmasi' => $namafile]);
+
+                        \Session::flash('pesan-uploadsukses', 'Terima Kasih, Konfirmasi Pembayaran Sudah berhasil di Upload! <br/>Tim Admin Akan segera Memverifikasi Pendanaan Anda Segera. <br/>Silahkan melihat Halaman Pendanaan untuk mengetahui status pendanaan Anda');
+
+                        return redirect('dashboard/home');
+
                 }
 
         }
