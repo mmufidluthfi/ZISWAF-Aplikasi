@@ -29,42 +29,23 @@
 				<table id="myTable" border="0" width="100">
 					<thead>
 						<tr>
-							<th>ID UMKM</th>
-							<th>Pemilik UMKM</th>
-							<th>Keterangan</th>
-							<th>Tanggal Upload</th>
-							<th>Laporan</th>
+							<th>Nama Proyek</th>
+							<th>Nama Penanggung Jawab</th>
+							<th>Deskripsi Laporan</th>
+							<th>Waktu Laporan</th>
+							<th>File Laporan</th>
 						</tr>
 					</thead>
 						<tbody>
+						@foreach($laporanpendanaan as $lpr)
 							<tr>
-								<td><input type="checkbox" /> 00001</td>
-								<td>Muhammad Mufid Luthfi</td>
-								<td>Lebih bermanfaat</td>
-								<td>01/4/2016</td>
-								<td><a href="#">Download</a></td>
+								<td>{{$lpr->nama_proyek}}</td>
+								<td>{{$lpr->nama_pj}}</td>
+								<td>{{$lpr->deskripsi_laporan}}</td>
+								<td>{{$lpr->waktu_laporan}}</td>
+								<td><a href="{{$lpr->file_laporan}}">Download</a> </td>
 							</tr>
-							<tr>
-								<td><input type="checkbox" /> 00002</td>
-								<td>Reicka Sofi Azzura</td>
-								<td>Untung Banyak</td>
-								<td>02/4/2016</td>
-								<td><a href="#">Download</a></td>
-							</tr>
-							<tr>
-								<td><input type="checkbox" /> 00003</td>
-								<td>Nana Ramadhewi</td>
-								<td>Masih Rugi</td>
-								<td>03/4/2016</td>
-								<td><a href="#">Download</a></td>
-							</tr>
-							<tr>
-								<td><input type="checkbox" /> 00004</td>
-								<td>Elzar</td>
-								<td>Masih Rugi</td>
-								<td>04/4/2016</td>
-								<td><a href="#">Download</a></td>
-							</tr>
+						@endforeach
 						</tbody>
 					</table>
 			</div>

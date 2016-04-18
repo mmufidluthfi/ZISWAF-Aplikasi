@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pendanaan;
+use App\laporan;
 use App\Http\Requests;
 
 use DB;
@@ -26,7 +27,9 @@ class PendanaanController extends Controller
 
 	public function getPendanaan($id_pendanaan){
 	    $pendanaan  = Pendanaan::find($id_pendanaan);
-	    return view('details-pendanaan')->withPendanaan($pendanaan);
+	    $laporan    = DB::table('laporan')->where('id_pendanaan', '=', $id_pendanaan)->get();
+	    //return view('details-pendanaan')->withPendanaan($pendanaan);
+	    return view('details-pendanaan',['pendanaan' => $pendanaan],['laporan' => $laporan]);
 	}
 
 	public function getKategoriPendanaan($kategori){	    
@@ -52,26 +55,11 @@ class PendanaanController extends Controller
 		            ->where('transaksi.id', '=', $id)
 		            ->get();
 
-	  	var_dump($pendanaantransaksi);
-	  	//return view('dashboard.dashboard-pendanaan')->withPendanaantransaksi($pendanaantransaksi);
+	  	//var_dump($pendanaantransaksi);
+	  	return view('dashboard.dashboard-pendanaan')->withPendanaantransaksi($pendanaantransaksi);
 	    
 	    // return view('dashboard.dashboard-pendanaan',['infotransaksi' => $infotransaksi],['pendanaantransaksi' => $pendanaantransaksi],['usertransaksi' => $usertransaksi]);  
 		// return view('dashboard.dashboard-pendanaan',['pendanaantransaksi' => $pendanaantransaksi]);
-	 }
-
-	//Dashboard Laporan
-	public function getInformasiLaporan($id){
-
-		$pendanaanlaporan = DB::table('laporan')
-		            ->join('pendanaan', 'laporan.id_pendanaan', '=', 'pendanaan.id_pendanaan')
-		            ->join('transaksi', 'transaksi.id_pendanaan', '=', 'pendanaan.id_pendanaan')
-		            ->join('users', 'users.id', '=', 'transaksi.id')
-		            ->select('pendanaan.nama_proyek', 'pendanaan.nama_pj', 'laporan.deskripsi_laporan', 'laporan.waktu_laporan' , 'laporan.file_laporan')
-		            ->where('users.id', '=', $id)
-		            ->get();
-
-	  	var_dump($pendanaanlaporan);
-	 	//return view('dashboard.dashboard-laporan')->withPendanaanlaporan($pendanaanlaporan);
 	 }
 
 	//Halaman Donasi Payment

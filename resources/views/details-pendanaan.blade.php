@@ -158,7 +158,43 @@
 
                                                     <!-- 2 -->
                                                     <div id="sectionB" class="tab-pane fade">
-                                                        <h3>LAPORAN PERKEMBANGAN UMKM</h3>
+                                                        <div class="content">
+
+                                                            <!-- title -->
+                                                            <h2><a href="#">{{ $pendanaan->nama_proyek}}</a>
+                                                            </h2>
+                                                            <!-- .title -->
+                                                            <!-- meta -->
+                                                            <p>
+                                                                <span class="grey">{{ $pendanaan->kategori}}</span>
+                                                            </p>
+                                                            <!-- .meta -->
+                                                        </div>
+
+                                                        <!-- Laporan -->
+                                                        <div class="content">
+                                                        
+                                                                <table id="myTable" border="0" width="100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Keterangan</th>
+                                                                            <th>Tanggal Upload</th>
+                                                                            <th>Download Laporan</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    @foreach($laporan as $lpr)
+                                                                        <tr>
+                                                                            <td>{{$lpr->deskripsi_laporan}}</td>
+                                                                            <td>{{$lpr->waktu_laporan}}</td>
+                                                                            <td><a href="{{$lpr->file_laporan}}">Download</a></td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                        
+                                                        </div>
+
                                                     </div>
                                                     <!-- .2 -->
                                                 </div>
@@ -170,12 +206,6 @@
                                             <!-- tags & prev next -->
                                             <div class="content">
                                                 <div class="row">
-
-                                                    <!-- tags -->
-                                                    <div class="col-md-12">
-                                                        <br/><b>Download Proposal Lengkap <a href="#">DISINI</a></b>
-                                                    </div>
-                                                    <!-- .tags -->
 
                                                 </div>
                                             </div>
@@ -271,105 +301,6 @@
                         </div>
                     </div>
                     <!-- .share widget -->
-
-                    <!-- donate widget -->
-                    <div class="widget">
-                        <div class="widget-donate">
-                            <div class="box-wrapper">
-                                <div class="box">
-
-                                    <!-- widget box -->
-                                        <br/><center><h4>Investor Terakhir</h4></center>
-                                        <!-- 1 -->
-                                        <div class="content comments">
-                                            <div class="media">
-
-                                                <div class="small-product pull-left">
-                                                    <div class="small-product-wrapper">
-                                                        <a href="#">
-                                                            <img class="media-object img-thumbnail img-circle" src="images/avatar_1.png" title="" alt="" />
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="media-body small-product">
-                                                    <p>
-                                                        <span class="lead">$50.00</span>
-                                                        <span class="grey">by</span> <a href="#">Predrag Stojanovic</a> 
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr />
-
-                                        <!-- 3 -->
-                                        <div class="content comments">
-                                            <div class="media">
-
-                                                <div class="small-product pull-left">
-                                                    <div class="small-product-wrapper">
-                                                        <a href="#">
-                                                            <img class="media-object img-thumbnail img-circle" src="images/avatar_1.png" title="" alt="" />
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="media-body small-product">
-                                                    <p>
-                                                        <span class="lead">$50.00</span>
-                                                        <span class="grey">by</span> <a href="#">Predrag Stojanovic</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr />
-
-                                        <!-- 3 -->
-                                        <div class="content comments">
-                                            <div class="media">
-
-                                                <div class="small-product pull-left">
-                                                    <div class="small-product-wrapper">
-                                                        <a href="#">
-                                                            <img class="media-object img-thumbnail img-circle" src="images/avatar_1.png" title="" alt="" />
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="media-body small-product">
-                                                    <p>
-                                                        <span class="lead">$50.00</span>
-                                                        <span class="grey">by</span> <a href="#">Predrag Stojanovic</a> 
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- prev next -->
-                                        <div class="content">
-                                            <div class="row">
-
-                                                <!-- paginate posts -->
-                                                <div class="col-md-12">
-                                                    <div class="paginate single pull-right">
-                                                        <ul class="list-unstyled list-inline">
-                                                            <li><a href="#"><i class="fa fa-angle-left"></i></a>
-                                                            </li>
-                                                            <li><a href="#" class="active"><i class="fa fa-angle-right"></i></a> 
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <!-- .paginate posts -->
-
-                                            </div>
-                                        </div>
-                                        <!-- .prev next -->
-
-                                    <!-- .widget box -->
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- .donate widget -->
 
                 </div>
                 <!-- .sidebar -->

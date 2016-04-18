@@ -36,11 +36,17 @@
 							<th>Status</th>
 						</tr>
 					</thead>
-						<tbody>
 
-							@foreach($pendanaantransaksi as $pdt)
-									{{$pdt->pendanaan.nama_proyek}}
-							@endforeach
+						<tbody>
+						@foreach($pendanaantransaksi as $pdt)
+							<tr>
+								<td>{{$pdt->nama_proyek}}</td>
+								<td>{{$pdt->kategori}}</td>
+								<td>{{$pdt->nominal}}</td>
+								<td>{{$pdt->tanggal_transaksi}}</td>
+								<td>{{$pdt->status}}</td>
+							</tr>
+						@endforeach
 						</tbody>
 					</table>
 			</div>

@@ -24,6 +24,8 @@ Route::get('/pendanaan', 'PendanaanController@getAllPendanaans1');
 
 //Pendanaan (Halaman Detail Pendanaan)
 Route::get('/details-pendanaan/{id_pendanaan}', 'PendanaanController@getPendanaan');
+//Route::get('/details-pendanaan/{id_pendanaan}', 'LaporanController@getLaporan');
+
 
 //Pendanaan (Halaman Berdasarkan Kategori)
 Route::get('/kategori/{kategori}', 'PendanaanController@getKategoriPendanaan');
@@ -73,7 +75,7 @@ Route::get('/dashboard/home', function () {
 Route::get('/dashboard/pendanaan/{id}', 'PendanaanController@getInformasiPendanaan');
 
 //Dashboard Laporan
-Route::get('/dashboard/laporan/{id}', 'PendanaanController@getInformasiLaporan');
+Route::get('/dashboard/laporan/{id}', 'LaporanController@getInformasiLaporan');
 
 //Dashboard Pengaturan
 Route::get('/dashboard/pengaturan', function () {
