@@ -2,7 +2,7 @@
 <html lang="">
 <head>
 	<meta charset="utf-8">
-	<title>Dashboard | ZISWAF Crowdfunding</title>
+	<title>Dashboard Amin | ZISWAF Crowdfunding</title>
 
     <meta name="keywords" content="ZISWAF Crowdfunding | Zakat | Infaq | Sadaqah | Waqaf" />
     <meta name="description" content="Aplikasi Pendanaan untuk Zakat, Infaq, Sadaqah dan Waqaf untuk kegiatan ZISWAF Produktif khusu UMKM">
@@ -17,24 +17,21 @@
 	<!--[if IE]><link rel="stylesheet" href="css/ie.css" media="all" /><![endif]-->
 	<!--[if lt IE 9]><link rel="stylesheet" href="css/lt-ie-9.css" media="all" /><![endif]-->
 
-@if (Auth::guest())
-	<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
-@else
 
 </head>
 <body>
 	<div class="testing">
 		<header class="main">
-			<a href="{{URL::to('/')}}"><h1><strong>ZISWAF Crowdfunding</strong> Dashboard</h1></a>
+			<a href="{{URL::to('administrator/home')}}"><h1><strong>ZISWAF Crowdfunding</strong> Administrator</h1></a>
 			<input type="text" value="search" />
 		</header>
 		<section class="user">
 			<div class="profile-img">
-				<p><img src="{{URL::to('dashboard/images/fotoprofile')}}/{{ Auth::user()->url_foto }}" alt="" height="40" width="40" /> Selamat Datang <strong>{{ Auth::user()->name }}</strong></p>
+				<p><strong><a href="{{URL::to('administrator/home')}}"><font size="+1">Home</font></a></strong></p>
 			</div>
 			<div class="buttons">
 				<button class="ico-font">&#9206;</button>
-				<span class="button blue"><a href="{{ url('/logout') }}">Logout</a></span>
+				<span class="button blue"><a href="{{ url('/') }}">Logout</a></span>
 			</div>
 		</section>
 	</div>
@@ -63,8 +60,6 @@
 	    next:    '.right-btn'
 	});
 	</script>
-
-@endif
 
 </body>
 </html>

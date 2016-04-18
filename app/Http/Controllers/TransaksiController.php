@@ -107,4 +107,18 @@ class TransaksiController extends Controller
 
         }
 
+        public function getTransaksipendanaan(){
+
+            $transaksipendanaan = DB::table('transaksi')
+                        ->join('users', 'transaksi.id', '=', 'users.id')
+                        ->join('pendanaan', 'transaksi.id_pendanaan', '=', 'pendanaan.id_pendanaan')
+                        ->select('transaksi.id_transaksi', 'pendanaan.nama_proyek', 'pendanaan.kategori', 'users.name', 'transaksi.nominal', 'transaksi.konfirmasi', 'transaksi.status', 'transaksi.tanggal_transaksi')
+                        //->where('transaksi.id', '=', $id)
+                        ->get();
+
+            //var_dump($transaksipendanaan);
+            return view('administrator.administrator-transaksidonasi')->withTransaksipendanaan($transaksipendanaan);
+        
+     }
+
 }

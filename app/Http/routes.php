@@ -84,4 +84,25 @@ Route::get('/dashboard/pengaturan', function () {
 
 Route::post('uploadfoto', 'UsersController@uploadfoto');
 
+//Administrator
+Route::get('/administrator/home', function () {
+    return view('administrator.administrator-home');
+});
+
+//Administrator Transaksi Donasi
+Route::get('/administrator/transaksidonasi', 'TransaksiController@getTransaksipendanaan');
+
+// Route::get('/administrator/transaksidonasi', function () {
+//     return view('administrator.administrator-transaksidonasi');
+// });
+
+
+
+Route::get('/administrator/listdonasi', function () {
+    return view('administrator.administrator-listdonasi');
+});
+
+Route::get('/administrator/submitdonasi', function () {
+    return view('administrator.administrator-submitdonasi');
+});
 
