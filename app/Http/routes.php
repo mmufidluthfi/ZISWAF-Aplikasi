@@ -24,7 +24,8 @@ Route::get('/pendanaan', 'PendanaanController@getAllPendanaans1');
 
 //Pendanaan (Halaman Detail Pendanaan)
 Route::get('/details-pendanaan/{id_pendanaan}', 'PendanaanController@getPendanaan');
-//Route::get('/details-pendanaan/{id_pendanaan}', 'LaporanController@getLaporan');
+
+Route::post('uploadbukti', 'TransaksiController@uploadbukti');
 
 
 //Pendanaan (Halaman Berdasarkan Kategori)
@@ -92,15 +93,18 @@ Route::get('/administrator/home', function () {
 //Administrator Transaksi Donasi
 Route::get('/administrator/transaksidonasi', 'TransaksiController@getTransaksipendanaan');
 
+Route::post('updatestatus', 'TransaksiController@updatestatus');
+
 // Route::get('/administrator/transaksidonasi', function () {
 //     return view('administrator.administrator-transaksidonasi');
 // });
 
 
+Route::get('/administrator/listdonasi', 'PendanaanController@getAllPendanaanAdmin');
 
-Route::get('/administrator/listdonasi', function () {
-    return view('administrator.administrator-listdonasi');
-});
+// Route::get('/administrator/listdonasi', function () {
+//     return view('administrator.administrator-listdonasi');
+// });
 
 Route::get('/administrator/submitdonasi', function () {
     return view('administrator.administrator-submitdonasi');

@@ -2,7 +2,7 @@
 <html lang="">
 <head>
 	<meta charset="utf-8">
-	<title>Dashboard Amin | ZISWAF Crowdfunding</title>
+	<title>Dashboard Admin | ZISWAF Crowdfunding</title>
 
     <meta name="keywords" content="ZISWAF Crowdfunding | Zakat | Infaq | Sadaqah | Waqaf" />
     <meta name="description" content="Aplikasi Pendanaan untuk Zakat, Infaq, Sadaqah dan Waqaf untuk kegiatan ZISWAF Produktif khusu UMKM">

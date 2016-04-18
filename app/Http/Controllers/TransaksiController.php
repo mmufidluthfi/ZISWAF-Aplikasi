@@ -107,12 +107,40 @@ class TransaksiController extends Controller
 
         }
 
+        public function uploadbukti(Request $request){
+
+                if(Input::hasFile('file')){
+
+                        $postgambar = $request->all();
+
+                        $file = Input::file('file');
+                        $file->move('transaksi', $file->getClientOriginalName());
+                        $namafile = $file->getClientOriginalName();
+
+                        $datatransaksiGambar = array(
+                                'id_transaksi'      => $postgambar['id_transaksiDonasi'], 
+                                'url_gambar'        => $namafile, 
+                            );
+
+                        $bukti_transaksiDonasi = DB::table('bukti_transaksi')->insert($datatransaksiGambar);
+
+                        DB::table('transaksi')->where('id_transaksi', $postgambar['id_transaksiDonasi'])->update(['konfirmasi' => $namafile]);
+
+                        \Session::flash('pesan-uploadsukses', 'Terima Kasih, Konfirmasi Pembayaran Sudah berhasil di Upload! <br/>Tim Admin Akan segera Memverifikasi Pendanaan Anda Segera. <br/>Silahkan melihat Halaman Pendanaan untuk mengetahui status pendanaan Anda');
+
+                        return redirect('dashboard/home');
+
+                }
+
+        }
+
         public function getTransaksipendanaan(){
 
             $transaksipendanaan = DB::table('transaksi')
                         ->join('users', 'transaksi.id', '=', 'users.id')
                         ->join('pendanaan', 'transaksi.id_pendanaan', '=', 'pendanaan.id_pendanaan')
                         ->select('transaksi.id_transaksi', 'pendanaan.nama_proyek', 'pendanaan.kategori', 'users.name', 'transaksi.nominal', 'transaksi.konfirmasi', 'transaksi.status', 'transaksi.tanggal_transaksi')
+                        ->orderBy('transaksi.id_transaksi', 'desc')
                         //->where('transaksi.id', '=', $id)
                         ->get();
 
@@ -120,5 +148,19 @@ class TransaksiController extends Controller
             return view('administrator.administrator-transaksidonasi')->withTransaksipendanaan($transaksipendanaan);
         
      }
+
+      public function updatestatus(Request $request){
+
+            $updatestatustransaksi = $request->all();
+
+            $statustransaksi = array(
+                            'id_transaksi'  => $updatestatustransaksi['id_transaksiDonasi'], 
+                            'status'        => $updatestatustransaksi['editstatus'], 
+                        );
+
+            DB::table('transaksi')->where('id_transaksi', $updatestatustransaksi['id_transaksiDonasi'])->update(['status' => $updatestatustransaksi['editstatus']]);
+
+            return redirect('administrator/transaksidonasi');
+    }
 
 }

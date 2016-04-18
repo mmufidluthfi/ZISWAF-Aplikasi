@@ -33,6 +33,8 @@
 							<th>Jenis Pendanaan</th>
 							<th>Nominal Pendanaan</th>
 							<th>Tanggal</th>
+							<th>Upload Bukti</th>
+							<th></th>
 							<th>Status</th>
 						</tr>
 					</thead>
@@ -44,7 +46,33 @@
 								<td>{{$pdt->kategori}}</td>
 								<td>{{$pdt->nominal}}</td>
 								<td>{{$pdt->tanggal_transaksi}}</td>
-								<td>{{$pdt->status}}</td>
+								<td>
+									<form action="{{ URL::to('uploadbukti') }}" method="post" enctype="multipart/form-data">
+                                        {!! csrf_field() !!}
+                                        <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                                        <input type="hidden" value="{{$pdt->id_transaksi}}" name="id_transaksiDonasi">
+                                        <input type="file" name="file" id="file">
+                                </td><td>
+                                        <button type="submit" value="Upload" name="submit" class="button-normal full blue">
+                                            <i class="fa fa-btn fa-user"></i>Upload
+                                        </button>
+                                    </form>
+								</td>
+								<td>
+									<?php 
+										$statuspending = "0";
+										$statusberhasil = "1";
+										$statusgagal = "2";
+
+										if ($pdt->status == $statusberhasil) {
+											echo "<button class='green'>Sukses</button>";
+										} else if ($pdt->status == $statuspending) {
+											echo "<button class='orange'>Pending</button>";
+										} else {
+											echo "<button class='red'>Gagal</button>";
+										}
+									?>
+								</td>
 							</tr>
 						@endforeach
 						</tbody>

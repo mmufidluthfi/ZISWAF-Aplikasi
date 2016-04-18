@@ -53,6 +53,7 @@ class PendanaanController extends Controller
 		            ->join('pendanaan', 'transaksi.id_pendanaan', '=', 'pendanaan.id_pendanaan')
 		            ->select('users.id', 'pendanaan.nama_proyek', 'pendanaan.kategori', 'transaksi.*')
 		            ->where('transaksi.id', '=', $id)
+		            ->orderBy('transaksi.id_transaksi', 'desc')
 		            ->get();
 
 	  	//var_dump($pendanaantransaksi);
@@ -76,6 +77,12 @@ class PendanaanController extends Controller
 		$pendanaannominal = Session::get('message-nominal');
     	//return view('donasi-invoice')->withPendanaaninvoice($pendanaaninvoice);
     	return view('donasi-invoice',['pendanaaninvoice' => $pendanaaninvoice],['pendanaannominal' => $pendanaannominal]); 
+	}
+
+	//Halaman Administrator Pendanaa
+	public function getAllPendanaanAdmin(){
+    	$pendanaanadmin  = Pendanaan::all();
+    	return view('administrator.administrator-listdonasi')->withPendanaanadmin($pendanaanadmin);
 	}
 
 
