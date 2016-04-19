@@ -154,25 +154,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-
                     <!-- heading -->
                     <div class="heading">
-
-                        <!-- title -->
-                        <h3>Pendanaan ZISWAF</h3>
-                        <!-- .title -->
-
-                        <!-- carousel slide -->
-                        <div class="carousel-control carousel-control-heading">
-                            <a class="carousel-control left" href="#latestCarousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-                            <a class="carousel-control right" href="#latestCarousel" data-slide="next"><i class="fa fa-angle-right"></i></a> 
+                        <div class="col-md-9">
+                            <!-- title -->
+                            <h3>Pendanaan ZISWAF</h3>
+                            <!-- .title -->
                         </div>
-
+                        <div class="col-md-3">
+                            <!-- carousel slide -->
+                            <div class="carousel-control carousel-control-heading">
+                                <!-- <a class="carousel-control left" href="#latestCarousel" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+                                <a class="carousel-control right" href="#latestCarousel" data-slide="next"><i class="fa fa-angle-right"></i></a>  -->
+                                <?php echo $pendanaans->render(); ?>
+                            </div>
+                        </div>
+                        <br/><br/>
                         <div class="border">
                             <div class="border-inner">
                             </div>
                         </div>
-
                     </div>
                     <!-- .heading -->
 
@@ -294,7 +295,7 @@
                             <strong>Bersama Menciptakan Masa Depan</strong>
                         </h2>
                         <h6>Pendanaan ZISWAF Crowdfunding sudah melibatkan +4000 Orang Berdonasi</h6>
-                        <a class="button-normal blue" href="{{ url('/pendanaan')}}">Donasi Sekarang</a>
+                        <a class="button-normal blue" href="{{URL::to('/kategori')}}/Zakat">Zakat</a> <a class="button-normal blue" href="{{URL::to('/kategori')}}/Infaq">Infaq</a> <a class="button-normal blue" href="{{URL::to('/kategori')}}/Sadaqah">Sadaqah</a> <a class="button-normal blue" href="{{URL::to('/kategori')}}/Waqaf">Waqaf</a>
                     </div>
                 </div>
             </div>

@@ -13,15 +13,17 @@ use App\Http\Controllers\Controller;
 use App\Users;
 use Session;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class PendanaanController extends Controller
 {
     public function getAllPendanaan(){
-    	$pendanaans  = Pendanaan::all();
+    	$pendanaans  = DB::table('pendanaan')->paginate(4);
     	return view('home')->withPendanaans($pendanaans);
 	}
 
 	public function getAllPendanaans1(){
-    	$pendanaans1  = Pendanaan::all();
+    	$pendanaans1  = DB::table('pendanaan')->paginate(6);
     	return view('pendanaan')->withPendanaans1($pendanaans1);
 	}
 
@@ -33,7 +35,7 @@ class PendanaanController extends Controller
 	}
 
 	public function getKategoriPendanaan($kategori){	    
-		$pendanaank = DB::table('pendanaan')->where('kategori', '=', $kategori)->get();
+		$pendanaank = DB::table('pendanaan')->where('kategori', '=', $kategori)->paginate(6);
     	return view('kategori')->withPendanaank($pendanaank);
 	}
 
@@ -54,7 +56,7 @@ class PendanaanController extends Controller
 		            ->select('users.id', 'pendanaan.nama_proyek', 'pendanaan.kategori', 'transaksi.*')
 		            ->where('transaksi.id', '=', $id)
 		            ->orderBy('transaksi.id_transaksi', 'desc')
-		            ->get();
+		            ->paginate(5);
 
 	  	//var_dump($pendanaantransaksi);
 	  	return view('dashboard.dashboard-pendanaan')->withPendanaantransaksi($pendanaantransaksi);
@@ -81,7 +83,7 @@ class PendanaanController extends Controller
 
 	//Halaman Administrator Pendanaa
 	public function getAllPendanaanAdmin(){
-    	$pendanaanadmin  = Pendanaan::all();
+    	$pendanaanadmin  = DB::table('pendanaan')->paginate(5);
     	return view('administrator.administrator-listdonasi')->withPendanaanadmin($pendanaanadmin);
 	}
 

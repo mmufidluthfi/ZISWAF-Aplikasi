@@ -149,7 +149,7 @@
 
                                                         <!-- content single -->
                                                         <div class="content single">
-                                                            <p>{{ $pendanaan->deskripsi}}</p>
+                                                            <p><?php echo $pendanaan->deskripsi; ?></p>
 
                                                         </div>
                                                         <!-- .content single -->

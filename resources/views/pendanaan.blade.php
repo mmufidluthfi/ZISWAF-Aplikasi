@@ -36,38 +36,18 @@
 
                 <!-- paginate & posts -->
                 <div class="col-md-9">
-
                     <!-- pagination -->
-                    <div class="paginate">
-                        <div class="row">
-
-                            <!-- prev & next -->
-                            <div class="col-md-2 col-xs-3">
-                                <ul class="list-unstyled list-inline">
-                                    <li><a href="#"><i class="fa fa-angle-left"></i></a>
-                                    </li>
-                                    <li><a href="#" class="active"><i class="fa fa-angle-right"></i></a> 
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- .prev & next -->
-
-                            <!-- prev & next -->
-                            <div class="col-md-10 col-xs-9">
-                                <ul class="list-unstyled list-inline text-right">
-                                    <li><a href="#" class="active">1</a>
-                                    </li>
-                                    <li><a href="#">2</a> 
-                                    </li>
-                                    <li><a href="#">3</a>
-                                    </li>
-                                    <li><a href="#">4</a> 
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- .prev & next -->
-
+                    <div class="row">
+                        <!-- prev & next -->
+                        <div class="col-md-9">
                         </div>
+                        <!-- .prev & next -->
+
+                        <!-- prev & next -->
+                        <div class="col-md-3">
+                                <?php echo $pendanaans1->render(); ?>
+                        </div>
+                        <!-- .prev & next -->
                     </div>
                     <!-- .pagination -->
 
@@ -162,36 +142,17 @@
                     <!-- .posts -->
 
                     <!-- pagination -->
-                    <div class="paginate">
-                        <div class="row">
-
-                            <!-- prev & next -->
-                            <div class="col-md-2 col-xs-3">
-                                <ul class="list-unstyled list-inline">
-                                    <li><a href="#"><i class="fa fa-angle-left"></i></a>
-                                    </li>
-                                    <li><a href="#" class="active"><i class="fa fa-angle-right"></i></a> 
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- .prev & next -->
-
-                            <!-- prev & next -->
-                            <div class="col-md-10 col-xs-9">
-                                <ul class="list-unstyled list-inline text-right">
-                                    <li><a href="#" class="active">1</a>
-                                    </li>
-                                    <li><a href="#">2</a> 
-                                    </li>
-                                    <li><a href="#">3</a>
-                                    </li>
-                                    <li><a href="#">4</a> 
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- .prev & next -->
-
+                    <div class="row">
+                        <!-- prev & next -->
+                        <div class="col-md-9">
                         </div>
+                        <!-- .prev & next -->
+
+                        <!-- prev & next -->
+                        <div class="col-md-3">
+                                <?php echo $pendanaans1->render(); ?>
+                        </div>
+                        <!-- .prev & next -->
                     </div>
                     <!-- .pagination -->
 

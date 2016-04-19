@@ -48,6 +48,7 @@
 						@endforeach
 						</tbody>
 					</table>
+					<br/><?php echo $laporanpendanaan->render(); ?>
 			</div>
 		</section>
 	</section>

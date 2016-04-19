@@ -8,6 +8,8 @@ use App\laporan;
 use App\Http\Requests;
 
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class LaporanController extends Controller
 {
@@ -19,7 +21,7 @@ class LaporanController extends Controller
 		            ->join('users', 'users.id', '=', 'transaksi.id')
 		            ->select('pendanaan.nama_proyek', 'pendanaan.nama_pj', 'laporan.deskripsi_laporan', 'laporan.waktu_laporan' , 'laporan.file_laporan')
 		            ->where('users.id', '=', $id)
-		            ->get();
+		            ->paginate(10);
 
 	  	//var_dump($laporanpendanaan);
 	 	return view('dashboard.dashboard-laporan')->withLaporanpendanaan($laporanpendanaan);

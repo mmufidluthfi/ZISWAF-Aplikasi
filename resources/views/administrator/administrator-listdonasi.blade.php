@@ -46,6 +46,9 @@
 						@endforeach
 					</tbody>
 				</table>
+				
+				<br><br>
+				<?php echo $pendanaanadmin->render(); ?>
 
 			</div>
 		</section>

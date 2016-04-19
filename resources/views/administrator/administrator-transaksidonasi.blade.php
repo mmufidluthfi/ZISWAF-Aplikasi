@@ -53,6 +53,8 @@
 									{!! csrf_field() !!}
 									<input type="hidden" value="{{ csrf_token() }}" name="_token">
 									<input type="hidden" value="{{$tpd->id_transaksi}}" name="id_transaksiDonasi">
+									<input type="hidden" value="{{$tpd->id_pendanaan}}" name="id_pendanaanDonasi">
+									<input type="hidden" value="{{$tpd->nominal}}" name="nominal_pendanaanDonasi">
 									
 									  <select name="editstatus">
 									    <option value="1">Sukses</option>
@@ -85,6 +87,9 @@
 						@endforeach
 					</tbody>
 				</table>
+
+				<br><br>
+				<?php echo $transaksipendanaan->render(); ?>
 			</div>
 		</section>
 			

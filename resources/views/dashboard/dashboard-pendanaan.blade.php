@@ -77,6 +77,7 @@
 						@endforeach
 						</tbody>
 					</table>
+					<br/><?php echo $pendanaantransaksi->render(); ?>
 			</div>
 		</section>
 	</section>

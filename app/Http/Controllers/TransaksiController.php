@@ -18,28 +18,23 @@ use Carbon\Carbon;
 
 class TransaksiController extends Controller
 {
+
     public function save_nominal(Request $request)
     {
 
     	$post = $request->all();
 
-    	//var_dump($post);
-
-        //$lastInsertID = transaksi::lastID($data);
-        //var_dump($lastInsertID);
-
     	$v = \Validator::make($request->all(),
     		[
     			'nominal' => 'required|integer',
     		]);
+
     	if($v->fails())
     	{
-   			//$messages = [
-			//     'nominal.required' => 'Opps!',
-			// ];
+
     		return redirect()->back()->withErrors($v->errors());
+
     	} else {
-    		//var_dump($post);
 
             $datetransaksi = Carbon::now()->format('Y-m-d H:i:s');
 
@@ -52,30 +47,21 @@ class TransaksiController extends Controller
     				'tanggal_transaksi' => $datetransaksi, 
     			);
 
-    		//$i = DB::table('transaksi')->insert($datatransaksi);
-
-            //DB::table('transaksi')->insert(['tanggal_transaksi' => Carbon::now()->format('Y-m-d H:i:s');]);
             $i = DB::table('transaksi')->insertGetId($datatransaksi);
-            //$lastInsertedId= $datatransaksi->id_transaksi;
-            //var_dump($i);
-
-            //var_dump($lastInsertedId);
 
     		if ($i > 0) {
     			
     			$id_halamanpendanaan = $post['id_pendanaan'];
-    			//$halamandonasipayment = echo "donasi-payment/$id_halamanpendanaan";
+    			
 	    		  \Session::flash('message-nominal', $post['nominal']);
 	    		  \Session::flash('message-idpendanaan', $id_halamanpendanaan);
 	    		  \Session::flash('message-status', $post['status']);
                   \Session::flash('message-idtransaksi', $i);
     		  
-    		  //return redirect()->back()->with($halamandonasipayment);
-    		  //return redirect()->action('App\Http\Controllers\PendanaanController@getDonasiPayment', [1]);
-    		  return redirect('donasi-payment/'.$id_halamanpendanaan); //masih error di redirect by id
+    		  return redirect('donasi-payment/'.$id_halamanpendanaan);
+              
     		} 
     		
-
     	}
 
     }
@@ -139,12 +125,10 @@ class TransaksiController extends Controller
             $transaksipendanaan = DB::table('transaksi')
                         ->join('users', 'transaksi.id', '=', 'users.id')
                         ->join('pendanaan', 'transaksi.id_pendanaan', '=', 'pendanaan.id_pendanaan')
-                        ->select('transaksi.id_transaksi', 'pendanaan.nama_proyek', 'pendanaan.kategori', 'users.name', 'transaksi.nominal', 'transaksi.konfirmasi', 'transaksi.status', 'transaksi.tanggal_transaksi')
+                        ->select('transaksi.id_transaksi', 'pendanaan.id_pendanaan', 'pendanaan.nama_proyek', 'pendanaan.kategori', 'users.name', 'transaksi.nominal', 'transaksi.konfirmasi', 'transaksi.status', 'transaksi.tanggal_transaksi')
                         ->orderBy('transaksi.id_transaksi', 'desc')
-                        //->where('transaksi.id', '=', $id)
-                        ->get();
+                        ->paginate(5);
 
-            //var_dump($transaksipendanaan);
             return view('administrator.administrator-transaksidonasi')->withTransaksipendanaan($transaksipendanaan);
         
      }
@@ -154,9 +138,26 @@ class TransaksiController extends Controller
             $updatestatustransaksi = $request->all();
 
             $statustransaksi = array(
+                            'id_pendanaan'  => $updatestatustransaksi['id_pendanaanDonasi'], 
+                            'nominal'       => $updatestatustransaksi['nominal_pendanaanDonasi'], 
                             'id_transaksi'  => $updatestatustransaksi['id_transaksiDonasi'], 
                             'status'        => $updatestatustransaksi['editstatus'], 
                         );
+
+            $pendanaanupdate = DB::table('pendanaan')
+                ->where('id_pendanaan', '=', $updatestatustransaksi['id_pendanaanDonasi'])
+                ->select('sementara_dana')
+                ->get();
+
+            foreach ($pendanaanupdate as $pdu) {
+                $intpendanaanupdate = (int)$pdu->sementara_dana;
+                $intdatatransaksinominal = (int)$updatestatustransaksi['nominal_pendanaanDonasi'];
+                
+                    $updatedana = $intpendanaanupdate + $intdatatransaksinominal;
+
+                    DB::table('pendanaan')->where('id_pendanaan', $updatestatustransaksi['id_pendanaanDonasi'])->update(['sementara_dana' => $updatedana]);
+
+            }
 
             DB::table('transaksi')->where('id_transaksi', $updatestatustransaksi['id_transaksiDonasi'])->update(['status' => $updatestatustransaksi['editstatus']]);
 
