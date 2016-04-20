@@ -31,15 +31,23 @@
 
 					<tbody>
 						@foreach($pendanaanadmin as $pda)
+
+								<script>
+									function myFunction() {
+									    var myWindow = window.open("", "MsgWindow", "width=800,height=500");
+									    myWindow.document.write("{{$pda->deskripsi}}");
+									}
+								</script>
+								
 						<tr>
 							<td><a href="#">Edit</a> | {{$pda->nama_pj}}</td>
 							<td>{{$pda->nama_proyek}}</td>
 							<td>{{$pda->kategori}}</td>
 							<td>{{$pda->sementara_dana}}</td>
 							<td>{{$pda->total_dana}}</td>
-							<td><center><a href="{{$pda->deskripsi}}">Tampilkan</a></center></td>
-							<td><center><a target="_blank" href="{{URL::to('images/proyek/')}}/{{$pda->foto_proyek}}">Lihat</a></center></td>
-							<td><center><a target="_blank" href="{{URL::to('images/avatar/')}}/{{$pda->foto_pj}}">Lihat</a></center></td>
+							<td><center><button onclick="myFunction()">Tampilkan</button></center></td>
+							<td><center><a target="_blank" href="{{URL::to('images/proyek/')}}/{{$pda->foto_proyek}}"><button>Lihat</button></a></center></td>
+							<td><center><a target="_blank" href="{{URL::to('images/avatar/')}}/{{$pda->foto_pj}}"><button>Lihat</button></a></center></td>
 							<td>{{$pda->tgl_pendanaan}}</td>
 							
 						</tr>
@@ -52,5 +60,6 @@
 
 			</div>
 		</section>
+
 			
 @endsection

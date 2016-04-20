@@ -43,7 +43,7 @@
 								<td>{{$lpr->nama_pj}}</td>
 								<td>{{$lpr->deskripsi_laporan}}</td>
 								<td>{{$lpr->waktu_laporan}}</td>
-								<td><a href="{{$lpr->file_laporan}}">Download</a> </td>
+								<td><button><a href="{{$lpr->file_laporan}}">Download</a></button></td>
 							</tr>
 						@endforeach
 						</tbody>
