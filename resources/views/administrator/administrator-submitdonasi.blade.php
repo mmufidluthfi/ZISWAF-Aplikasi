@@ -12,20 +12,22 @@
 				</hgroup>
 			</header>
 			<div class="content">
-				<form action="/" method="post" enctype="multipart/form-data">
+				<form action="{{ URL::to('uploadpendanaan') }}" method="post" enctype="multipart/form-data">
 					{!! csrf_field() !!}
+
 					<input type="hidden" value="0" name="sementara_dana">
-                    <input type="hidden" value="0" name="statuspendanaan">
+                    <input type="hidden" value="0" name="status">
+                    <input type="hidden" name="tgl_transaksi" value="tgl_transaksi">
 
 					<div class="field-wrap">
-						<input type="text" value="nama_penanggung_jawab" placeholder="Nama Penanggung Jawab" />
+						<input type="text" name="nama_pj" placeholder="Nama Penanggung Jawab" />
 					</div>
 
 					Upload Foto Penanggung Jawab : <br>
-					<input type="file" name="filepj" id="filepj">
+					<input type="file" name="file" id="file">
 
 					<div class="field-wrap">
-						<input type="text" value="nama_proyek" placeholder="Nama Proyek Pendanaan"/>
+						<input type="text" name="nama_proyek" placeholder="Nama Proyek Pendanaan"/>
 					</div>
 
 					Upload Foto Proyek : <br>
@@ -41,11 +43,11 @@
 					<br><br>
 
 					<div class="field-wrap">
-						<input type="text" value="total_dana" placeholder="Total Dana Yang Dibutuhkan"/>
+						<input type="text" name="total_dana" placeholder="Total Dana Yang Dibutuhkan"/>
 					</div>
 					
 					<div class="field-wrap wysiwyg-wrap">
-						<textarea class="post" rows="5"></textarea>
+						<textarea class="post" name="deskripsi" rows="5"></textarea>
 					</div>
 
 					<button type="submit" class="green">Post</button>

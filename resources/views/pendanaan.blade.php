@@ -87,7 +87,7 @@
 
                                                     <!-- image -->
                                                     <a href="/details-pendanaan/{{$pd->id_pendanaan}}">
-                                                        <img src="{{URL::to('/')}}/{{$pd->foto_proyek}}" class="img-responsive" title="" alt="" />
+                                                        <img src="{{URL::to('images/proyek/')}}/{{$pd->foto_proyek}}" class="img-responsive" title="" alt="" />
                                                     </a>
                                                     <!-- image -->
                                                 </div>

@@ -38,8 +38,8 @@
 							<td>{{$pda->sementara_dana}}</td>
 							<td>{{$pda->total_dana}}</td>
 							<td><center><a href="{{$pda->deskripsi}}">Tampilkan</a></center></td>
-							<td><center><a href="{{$pda->foto_proyek}}">Lihat</a></center></td>
-							<td><center><a href="{{$pda->foto_pj}}">Lihat</a></center></td>
+							<td><center><a target="_blank" href="{{URL::to('images/proyek/')}}/{{$pda->foto_proyek}}">Lihat</a></center></td>
+							<td><center><a target="_blank" href="{{URL::to('images/avatar/')}}/{{$pda->foto_pj}}">Lihat</a></center></td>
 							<td>{{$pda->tgl_pendanaan}}</td>
 							
 						</tr>

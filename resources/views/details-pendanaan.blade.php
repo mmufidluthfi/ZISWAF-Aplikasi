@@ -66,7 +66,7 @@
 
                                                         <!-- 1 -->
                                                         <div class="item active">
-                                                            <img src="{{URL::to('/')}}/{{$pendanaan->foto_proyek}}" alt="" title="" />
+                                                            <img src="{{URL::to('images/proyek/')}}/{{$pendanaan->foto_proyek}}" alt="" title="" />
                                                         </div>
                                                         <!-- .1 -->
                                                     </div>
@@ -236,7 +236,7 @@
                                             <div class="small-product">
                                                 <div class="small-product-wrapper">
                                                     <a href="#">
-                                                        <img class="media-object img-circle img-thumbnail " src="{{URL::to('/')}}/{{$pendanaan->foto_pj}}" title="" alt="" />
+                                                        <img class="media-object img-circle img-thumbnail " src="{{URL::to('images/avatar/')}}/{{$pendanaan->foto_pj}}" title="" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="media-body small-product">

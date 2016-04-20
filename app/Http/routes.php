@@ -110,3 +110,5 @@ Route::get('/administrator/submitdonasi', function () {
     return view('administrator.administrator-submitdonasi');
 });
 
+Route::post('uploadpendanaan', 'PendanaanController@uploadpendanaan');
+

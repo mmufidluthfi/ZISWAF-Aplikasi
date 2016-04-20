@@ -217,7 +217,7 @@
 
                                                             <!-- image -->
                                                             <a href="/details-pendanaan/{{$pendanaan->id_pendanaan}}">
-                                                                <img src="{{ $pendanaan->foto_proyek}}" class="img-responsive" title="" alt="" />
+                                                                <img src="images/proyek/{{ $pendanaan->foto_proyek}}" class="img-responsive" title="" alt="" />
                                                             </a>
                                                             <!-- image -->
                                                         </div>
