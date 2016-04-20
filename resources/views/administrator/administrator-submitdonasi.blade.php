@@ -20,18 +20,12 @@
                     <input type="hidden" name="tgl_transaksi" value="tgl_transaksi">
 
 					<div class="field-wrap">
-						<input type="text" name="nama_pj" placeholder="Nama Penanggung Jawab" />
+						<input type="text" name="id_umkm" placeholder="ID UMKM - Lihat Tabel UMKM" />
 					</div>
-
-					Upload Foto Penanggung Jawab : <br>
-					<input type="file" name="file" id="file">
 
 					<div class="field-wrap">
 						<input type="text" name="nama_proyek" placeholder="Nama Proyek Pendanaan"/>
 					</div>
-
-					Upload Foto Proyek : <br>
-					<input type="file" name="fileproyek" id="fileproyek">
 					
 					Kategori : 
 					<select name="kategori">
@@ -49,6 +43,9 @@
 					<div class="field-wrap wysiwyg-wrap">
 						<textarea class="post" name="deskripsi" rows="5"></textarea>
 					</div>
+
+					Upload Foto Proyek : <br>
+					<input type="file" name="file" id="file">
 
 					<button type="submit" class="green">Post</button>
 				</form>

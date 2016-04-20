@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
 use App\Users;
+use App\userumkm;
 use Session;
 
 use Carbon\Carbon;
@@ -32,7 +33,12 @@ class PendanaanController extends Controller
 	}
 
 	public function getPendanaan($id_pendanaan){
-	    $pendanaan  = Pendanaan::find($id_pendanaan);
+	    $pendanaan  = DB::table('pendanaan')
+	    			->join('userumkm', 'pendanaan.id_umkm', '=', 'userumkm.id_umkm')
+	    			->select('pendanaan.*', 'userumkm.nama_pj', 'userumkm.foto_pj')
+	    			->where('pendanaan.id_pendanaan', '=', $id_pendanaan)
+	    			->get();
+	    
 	    $laporan    = DB::table('laporan')->where('id_pendanaan', '=', $id_pendanaan)->get();
 	    //return view('details-pendanaan')->withPendanaan($pendanaan);
 	    return view('details-pendanaan',['pendanaan' => $pendanaan],['laporan' => $laporan]);
@@ -50,9 +56,6 @@ class PendanaanController extends Controller
 
 	//Dashboard Pendanaan
 	public function getInformasiPendanaan($id){
-	  // $usertransaksi = DB::table('users')->where('id', '=', $id)->get();
-	  // $infotransaksi = DB::table('transaksi')->where('id', '=', $usertransaksi[0]->id)->get();
-	  // $pendanaantransaksi = DB::table('pendanaan')->where('id_pendanaan', '=', $infotransaksi[0]->id_pendanaan)->get();
 
 		$pendanaantransaksi = DB::table('transaksi')
 		            ->join('users', 'transaksi.id', '=', 'users.id')
@@ -62,11 +65,8 @@ class PendanaanController extends Controller
 		            ->orderBy('transaksi.id_transaksi', 'desc')
 		            ->paginate(5);
 
-	  	//var_dump($pendanaantransaksi);
 	  	return view('dashboard.dashboard-pendanaan')->withPendanaantransaksi($pendanaantransaksi);
 	    
-	    // return view('dashboard.dashboard-pendanaan',['infotransaksi' => $infotransaksi],['pendanaantransaksi' => $pendanaantransaksi],['usertransaksi' => $usertransaksi]);  
-		// return view('dashboard.dashboard-pendanaan',['pendanaantransaksi' => $pendanaantransaksi]);
 	 }
 
 	//Halaman Donasi Payment
@@ -85,9 +85,14 @@ class PendanaanController extends Controller
     	return view('donasi-invoice',['pendanaaninvoice' => $pendanaaninvoice],['pendanaannominal' => $pendanaannominal]); 
 	}
 
-	//Halaman Administrator Pendanaa
+	//Halaman Administrator Pendanaan
 	public function getAllPendanaanAdmin(){
-    	$pendanaanadmin  = DB::table('pendanaan')->orderBy('id_pendanaan', 'desc')->paginate(5);
+    	$pendanaanadmin  = DB::table('pendanaan')
+					    	->join('userumkm', 'pendanaan.id_umkm', '=', 'userumkm.id_umkm')
+					    	->select('pendanaan.*', 'userumkm.*')
+					    	->orderBy('pendanaan.id_pendanaan', 'desc')
+					    	->paginate(5);
+
     	return view('administrator.administrator-listdonasi')->withPendanaanadmin($pendanaanadmin);
 	}
 
@@ -98,25 +103,19 @@ class PendanaanController extends Controller
                 $postpendanaan = $request->all();
 
                 $file       = Input::file('file');
-                $fileproyek = Input::file('fileproyek');
-
-                $file->move('images/avatar/', $file->getClientOriginalName());
-                $fileproyek->move('images/proyek/', $fileproyek->getClientOriginalName());
-
-                $namafilepj = $file->getClientOriginalName();
-                $namafileproyek = $fileproyek->getClientOriginalName();
+                $file->move('images/proyek/', $file->getClientOriginalName());
+				$namafileproyek = $file->getClientOriginalName();
 
                 $dateimputpendanaan = Carbon::now()->format('Y-m-d H:i:s');
 
                 $postpendanaan = array(
-                        'nama_pj'        => $postpendanaan['nama_pj'], 
+                        'id_umkm'        => $postpendanaan['id_umkm'], 
                         'nama_proyek'    => $postpendanaan['nama_proyek'], 
                         'kategori'       => $postpendanaan['kategori'], 
                         'total_dana'     => $postpendanaan['total_dana'], 
                         'sementara_dana' => $postpendanaan['sementara_dana'], 
                         'deskripsi'      => $postpendanaan['deskripsi'], 
                         'foto_proyek'    => $namafileproyek,
-                        'foto_pj'        => $namafilepj, 
                         'status'         => $postpendanaan['status'],  
                         'tgl_pendanaan'  => $dateimputpendanaan, 
                     );

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\laporan;
+use App\userumkm;
 use App\Http\Requests;
 
 use DB;
@@ -17,9 +18,10 @@ class LaporanController extends Controller
 
 		$laporanpendanaan = DB::table('laporan')
 		            ->join('pendanaan', 'laporan.id_pendanaan', '=', 'pendanaan.id_pendanaan')
+		            ->join('userumkm', 'pendanaan.id_umkm', '=', 'userumkm.id_umkm')
 		            ->join('transaksi', 'transaksi.id_pendanaan', '=', 'pendanaan.id_pendanaan')
 		            ->join('users', 'users.id', '=', 'transaksi.id')
-		            ->select('pendanaan.nama_proyek', 'pendanaan.nama_pj', 'laporan.deskripsi_laporan', 'laporan.waktu_laporan' , 'laporan.file_laporan')
+		            ->select('pendanaan.nama_proyek', 'userumkm.nama_pj', 'laporan.deskripsi_laporan', 'laporan.waktu_laporan' , 'laporan.file_laporan')
 		            ->where('users.id', '=', $id)
 		            ->paginate(10);
 

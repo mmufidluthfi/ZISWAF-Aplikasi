@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
+    
+    @foreach($pendanaan as $pdn)
     <!-- breadcrumbs -->
     <section class="breadcrumbs">
         <div class="breadcrumbs-wrapper">
@@ -10,7 +11,7 @@
 
                     <!-- page title -->
                     <div class="col-md-6 col-xs-6">
-                        <h4>{{ $pendanaan->nama_proyek}}</h4>
+                        <h4>{{ $pdn->nama_proyek}}</h4>
                     </div>
                     <!-- .page title -->
 
@@ -66,7 +67,7 @@
 
                                                         <!-- 1 -->
                                                         <div class="item active">
-                                                            <img src="{{URL::to('images/proyek/')}}/{{$pendanaan->foto_proyek}}" alt="" title="" />
+                                                            <img src="{{URL::to('images/proyek/')}}/{{$pdn->foto_proyek}}" alt="" title="" />
                                                         </div>
                                                         <!-- .1 -->
                                                     </div>
@@ -91,7 +92,7 @@
 
                                                 <!-- rised bar -->
                                                 <div class="slider-content cause">
-                                                    <input class="rised" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="{{ $pendanaan->total_dana}}" data-slider-step="1" data-slider-enabled="false" data-slider-value="{{ $pendanaan->sementara_dana}}" />
+                                                    <input class="rised" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="{{ $pdn->total_dana}}" data-slider-step="1" data-slider-enabled="false" data-slider-value="{{ $pdn->sementara_dana}}" />
                                                 </div>
                                                 <!-- .rised bar -->
 
@@ -99,11 +100,11 @@
                                                 <div class="clearfix">
                                                     <p class="pull-left lead">
                                                         <span class="light-grey">Raised:</span>
-                                                        Rp {{ $pendanaan->sementara_dana}}
+                                                        Rp {{ $pdn->sementara_dana}}
                                                     </p>
                                                     <p class="pull-right lead">
                                                         <span class="light-grey">Goal:</span>
-                                                        Rp {{ $pendanaan->total_dana}}
+                                                        Rp {{ $pdn->total_dana}}
                                                     </p>
                                                 </div>
                                                 <!-- .rised slider meta -->
@@ -135,12 +136,12 @@
                                                         <div class="content">
 
                                                             <!-- title -->
-                                                            <h2><a href="#">{{ $pendanaan->nama_proyek}}</a>
+                                                            <h2><a href="#">{{ $pdn->nama_proyek}}</a>
                                                             </h2>
                                                             <!-- .title -->
                                                             <!-- meta -->
                                                             <p>
-                                                                <span class="grey">{{ $pendanaan->kategori}}</span>
+                                                                <span class="grey">{{ $pdn->kategori}}</span>
                                                             </p>
                                                             <!-- .meta -->
 
@@ -149,7 +150,7 @@
 
                                                         <!-- content single -->
                                                         <div class="content single">
-                                                            <p><?php echo $pendanaan->deskripsi; ?></p>
+                                                            <p><?php echo $pdn->deskripsi; ?></p>
 
                                                         </div>
                                                         <!-- .content single -->
@@ -161,12 +162,12 @@
                                                         <div class="content">
 
                                                             <!-- title -->
-                                                            <h2><a href="#">{{ $pendanaan->nama_proyek}}</a>
+                                                            <h2><a href="#">{{ $pdn->nama_proyek}}</a>
                                                             </h2>
                                                             <!-- .title -->
                                                             <!-- meta -->
                                                             <p>
-                                                                <span class="grey">{{ $pendanaan->kategori}}</span>
+                                                                <span class="grey">{{ $pdn->kategori}}</span>
                                                             </p>
                                                             <!-- .meta -->
                                                         </div>
@@ -236,7 +237,7 @@
                                             <div class="small-product">
                                                 <div class="small-product-wrapper">
                                                     <a href="#">
-                                                        <img class="media-object img-circle img-thumbnail " src="{{URL::to('images/avatar/')}}/{{$pendanaan->foto_pj}}" title="" alt="" />
+                                                        <img class="media-object img-circle img-thumbnail " src="{{URL::to('images/avatar/')}}/{{$pdn->foto_pj}}" title="" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="media-body small-product">
@@ -244,7 +245,7 @@
                                                         <span class="light-grey">Pemilik UMKM</span>
                                                     </p>
                                                     <p class="lead">
-                                                        <a href="#">{{$pendanaan->nama_pj}}</a> 
+                                                        <a href="#">{{$pdn->nama_pj}}</a> 
                                                     </p>
                                                 </div>
 
@@ -266,7 +267,7 @@
                                 <div class="box">
 
                                     <!-- widget box -->
-                                    <h4 class="text-center"><a href="{{ url('/donasi')}}/{{$pendanaan->id_pendanaan}}">Donasi Sekarang</a>
+                                    <h4 class="text-center"><a href="{{ url('/donasi')}}/{{$pdn->id_pendanaan}}">Donasi Sekarang</a>
                                     </h4>
                                     <!-- .widget box -->
 
@@ -310,5 +311,6 @@
         <!-- .blog posts & widgets -->
 
     </section>
+    @endforeach
     
 @endsection

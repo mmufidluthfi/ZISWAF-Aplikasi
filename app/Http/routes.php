@@ -27,11 +27,9 @@ Route::get('/details-pendanaan/{id_pendanaan}', 'PendanaanController@getPendanaa
 
 Route::post('uploadbukti', 'TransaksiController@uploadbukti');
 
-
 //Pendanaan (Halaman Berdasarkan Kategori)
 Route::get('/kategori/{kategori}', 'PendanaanController@getKategoriPendanaan');
 
-//Halaman Donasi
 //Halaman Donasi by ID
 Route::get('/donasi/{id_pendanaan}', 'PendanaanController@getDonasiPendanaan');
 Route::post('save_nominal','TransaksiController@save_nominal');
@@ -42,9 +40,6 @@ Route::post('upload', 'TransaksiController@upload');
 
 //Halaman Donasi by Invoice
 Route::get('/donasi-invoice/{id_pendanaan}', 'PendanaanController@getDonasiInvoice');
-
-
-//Another Page
 
 //Halaman About
 Route::get('/about', function () {
@@ -66,7 +61,6 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-//DASHBOARD
 //Dashboard Home
 Route::get('/dashboard/home', function () {
     return view('dashboard.dashboard-home');
@@ -95,20 +89,21 @@ Route::get('/administrator/transaksidonasi', 'TransaksiController@getTransaksipe
 
 Route::post('updatestatus', 'TransaksiController@updatestatus');
 
-// Route::get('/administrator/transaksidonasi', function () {
-//     return view('administrator.administrator-transaksidonasi');
-// });
-
-
 Route::get('/administrator/listdonasi', 'PendanaanController@getAllPendanaanAdmin');
-
-// Route::get('/administrator/listdonasi', function () {
-//     return view('administrator.administrator-listdonasi');
-// });
 
 Route::get('/administrator/submitdonasi', function () {
     return view('administrator.administrator-submitdonasi');
 });
 
 Route::post('uploadpendanaan', 'PendanaanController@uploadpendanaan');
+
+//Administrator User UMKM
+Route::get('/administrator/lihatumkm', 'UserumkmController@getUserumkm');
+
+//Administrator UMKM
+Route::get('/administrator/submitumkm', function () {
+    return view('administrator.administrator-submitumkm');
+});
+
+Route::post('uploadumkm', 'UserumkmController@uploadumkm');
 
