@@ -86,9 +86,19 @@
                                                     <!-- .overlay -->
 
                                                     <!-- image -->
-                                                    <a href="/details-pendanaan/{{$pd->id_pendanaan}}">
-                                                        <img src="{{URL::to('images/proyek/')}}/{{$pd->foto_proyek}}" class="img-responsive" title="" alt="" />
-                                                    </a>
+                                                    <?php 
+
+                                                        $danasemetara = (int)$pd->sementara_dana;
+                                                        $danatotal    = (int)$pd->total_dana;
+
+                                                        if($danasemetara >= $danatotal){
+                                                            echo "<img src='images/proyek/".$pd->foto_proyek."' class='img-responsive' />";
+                                                        } else {
+                                                            echo "<a href='/details-pendanaan/".$pd->id_pendanaan."'><img src='images/proyek/".$pd->foto_proyek."' class='img-responsive' /></a>";
+
+                                                            // echo "/details-pendanaan/".$pendanaan->id_pendanaan;
+                                                        }    
+                                                    ?>
                                                     <!-- image -->
                                                 </div>
                                                 <!-- .media -->
@@ -106,7 +116,19 @@
 
                                                         <!-- excerpt -->
                                                         <div class="excerpt">
-                                                            <h6><a href="/details-pendanaan/{{$pd->id_pendanaan}}">{{$pd->nama_proyek}}</a>
+                                                            <h6><?php 
+
+                                                                        $danasemetara = (int)$pd->sementara_dana;
+                                                                        $danatotal    = (int)$pd->total_dana;
+
+                                                                        if($danasemetara >= $danatotal){
+                                                                            echo $pd->nama_proyek;
+                                                                        } else {
+                                                                            echo "<a href='/details-pendanaan/".$pd->id_pendanaan."'>".$pd->nama_proyek."</a>";
+
+                                                                            // echo "/details-pendanaan/".$pendanaan->id_pendanaan;
+                                                                        }    
+                                                                    ?>
                                                             </h6>
 
                                                         </div>

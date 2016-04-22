@@ -186,6 +186,7 @@
                                 <div class="row">
 
                                     @foreach($pendanaans as $pendanaan)
+
                                         <!-- a -->
                                         <div class="col-md-3">
                                             <div class="box-wrapper">
@@ -216,9 +217,19 @@
                                                             <!-- .overlay -->
 
                                                             <!-- image -->
-                                                            <a href="/details-pendanaan/{{$pendanaan->id_pendanaan}}">
-                                                                <img src="images/proyek/{{ $pendanaan->foto_proyek}}" class="img-responsive" title="" alt="" />
-                                                            </a>
+                                                            <?php 
+
+                                                                $danasemetara = (int)$pendanaan->sementara_dana;
+                                                                $danatotal    = (int)$pendanaan->total_dana;
+
+                                                                if($danasemetara >= $danatotal){
+                                                                    echo "<img src='images/proyek/".$pendanaan->foto_proyek."' class='img-responsive' />";
+                                                                } else {
+                                                                    echo "<a href='/details-pendanaan/".$pendanaan->id_pendanaan."'><img src='images/proyek/".$pendanaan->foto_proyek."' class='img-responsive' /></a>";
+
+                                                                    // echo "/details-pendanaan/".$pendanaan->id_pendanaan;
+                                                                }    
+                                                            ?>
                                                             <!-- image -->
                                                         </div>
                                                         <!-- .media -->
@@ -229,14 +240,26 @@
 
                                                                 <!-- cause meta -->
                                                                 <div class="meta clearfix">
-                                                                    <a class="pull-left" href="#">{{ $pendanaan->kategori}}</a>
+                                                                    <a class="pull-left" href="{{ url('/kategori')}}/{{ $pendanaan->kategori}}">{{ $pendanaan->kategori}}</a>
                                                                     <a class="pull-right share-trigger" data-rel="tooltip" title="Share Cause" href="javascript:;"><i class="fa fa-share-alt"></i></a>
                                                                 </div>
                                                                 <!-- .cause meta -->
 
                                                                 <!-- excerpt -->
                                                                 <div class="excerpt">
-                                                                    <h6><a href="/details-pendanaan/{{$pendanaan->id_pendanaan}}">{{ $pendanaan->nama_proyek}}</a>
+                                                                    <h6><?php 
+
+                                                                        $danasemetara = (int)$pendanaan->sementara_dana;
+                                                                        $danatotal    = (int)$pendanaan->total_dana;
+
+                                                                        if($danasemetara >= $danatotal){
+                                                                            echo $pendanaan->nama_proyek;
+                                                                        } else {
+                                                                            echo "<a href='/details-pendanaan/".$pendanaan->id_pendanaan."'>".$pendanaan->nama_proyek."</a>";
+
+                                                                            // echo "/details-pendanaan/".$pendanaan->id_pendanaan;
+                                                                        }    
+                                                                    ?>
                                                                     </h6>
 
                                                                 </div>
