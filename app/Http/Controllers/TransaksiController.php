@@ -129,7 +129,8 @@ class TransaksiController extends Controller
                         ->orderBy('transaksi.id_transaksi', 'desc')
                         ->paginate(5);
 
-            return view('administrator.administrator-transaksidonasi')->withTransaksipendanaan($transaksipendanaan);
+            // return view('administrator.administrator-transaksidonasi')->withTransaksipendanaan($transaksipendanaan);
+                        return view('administrator.verifikasi')->withTransaksipendanaan($transaksipendanaan);
         
      }
 
@@ -161,7 +162,8 @@ class TransaksiController extends Controller
 
             DB::table('transaksi')->where('id_transaksi', $updatestatustransaksi['id_transaksiDonasi'])->update(['status' => $updatestatustransaksi['editstatus']]);
 
-            return redirect('administrator/transaksidonasi');
+            // return redirect('administrator/transaksidonasi');
+            return redirect('administrator/verifikasi');
     }
 
 }

@@ -93,7 +93,8 @@ class PendanaanController extends Controller
 					    	->orderBy('pendanaan.id_pendanaan', 'desc')
 					    	->paginate(5);
 
-    	return view('administrator.administrator-listdonasi')->withPendanaanadmin($pendanaanadmin);
+    	// return view('administrator.administrator-listdonasi')->withPendanaanadmin($pendanaanadmin);
+		return view('administrator.pendanaan')->withPendanaanadmin($pendanaanadmin);
 	}
 
 	public function uploadpendanaan(Request $request){
@@ -125,7 +126,8 @@ class PendanaanController extends Controller
 
     		if ($i > 0) {
     		  	
-    		  	return redirect('administrator/listdonasi');
+    		  	//return redirect('administrator/listdonasi');
+    		  	return redirect('administrator/pendanaan');
               
     		} 
 

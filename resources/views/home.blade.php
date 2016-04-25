@@ -29,8 +29,8 @@
                     <div class="carousel-caption">
                         <div class="carousel-content-wrapper">
                             <div class="carousel-content slide-content">
-                                <h3>Charity Fundrising</h3>
-                                <p>Donate to help everyone who needs help</p>
+                                <h3>Pendanaan Sosial</h3>
+                                <p>Mempermudah Melakukan Pendanaan Online</p>
                             </div>
                         </div>
                     </div>
@@ -46,8 +46,8 @@
                     <div class="carousel-caption">
                         <div class="carousel-content-wrapper slide-content">
                             <div class="carousel-content">
-                                <h3>Give Them Hope</h3>
-                                <p>The charity that is a trifle to us can be precious to others</p>
+                                <h3>Berikan Harapan</h3>
+                                <p>Membantu Satu Sama Lainnya, untuk Umat</p>
                             </div>
                         </div>
                     </div>
@@ -63,8 +63,8 @@
                     <div class="carousel-caption">
                         <div class="carousel-content-wrapper">
                             <div class="carousel-content slide-content">
-                                <h3>Provide Better Future</h3>
-                                <p>Anticipate charity by preventing poverty</p>
+                                <h3>Mudah, Cepat, dan Aman</h3>
+                                <p>Beribadah Dimanapun dan Kapanpun Anda Mau</p>
                             </div>
                         </div>
                     </div>
@@ -80,8 +80,8 @@
                     <div class="carousel-caption">
                         <div class="carousel-content-wrapper">
                             <div class="carousel-content slide-content">
-                                <h3>More Love</h3>
-                                <p>Charity is willingly given from the heart</p>
+                                <h3>Cinta Damai</h3>
+                                <p>Dapatkan Kedamaian Hati dengan Beribadah</p>
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                         <i class="fa fa-tree"></i>
                         <h3>Better Future</h3>
                         <hr />
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                        <p>Ciptakan masa depan dengan memberikan pendanaan ZISWAF Produktif untuk UMKM yang terverifikasi oleh lembaga resmi</p>
                     </div>
                 </div>
                 <!-- .1 -->
@@ -128,7 +128,7 @@
                         <i class="fa fa-leaf"></i>
                         <h3>Bigger Hope</h3>
                         <hr />
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                        <p>Adanya Harapan yang nantinya akan menjadi cahaya untuk masa depan kita bersama untuk bisa menjadi lebih baik</p>
                     </div>
                 </div>
                 <!-- .2 -->
@@ -139,7 +139,7 @@
                         <i class="fa fa-heart"></i>
                         <h3>More Love</h3>
                         <hr />
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                        <p>Cinta akan kedamaian dengan saling membantu dan mendukung satu sama lainnya. Kita semua pasti bisa</p>
                     </div>
                 </div>
                 <!-- .3 -->

@@ -17,10 +17,11 @@ class UserumkmController extends Controller
     //Halaman Administrator Pendanaan
 	public function getUserumkm(){
     	$userumkm  = DB::table('userumkm')
-					    	->orderBy('id_umkm', 'desc')
-					    	->paginate(10);
+			    	->orderBy('id_umkm', 'desc')
+			    	->paginate(5);
 
-    	return view('administrator.administrator-lihatumkm')->withUserumkm($userumkm);
+    	// return view('administrator.administrator-lihatumkm')->withUserumkm($userumkm);
+        return view('administrator.umkm')->withUserumkm($userumkm);
 	}
 
 	//Submit UMKM
@@ -47,7 +48,8 @@ class UserumkmController extends Controller
 
             $submitlistumkm = DB::table('userumkm')->insert($listumkm);
 
-            return redirect('administrator/lihatumkm');
+            // return redirect('administrator/lihatumkm');
+            return redirect('administrator/umkm');
 
         }
     }

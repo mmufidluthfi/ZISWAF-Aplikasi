@@ -77,6 +77,7 @@ Route::get('/dashboard/pengaturan', function () {
     return view('dashboard.dashboard-pengaturan');
 });
 
+Route::post('editpassword', 'UsersController@editpassword');
 Route::post('uploadfoto', 'UsersController@uploadfoto');
 
 //Administrator
@@ -85,20 +86,25 @@ Route::get('/administrator/home', function () {
 });
 
 //Administrator Transaksi Donasi
-Route::get('/administrator/transaksidonasi', 'TransaksiController@getTransaksipendanaan');
+// Route::get('/administrator/transaksidonasi', 'TransaksiController@getTransaksipendanaan');
 
-Route::post('updatestatus', 'TransaksiController@updatestatus');
+// Route::post('updatestatus', 'TransaksiController@updatestatus');
 
-Route::get('/administrator/listdonasi', 'PendanaanController@getAllPendanaanAdmin');
+Route::get('/administrator/pendanaan', 'PendanaanController@getAllPendanaanAdmin');
 
 Route::get('/administrator/submitdonasi', function () {
     return view('administrator.administrator-submitdonasi');
 });
 
+// Route::get('/administrator/pendanaan', function () {
+//     return view('administrator.pendanaan');
+// });
+
 Route::post('uploadpendanaan', 'PendanaanController@uploadpendanaan');
 
 //Administrator User UMKM
-Route::get('/administrator/lihatumkm', 'UserumkmController@getUserumkm');
+Route::get('/administrator/umkm', 'UserumkmController@getUserumkm');
+
 
 //Administrator UMKM
 Route::get('/administrator/submitumkm', function () {
@@ -106,4 +112,13 @@ Route::get('/administrator/submitumkm', function () {
 });
 
 Route::post('uploadumkm', 'UserumkmController@uploadumkm');
+
+
+// Route::get('/administrator/verifikasi', function () {
+//     return view('administrator.verifikasi');
+// });
+
+Route::get('/administrator/verifikasi', 'TransaksiController@getTransaksipendanaan');
+
+Route::post('updatestatus', 'TransaksiController@updatestatus');
 

@@ -28,19 +28,25 @@
 				</header>
 				<div class="content no-padding timeline">
 					<div class="content">
-						<div class="field-wrap">
-							Password Lama : <br/><br/>
-							<input type="password" value="passlama"/>
-						</div>
-						<div class="field-wrap">
-							Password Baru : <br/><br/>
-							<input type="password" value="passbaru"/>
-						</div>
-						<div class="field-wrap">
-							Password Baru : <br/><br/>
-							<input type="password" value="konfirmasipassbaru"/>
-						</div>
-							<button type="submit" class="green">Simpan</button>
+						<form action="{{ URL::to('editpassword') }}" method="post">
+                            {!! csrf_field() !!}
+
+                            <input type="hidden" value="{{ Auth::user()->id }}" name="id_userpassword">
+
+							<div class="field-wrap">
+								Password Lama : <br/><br/>
+								<input type="password" name="passlama"/>
+							</div>
+							<div class="field-wrap">
+								Password Baru : <br/><br/>
+								<input type="password" name="passbaru"/>
+							</div>
+							<div class="field-wrap">
+								Password Baru : <br/><br/>
+								<input type="password" name="konfirmasipassbaru"/>
+							</div>
+								<button type="submit" class="green">Simpan</button>
+						</form>
 					</div>
 				</div>
 			</section>
