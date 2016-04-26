@@ -20,6 +20,10 @@ class CreateUsersTable extends Migration {
             $table->string('password', 60);
             $table->rememberToken();
             $table->timestamps();
+            $table->boolean('admin')->default(0);
+            $table->boolean('lembagaziswaf')->default(0);
+            $table->boolean('lkm')->default(0);
+            $table->boolean('bank')->default(0);
         });
     }
 

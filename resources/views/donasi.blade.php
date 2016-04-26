@@ -51,7 +51,7 @@
                                     {!! csrf_field() !!}
 
                                     @if (Auth::guest())
-                                        <!-- widget box -->
+                                        
                                         <div class="widget-box">
                                             <div class="form-group row">
                                                 <div class="col-md-12">
@@ -65,30 +65,27 @@
                                                  <div class="col-md-6">
                                                     <center><a href="{{ url('/register') }}"><img width="80%" src="{{URL::to('/')}}/images/register-donatur.png"/></a></center>
                                                 </div>
-
-                                                <!-- <form class="form-horizontal" role="form" method="POST" action="{{ url('/donasi')}}/{{$pendanaand->id_pendanaan}}">
-                                                    
-                                                    <div class="col-md-6">
-                                                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mail Address"/>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <input type="password" class="form-control" name="password" placeholder="Password"/>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <div class="col-md-12"><br/>
-                                                            <button type="submit" class="btn btn-primary">
-                                                                <i class="fa fa-btn fa-sign-in"></i>Login
-                                                            </button>
-
-                                                            Belum Punya Akun? <a class="btn btn-link" href="{{ url('/register') }}"><b>Daftar</b></a>
-                                                        </div>
-                                                    </div>
-                                                </form> -->
                                             </div>
                                         </div>
-                                        <!-- .widget box -->
+                                        
+
+                                    @elseif (Auth::user()->admin==1)
+
+                                        <div class="widget-box">
+                                            <div class="form-group row">
+                                                <div class="col-md-12">
+                                                    <center><h3 class="grey"><h3>Silahkan Login Terlebih Dahulu:</h3></center><br/>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <center><a href="{{ url('/login') }}"><img width="80%" src="{{URL::to('/')}}/images/login-donatur.png"/></a></center>
+                                                </div>
+
+                                                 <div class="col-md-6">
+                                                    <center><a href="{{ url('/register') }}"><img width="80%" src="{{URL::to('/')}}/images/register-donatur.png"/></a></center>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     @else
                                         <form class="form-horizontal" role="form" method="POST" action="{{action('TransaksiController@save_nominal')}}" >

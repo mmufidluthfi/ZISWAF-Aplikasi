@@ -47,7 +47,7 @@
 
 @if (Auth::guest())
 	<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
-@else
+@elseif (Auth::user()->admin==0)
 
 </head>
 <body>
@@ -92,6 +92,8 @@
 	});
 	</script>
 
+@elseif (Auth::user()->admin==1)
+		<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 @endif
 
 </body>

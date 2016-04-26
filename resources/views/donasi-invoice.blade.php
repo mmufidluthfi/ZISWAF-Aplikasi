@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (Auth::guest())
+
+        <meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
+
+    @elseif (Auth::user()->admin==1)
+
+        <meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+
+    @else
+    
 	    <!-- breadcrumbs -->
     <section class="breadcrumbs">
         <div class="breadcrumbs-wrapper">
@@ -59,5 +69,5 @@
         </div>
     </section>
     <!-- .donate -->
-
+    @endif
 @endsection

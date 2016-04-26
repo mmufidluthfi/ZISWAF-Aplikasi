@@ -21,6 +21,11 @@
     <![endif]-->
 
 </head>
+
+    @if (Auth::guest())
+      <meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
+    @elseif (Auth::user()->admin==1)
+
 <body>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -30,11 +35,11 @@
         <ul class="nav pull-right">
           
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                            class="icon-user"></i> Admin <b class="caret"></b></a>
+                            class="icon-user"></i> {{ Auth::user()->name }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
               
 			  <li><a></a></li>
-              <li><a href="{{ url('administrator/home') }}">Logout</a></li>
+              <li><a href="{{ url('/logout') }}">Logout</a></li>
             </ul>
           </li>
         </ul>
@@ -55,12 +60,10 @@
     <div class="container">
       <ul class="mainnav">
         <li><a href="{{ url('administrator/home') }}"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
-        <li><a href="{{ url('administrator/verifikasi') }}"><i class="icon-ok"></i><span>Verifikasi</span> </a> </li>
-        <li><a href="{{ url('administrator/umkm') }}"><i class="icon-home"></i><span>UMKM</span> </a> </li>
-    		<li><a href="{{ url('administrator/pendanaan') }}"><i class="icon-file"></i><span>Proyek</span> </a> </li>
-    		<li><a href="bank.html"><i class="icon-user"></i><span>Bank</span> </a> </li>
-    		<li><a href="pendanaan.html"><i class="icon-money"></i><span>Pendanaan</span> </a> </li>
-    		<li><a href="report.html"><i class="icon-signal"></i><span>Report</span> </a> </li>  
+        <li><a href="{{ url('administrator/manageuser') }}/{{ Auth::user()->id }}"><i class="icon-user"></i><span>Pengguna</span> </a> </li>
+        <li><a href="{{ url('administrator/verifikasi') }}/{{ Auth::user()->id }}"><i class="icon-ok"></i><span>Verifikasi</span> </a> </li>
+        <li><a href="{{ url('administrator/umkm') }}/{{ Auth::user()->id }}"><i class="icon-home"></i><span>UMKM</span> </a> </li>
+    		<li><a href="{{ url('administrator/pendanaan') }}/{{ Auth::user()->id }}"><i class="icon-file"></i><span>Proyek</span> </a> </li> 
       </ul>
     </div>
     <!-- /container --> 
@@ -150,4 +153,8 @@
 <script src="{{ URL::asset('administrator/js/base.js')}}"></script>
 
 </body>
+    @elseif (Auth::user()->admin==0)
+      <meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+    
+    @endif
 </html>

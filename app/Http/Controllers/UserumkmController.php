@@ -15,8 +15,9 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class UserumkmController extends Controller
 {
     //Halaman Administrator Pendanaan
-	public function getUserumkm(){
+	public function getUserumkm($id){
     	$userumkm  = DB::table('userumkm')
+                    ->where('userumkm.lembagaID', '=', $id )
 			    	->orderBy('id_umkm', 'desc')
 			    	->paginate(5);
 
@@ -36,6 +37,7 @@ class UserumkmController extends Controller
             $namafile = $file->getClientOriginalName();
 
             $listumkm = array(
+                'lembagaID'   => $submitumkm['lembagaID'], 
                 'username'    => $submitumkm['username'], 
                 'password'    => $submitumkm['password'], 
                 'nama_pj'     => $submitumkm['nama_pj'], 
@@ -46,10 +48,13 @@ class UserumkmController extends Controller
                 'foto_pj'     => $namafile, 
             );
 
+            $id_lembaga = $submitumkm['lembagaID'];
+
             $submitlistumkm = DB::table('userumkm')->insert($listumkm);
 
+            \Session::flash('message-inputberhasil', 'UMKM Berhasil Ditambahkan');
             // return redirect('administrator/lihatumkm');
-            return redirect('administrator/umkm');
+            return redirect('administrator/umkm/'.$id_lembaga);
 
         }
     }

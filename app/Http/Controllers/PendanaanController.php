@@ -86,10 +86,11 @@ class PendanaanController extends Controller
 	}
 
 	//Halaman Administrator Pendanaan
-	public function getAllPendanaanAdmin(){
+	public function getAllPendanaanAdmin($id){
     	$pendanaanadmin  = DB::table('pendanaan')
 					    	->join('userumkm', 'pendanaan.id_umkm', '=', 'userumkm.id_umkm')
 					    	->select('pendanaan.*', 'userumkm.*')
+					    	->where('userumkm.lembagaID', '=', $id )
 					    	->orderBy('pendanaan.id_pendanaan', 'desc')
 					    	->paginate(5);
 
@@ -110,6 +111,7 @@ class PendanaanController extends Controller
                 $dateimputpendanaan = Carbon::now()->format('Y-m-d H:i:s');
 
                 $postpendanaan = array(
+                		'lembagaID'      => $postpendanaan['lembagaID'], 
                         'id_umkm'        => $postpendanaan['id_umkm'], 
                         'nama_proyek'    => $postpendanaan['nama_proyek'], 
                         'kategori'       => $postpendanaan['kategori'], 
@@ -126,8 +128,11 @@ class PendanaanController extends Controller
 
     		if ($i > 0) {
     		  	
+    		  	$id_lembaga = $postpendanaan['lembagaID'];
+
+    		  	\Session::flash('message-inputberhasil', 'UMKM Berhasil Ditambahkan');
     		  	//return redirect('administrator/listdonasi');
-    		  	return redirect('administrator/pendanaan');
+    		  	return redirect('administrator/pendanaan/'.$id_lembaga);
               
     		} 
 

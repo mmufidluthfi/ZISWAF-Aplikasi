@@ -7,12 +7,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h5 class="grey">Daftar Donatur :</h5>
-                </div>
+                </div> 
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
 
                         <input type="hidden" value="default.png" name="url_foto">
+
+                        <!-- Register Investor -->
+                        <input type="hidden" value="0" name="admin">
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">Nama Lengkap</label>

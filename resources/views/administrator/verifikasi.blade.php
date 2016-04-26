@@ -1,13 +1,22 @@
 @extends('layouts.administratorZISWAF')
 
 @section('content')
+	@if (Auth::guest())
+
+		<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
+
+	@elseif (Auth::user()->admin==1)
+
 <!--main content start-->
 <section id="main-content">
 <section class="wrapper">
 <div class="container">
 <div class="row">
 	<div class="col-lg-9">
-		<h3 class="page-header"><i class="icon-list-alt"></i> Transaksi </h3>						
+		<h3 class="page-header"><i class="icon-list-alt"></i> Transaksi </h3>	
+		<ol class="breadcrumb">
+			<p><font color="green"><center><?php echo Session::get('message-inputberhasil'); ?></font></center></p>
+		</ol>					
 	</div>
 </div>
 </div>
@@ -83,6 +92,7 @@
 																<input type="hidden" value="{{$tpd->id_transaksi}}" name="id_transaksiDonasi">
 																<input type="hidden" value="{{$tpd->id_pendanaan}}" name="id_pendanaanDonasi">
 																<input type="hidden" value="{{$tpd->nominal}}" name="nominal_pendanaanDonasi">
+																<input type="hidden" value="{{ Auth::user()->id }}" name="lembagaID">
 																
 																  <select name="editstatus">
 																    <option value="#">Ubah Status</option>
@@ -181,5 +191,8 @@
 </section>
 
 
-
+	@elseif (Auth::user()->admin==0)
+      <meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+    
+    @endif
 @endsection

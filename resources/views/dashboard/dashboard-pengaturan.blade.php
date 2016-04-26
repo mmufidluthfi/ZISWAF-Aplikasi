@@ -5,7 +5,7 @@
 
 		<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
 
-	@else
+		@elseif (Auth::user()->admin==0)
 	<nav>
 		<ul>
 			<li><a href="{{ url('/dashboard/home')}}"><span class="icon">&#128711;</span> Dashboard</a></li>
@@ -82,6 +82,9 @@
 		</div>
 	</section>
 
+	@elseif (Auth::user()->admin==1)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+		
 	@endif
 		
 @endsection

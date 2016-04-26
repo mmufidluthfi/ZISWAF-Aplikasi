@@ -1,6 +1,11 @@
 @extends('layouts.administratorZISWAF')
 
 @section('content')
+	@if (Auth::guest())
+
+		<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
+
+	@elseif (Auth::user()->admin==1)
 
 	<div class="main">
 	  <div class="main-inner">
@@ -18,12 +23,13 @@
 	            <!-- /widget-header -->
 	            <div class="widget-content">
 	              <div class="shortcuts"> 
-	              <a href="{{ url('administrator/verifikasi') }}" class="shortcut"> <i class="shortcut-icon icon-ok"></i><span class="shortcut-label">Verifikasi</span> </a>
-	              <a href="{{ url('administrator/umkm') }}" class="shortcut"><i class="shortcut-icon icon-home"></i><span class="shortcut-label">UMKM</span> </a>
-	              <a href="{{ url('administrator/pendanaan') }}" class="shortcut"><i class="shortcut-icon icon-file"></i><span class="shortcut-label">Proyek</span> </a>
-	              <a href="bank.html" class="shortcut"><i class="shortcut-icon icon-user"></i> <span class="shortcut-label">Bank</span> </a>
-	              <a href="pendanaan.html" class="shortcut"><i class="shortcut-icon icon-money"></i><span class="shortcut-label">Pendanaan</span> </a>
-	              <a href="report.html" class="shortcut"><i class="shortcut-icon icon-signal"></i><span class="shortcut-label">Report</span> </a> </div>
+		              <a href="{{ url('administrator/manageuser') }}/{{ Auth::user()->id }}" class="shortcut"><i class="shortcut-icon icon-user"></i> <span class="shortcut-label">Pengguna</span> </a>
+		              <a href="{{ url('administrator/verifikasi') }}/{{ Auth::user()->id }}" class="shortcut"> <i class="shortcut-icon icon-ok"></i><span class="shortcut-label">Verifikasi</span> </a>
+		              <a href="{{ url('administrator/umkm') }}/{{ Auth::user()->id }}" class="shortcut"><i class="shortcut-icon icon-home"></i><span class="shortcut-label">UMKM</span> </a>
+		              <a href="{{ url('administrator/pendanaan') }}/{{ Auth::user()->id }}" class="shortcut"><i class="shortcut-icon icon-file"></i><span class="shortcut-label">Proyek</span> </a>
+		              <a href="pendanaan.html" class="shortcut"><i class="shortcut-icon icon-money"></i><span class="shortcut-label">Pendanaan</span> </a>
+		              <a href="report.html" class="shortcut"><i class="shortcut-icon icon-signal"></i><span class="shortcut-label">Report</span> </a> 
+	              </div>
 	              <!-- /shortcuts --> 
 	            </div>
 	            <!-- /widget-content --> 
@@ -43,4 +49,8 @@
 	</div>
 	<!-- /main -->
 
+	@elseif (Auth::user()->admin==0)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+		
+	@endif
 @endsection

@@ -120,12 +120,14 @@ class TransaksiController extends Controller
 
         }
 
-        public function getTransaksipendanaan(){
+        public function getTransaksipendanaan($id){
 
             $transaksipendanaan = DB::table('transaksi')
                         ->join('users', 'transaksi.id', '=', 'users.id')
                         ->join('pendanaan', 'transaksi.id_pendanaan', '=', 'pendanaan.id_pendanaan')
-                        ->select('transaksi.id_transaksi', 'pendanaan.id_pendanaan', 'pendanaan.nama_proyek', 'pendanaan.kategori', 'users.name', 'transaksi.nominal', 'transaksi.konfirmasi', 'transaksi.status', 'transaksi.tanggal_transaksi')
+                        ->join('userumkm', 'pendanaan.id_umkm', '=', 'userumkm.id_umkm')
+                        ->select('transaksi.id_transaksi', 'pendanaan.id_pendanaan', 'pendanaan.nama_proyek', 'pendanaan.kategori', 'users.name', 'transaksi.nominal', 'transaksi.konfirmasi', 'transaksi.status', 'transaksi.tanggal_transaksi', 'userumkm.lembagaID')
+                        ->where('userumkm.lembagaID', '=', $id)
                         ->orderBy('transaksi.id_transaksi', 'desc')
                         ->paginate(5);
 
@@ -139,6 +141,7 @@ class TransaksiController extends Controller
             $updatestatustransaksi = $request->all();
 
             $statustransaksi = array(
+                            'lembagaID'     => $updatestatustransaksi['lembagaID'], 
                             'id_pendanaan'  => $updatestatustransaksi['id_pendanaanDonasi'], 
                             'nominal'       => $updatestatustransaksi['nominal_pendanaanDonasi'], 
                             'id_transaksi'  => $updatestatustransaksi['id_transaksiDonasi'], 
@@ -162,8 +165,11 @@ class TransaksiController extends Controller
 
             DB::table('transaksi')->where('id_transaksi', $updatestatustransaksi['id_transaksiDonasi'])->update(['status' => $updatestatustransaksi['editstatus']]);
 
+            $id_lembaga = $updatestatustransaksi['lembagaID'];
+
+            \Session::flash('message-inputberhasil', 'Status Berhasil di-Update');
             // return redirect('administrator/transaksidonasi');
-            return redirect('administrator/verifikasi');
+            return redirect('administrator/verifikasi/'.$id_lembaga);
     }
 
 }

@@ -1,6 +1,11 @@
 @extends('layouts.administratorZISWAF')
 
 @section('content')
+	@if (Auth::guest())
+
+		<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
+
+	@elseif (Auth::user()->admin==1)
 
 <!--main content start-->
       <section id="main-content">
@@ -9,6 +14,9 @@
 			<div class="row">
 				<div class="col-lg-9">
 					<h3 class="page-header"><i class="fa fa-user-md"></i> Proyek </h3>
+					<ol class="breadcrumb">
+						<p><font color="green"><center><?php echo Session::get('message-inputberhasil'); ?></font></center></p>
+					</ol>
 				</div>
 			</div>
 			</div>
@@ -40,6 +48,7 @@
 											<input type="hidden" value="0" name="sementara_dana">
 						                    <input type="hidden" value="0" name="status">
 						                    <input type="hidden" name="tgl_transaksi" value="tgl_transaksi">
+						                    <input type="hidden" value="{{ Auth::user()->id }}" name="lembagaID">
 											
 											
 											<div class="control-group">											
@@ -181,4 +190,8 @@
 </section>
 </section>
 
+	@elseif (Auth::user()->admin==0)
+      <meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+    
+    @endif
 @endsection

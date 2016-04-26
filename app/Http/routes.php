@@ -11,10 +11,34 @@
 |
 */
 
-Route::auth();
+Route::group(['middleware' => 'web'], function () {
+	Route::auth();
+});
+
+Route::group(['middleware' => ['web','auth']], function()
+{
+	Route::get('/home', 'HomeController@index');
+
+	Route::get('/',function(){
+		if(Auth::user()->admin == 1) {
+			return view('administrator.administrator-home');
+		}elseif (Auth::user()->admin == 0){
+			return view('dashboard.dashboard-home');
+		} else {
+			return view('login');
+		}
+
+	});
+});
+
+
+// Route::get('admin', ['middleware' => ['web', 'auth', 'admin'], function(){
+// 	return view('administrator/administrator-home');
+// }]);
+
 
 //Halaman Welcome
-Route::get('/welcome', 'HomeController@index');
+// Route::get('/welcome', 'HomeController@index');
 
 //Pendanaan (Halaman Utama)
 Route::get('/', 'PendanaanController@getAllPendanaan');
@@ -90,7 +114,7 @@ Route::get('/administrator/home', function () {
 
 // Route::post('updatestatus', 'TransaksiController@updatestatus');
 
-Route::get('/administrator/pendanaan', 'PendanaanController@getAllPendanaanAdmin');
+Route::get('/administrator/pendanaan/{id}', 'PendanaanController@getAllPendanaanAdmin');
 
 Route::get('/administrator/submitdonasi', function () {
     return view('administrator.administrator-submitdonasi');
@@ -103,7 +127,7 @@ Route::get('/administrator/submitdonasi', function () {
 Route::post('uploadpendanaan', 'PendanaanController@uploadpendanaan');
 
 //Administrator User UMKM
-Route::get('/administrator/umkm', 'UserumkmController@getUserumkm');
+Route::get('/administrator/umkm/{id}', 'UserumkmController@getUserumkm');
 
 
 //Administrator UMKM
@@ -118,7 +142,18 @@ Route::post('uploadumkm', 'UserumkmController@uploadumkm');
 //     return view('administrator.verifikasi');
 // });
 
-Route::get('/administrator/verifikasi', 'TransaksiController@getTransaksipendanaan');
+Route::get('/administrator/verifikasi/{id}', 'TransaksiController@getTransaksipendanaan');
 
 Route::post('updatestatus', 'TransaksiController@updatestatus');
+
+
+// Route::get('/administrator/manageuser', function () {
+//     return view('administrator.manageuser');
+// });
+
+Route::get('/administrator/manageuser/{id}', 'UsersController@getAllInfo');
+
+Route::post('input_lkm','UsersController@input_lkm');
+Route::post('input_bank','UsersController@input_bank');
+
 

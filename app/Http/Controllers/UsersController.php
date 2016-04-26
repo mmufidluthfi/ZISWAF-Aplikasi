@@ -10,20 +10,12 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
+use Carbon\Carbon;
+
 use Hash;
 
 class UsersController extends Controller
 {
-
-	// public function getFotoprofile($id_user){
-	//     $foto_profile  = foto_profile::find($id_user);
-	//     return view('dashboard.dashboard-pengaturan')->withFoto_profile($foto_profile);
-	// }
-
-	// public function getFotoprofile($id_user){	    
-	// 	$fotoprofile = DB::table('foto_profile')->where('id_user', '=', $id_user)->get();
- //    	return view('dashboard.dashboard-pengaturan')->withFotoprofile($fotoprofile);
-	// }
 
     public function uploadfoto(Request $request){
 
@@ -83,5 +75,121 @@ class UsersController extends Controller
 
     }
 
+    public function input_lkm(Request $request)
+    {
+
+        $datalkm = $request->all();
+
+        $v = \Validator::make($request->all(),
+            [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:6|confirmed',
+            ]);
+
+        $dateimputtgl = Carbon::now()->format('Y-m-d H:i:s');
+
+        if($v->fails())
+        {
+
+            return redirect()->back()->withErrors($v->errors());
+
+        } else {
+
+            $datatransaksi = array(
+                'name' => $datalkm['name'],
+                'email' => $datalkm['email'],
+                'password' => $datalkm['password'],
+                'url_foto' => $datalkm['url_foto'],
+                'lembagaID' => $datalkm['lembagaID'],
+                'admin' => $datalkm['admin'],
+                'created_at' => $dateimputtgl,
+                'updated_at' => $dateimputtgl,
+            );
+
+            $i = DB::table('users')->insert($datatransaksi);
+
+            if ($i > 0) {
+
+                  $id_lembaga = $datalkm['lembagaID'];
+                
+                  \Session::flash('message-inputberhasil', 'LKM Berhasil ditambahkan');
+              
+              return redirect('administrator/manageuser/'.$id_lembaga);
+              
+            } 
+            
+        }
+
+    }
+
+    public function input_bank(Request $request)
+    {
+
+        $databank = $request->all();
+
+        $v = \Validator::make($request->all(),
+            [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:6|confirmed',
+            ]);
+
+        $dateimputtgl = Carbon::now()->format('Y-m-d H:i:s');
+
+        if($v->fails())
+        {
+
+            return redirect()->back()->withErrors($v->errors());
+
+        } else {
+
+            $datatransaksi = array(
+                'name' => $databank['name'],
+                'email' => $databank['email'],
+                'password' => $databank['password'],
+                'url_foto' => $databank['url_foto'],
+                'lembagaID' => $databank['lembagaID'],
+                'admin' => $databank['admin'],
+                'created_at' => $dateimputtgl,
+                'updated_at' => $dateimputtgl,
+            );
+
+            $i = DB::table('users')->insert($datatransaksi);
+
+            if ($i > 0) {
+
+                $id_lembaga = $databank['lembagaID'];
+                
+                  \Session::flash('message-inputberhasil', 'Bank Berhasil ditambahkan');
+              
+              return redirect('administrator/manageuser/'.$id_lembaga);
+              
+            } 
+            
+        }
+
+    }
+
+    public function getAllInfo($id){
+        $listlkm = DB::table('users')
+                    ->select('users.*')
+                    ->where('users.lembagaID', '=', $id )
+                    ->where('users.admin', '=', 2)
+                    ->orderBy('users.id', 'desc')
+                    ->paginate(5);
+
+        $listbank = DB::table('users')
+                    ->select('users.*')
+                    ->where('users.lembagaID', '=', $id )
+                    ->where('users.admin', '=', 3)
+                    ->orderBy('users.id', 'desc')
+                    ->paginate(5);
+
+        return view('administrator.manageuser',['listlkm' => $listlkm],['listbank' => $listbank]);  
+
+        // return view('administrator.administrator-listdonasi')->withPendanaanadmin($pendanaanadmin);
+        // return view('administrator.listuser')->withListlkm($listlkm);
+    }
 
 }

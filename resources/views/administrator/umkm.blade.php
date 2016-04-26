@@ -1,6 +1,12 @@
 @extends('layouts.administratorZISWAF')
 
 @section('content')
+	@if (Auth::guest())
+
+		<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
+
+	@elseif (Auth::user()->admin==1)
+
 	<!--main content start-->
     <section id="main-content">
         <section class="wrapper">
@@ -8,6 +14,9 @@
 			<div class="row">
 				<div class="col-lg-9">
 					<h3 class="page-header"><i class="fa fa-user-md"></i> UMKM </h3>
+					<ol class="breadcrumb">
+						<p><font color="green"><center><?php echo Session::get('message-inputberhasil'); ?></font></center></p>
+					</ol>					
 				</div>
 			</div>
 		  </div>
@@ -37,6 +46,8 @@
 												<form action="{{ URL::to('uploadumkm') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
 													<fieldset>
 														{!! csrf_field() !!}
+
+														<input type="hidden" value="{{ Auth::user()->id }}" name="lembagaID">
 														
 														<div class="control-group">											
 															<label class="control-label" for="username">Username</label>
@@ -89,7 +100,7 @@
 														</div> <!-- /control-group -->
 
 														<div class="control-group">											
-															<label class="control-label" for="address">Upload Foto Proyek:</label>
+															<label class="control-label" for="address">Upload Foto Profile:</label>
 															
 															
 				                                            <div class="controls">
@@ -172,4 +183,8 @@
 		</section>
 	</section>
 
+	@elseif (Auth::user()->admin==0)
+      <meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+    
+    @endif
 @endsection
