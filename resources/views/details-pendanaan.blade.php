@@ -178,17 +178,19 @@
                                                                 <table id="myTable" border="0" width="100%">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th>Keterangan</th>
-                                                                            <th>Tanggal Upload</th>
-                                                                            <th>Download Laporan</th>
+                                                                            <th>Bulan/Tahun</th>
+                                                                            <th>Total Pengeluaran</th>
+                                                                            <th>Total Pemasukan</th>
+                                                                            <th>Saldo Usaha</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
                                                                     @foreach($laporan as $lpr)
                                                                         <tr>
-                                                                            <td>{{$lpr->deskripsi_laporan}}</td>
-                                                                            <td>{{$lpr->waktu_laporan}}</td>
-                                                                            <td><a href="{{$lpr->file_laporan}}">Download</a></td>
+                                                                            <td>{{$lpr->bulan}} / {{$lpr->tahun}}</td>
+                                                                            <td>{{$lpr->total_pengeluaran}}</td>
+                                                                            <td>{{$lpr->total_pemasukan}}</td>
+                                                                            <td>{{$lpr->saldo_usaha}}</td>
                                                                         </tr>
                                                                     @endforeach
                                                                     </tbody>

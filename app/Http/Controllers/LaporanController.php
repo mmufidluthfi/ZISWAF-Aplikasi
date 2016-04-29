@@ -16,12 +16,12 @@ class LaporanController extends Controller
 {
     public function getInformasiLaporan($id){
 
-		$laporanpendanaan = DB::table('laporan')
-		            ->join('pendanaan', 'laporan.id_pendanaan', '=', 'pendanaan.id_pendanaan')
+		$laporanpendanaan = DB::table('laporan_crowd')
+		            ->join('pendanaan', 'laporan_crowd.id_pendanaan', '=', 'pendanaan.id_pendanaan')
 		            ->join('userumkm', 'pendanaan.id_umkm', '=', 'userumkm.id_umkm')
 		            ->join('transaksi', 'transaksi.id_pendanaan', '=', 'pendanaan.id_pendanaan')
 		            ->join('users', 'users.id', '=', 'transaksi.id')
-		            ->select('pendanaan.nama_proyek', 'userumkm.nama_pj', 'laporan.deskripsi_laporan', 'laporan.waktu_laporan' , 'laporan.file_laporan')
+		            ->select('pendanaan.nama_proyek', 'userumkm.nama_pj', 'laporan_crowd.bulan', 'laporan_crowd.tahun', 'laporan_crowd.total_pengeluaran', 'laporan_crowd.total_pemasukan', 'laporan_crowd.saldo_usaha')
 		            ->where('users.id', '=', $id)
 		            ->paginate(10);
 

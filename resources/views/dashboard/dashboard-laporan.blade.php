@@ -31,9 +31,10 @@
 						<tr>
 							<th>Nama Proyek</th>
 							<th>Nama Penanggung Jawab</th>
-							<th>Deskripsi Laporan</th>
-							<th>Waktu Laporan</th>
-							<th>File Laporan</th>
+							<th>Bulan / Tahun Laporan</th>
+							<th>Total Pengeluaran</th>
+							<th>Total Pemasukan</th>
+							<th>Saldo Usaha</th>
 						</tr>
 					</thead>
 						<tbody>
@@ -41,9 +42,10 @@
 							<tr>
 								<td>{{$lpr->nama_proyek}}</td>
 								<td>{{$lpr->nama_pj}}</td>
-								<td>{{$lpr->deskripsi_laporan}}</td>
-								<td>{{$lpr->waktu_laporan}}</td>
-								<td><button><a href="{{$lpr->file_laporan}}">Download</a></button></td>
+								<td>{{$lpr->bulan}} / {{$lpr->tahun}}</td>
+								<td>{{$lpr->total_pengeluaran}}</td>
+								<td>{{$lpr->total_pemasukan}}</td>
+								<td>{{$lpr->saldo_usaha}}</td>
 							</tr>
 						@endforeach
 						</tbody>

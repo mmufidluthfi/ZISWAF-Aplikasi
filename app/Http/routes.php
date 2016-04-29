@@ -22,8 +22,10 @@ Route::group(['middleware' => ['web','auth']], function()
 	Route::get('/',function(){
 		if(Auth::user()->admin == 1) {
 			return view('administrator.administrator-home');
-		}elseif (Auth::user()->admin == 0){
+		} elseif (Auth::user()->admin == 0){
 			return view('dashboard.dashboard-home');
+		} elseif (Auth::user()->admin == 2){
+			return view('lkm.dashboard-home');
 		} else {
 			return view('login');
 		}
@@ -153,7 +155,40 @@ Route::post('updatestatus', 'TransaksiController@updatestatus');
 
 Route::get('/administrator/manageuser/{id}', 'UsersController@getAllInfo');
 
+
+// Route::get('/administrator/dana', function () {
+//     return view('administrator.dana');
+// });
+
+Route::get('/administrator/dana/{id}', 'FundziswafController@getAlllkm');
+Route::post('uploadtransaksipendanaan','FundziswafController@uploadtransaksipendanaan');
+
+
+
 Route::post('input_lkm','UsersController@input_lkm');
+
 Route::post('input_bank','UsersController@input_bank');
+
+
+//LKM Route
+//Dashboard Pengaturan
+Route::get('/lkm/home', function () {
+    return view('lkm.dashboard-home');
+});
+
+
+Route::get('/lkm/listcrowd/{id}', 'LkmcrowdController@getAllPendanaanLkmCrowd');
+
+Route::get('/lkm/laporancrowd/{id}', 'LkmcrowdController@listReportCrowd');
+
+Route::post('createLaporanCrowd','LkmcrowdController@createLaporanCrowd');
+
+Route::get('/lkm/detail_laporan_crowdfunding/{id}','LkmcrowdController@detailReport');
+
+Route::post('/uploaddetaillaporan','LkmcrowdController@uploaddetaillaporan');
+
+Route::get('/lkm/dashboard-listpendanaanziswaf/{id}', 'FundziswafController@getAlltransaksidana');
+
+
 
 

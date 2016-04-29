@@ -64,6 +64,7 @@
         <li><a href="{{ url('administrator/verifikasi') }}/{{ Auth::user()->id }}"><i class="icon-ok"></i><span>Verifikasi</span> </a> </li>
         <li><a href="{{ url('administrator/umkm') }}/{{ Auth::user()->id }}"><i class="icon-home"></i><span>UMKM</span> </a> </li>
     		<li><a href="{{ url('administrator/pendanaan') }}/{{ Auth::user()->id }}"><i class="icon-file"></i><span>Proyek</span> </a> </li> 
+        <li><a href="{{ url('administrator/dana') }}/{{ Auth::user()->id }}"><i class="icon-money"></i><span>Pendanaan</span> </a> </li>
       </ul>
     </div>
     <!-- /container --> 

@@ -17,6 +17,9 @@
 	        <!-- /span6 -->
 	        <div class="span12">
 	          <div class="widget">
+	          	<ol class="breadcrumb">
+					<p><font color="green"><center><?php echo Session::get('message-inputberhasil'); ?></font></center></p>
+				</ol>
 	            <div class="widget-header"> <i class="icon-bookmark"></i>
 	              <h3>Administrator Area</h3>
 	            </div>
@@ -27,7 +30,7 @@
 		              <a href="{{ url('administrator/verifikasi') }}/{{ Auth::user()->id }}" class="shortcut"> <i class="shortcut-icon icon-ok"></i><span class="shortcut-label">Verifikasi</span> </a>
 		              <a href="{{ url('administrator/umkm') }}/{{ Auth::user()->id }}" class="shortcut"><i class="shortcut-icon icon-home"></i><span class="shortcut-label">UMKM</span> </a>
 		              <a href="{{ url('administrator/pendanaan') }}/{{ Auth::user()->id }}" class="shortcut"><i class="shortcut-icon icon-file"></i><span class="shortcut-label">Proyek</span> </a>
-		              <a href="pendanaan.html" class="shortcut"><i class="shortcut-icon icon-money"></i><span class="shortcut-label">Pendanaan</span> </a>
+		              <a href="{{ url('administrator/dana') }}/{{ Auth::user()->id }}" class="shortcut"><i class="shortcut-icon icon-money"></i><span class="shortcut-label">Pendanaan</span> </a>
 		              <a href="report.html" class="shortcut"><i class="shortcut-icon icon-signal"></i><span class="shortcut-label">Report</span> </a> 
 	              </div>
 	              <!-- /shortcuts --> 

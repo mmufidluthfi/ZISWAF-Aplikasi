@@ -17,6 +17,7 @@
 	</nav>
 
 	<section class="content">
+		<center><font color="red"><?php echo Session::get('message-uploadgagal'); ?></font></center><br/><br/>
 		<section class="widget">
 			<header>
 				<span class="icon">&#128196;</span>

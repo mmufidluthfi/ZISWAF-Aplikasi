@@ -68,9 +68,23 @@ class TransaksiController extends Controller
 
     public function upload(Request $request){
 
-                if(Input::hasFile('file')){
+            $postgambar = $request->all();
 
-                        $postgambar = $request->all();
+            $v = \Validator::make($request->all(),
+                [
+                    'file' => 'required',
+                ]);
+
+            if($v->fails())
+            {
+
+                \Session::flash('message-uploadgagal', 'Upload File Gagal, Pastikan file dalam bentuk foto dan sudah dipilih');
+                \Session::flash('message-nominal', $postgambar['nominal']);
+                return redirect()->back()->withErrors($v->errors());
+
+            } else {
+
+                if(Input::hasFile('file')){
 
                         $file = Input::file('file');
                         $file->move('transaksi', $file->getClientOriginalName());
@@ -91,13 +105,27 @@ class TransaksiController extends Controller
 
                 }
 
+            }  
+
         }
 
         public function uploadbukti(Request $request){
 
-                if(Input::hasFile('file')){
+                $postgambar = $request->all();
 
-                        $postgambar = $request->all();
+                $v = \Validator::make($request->all(),
+                    [
+                        'file' => 'required',
+                    ]);
+
+                if($v->fails())
+                {
+                    \Session::flash('message-uploadgagal', 'Upload File Gagal, Pastikan file dalam bentuk foto dan sudah dipilih');
+                    return redirect()->back()->withErrors($v->errors());
+
+                } else {
+
+                if(Input::hasFile('file')){
 
                         $file = Input::file('file');
                         $file->move('transaksi', $file->getClientOriginalName());
@@ -116,6 +144,7 @@ class TransaksiController extends Controller
 
                         return redirect('dashboard/home');
 
+                    }
                 }
 
         }

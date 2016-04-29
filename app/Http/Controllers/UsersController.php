@@ -10,6 +10,8 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
+use Validator;
+
 use Carbon\Carbon;
 
 use Hash;
@@ -19,25 +21,39 @@ class UsersController extends Controller
 
     public function uploadfoto(Request $request){
 
-        if(Input::hasFile('filefoto')){
+        $postprofile = $request->all();
 
-                $postprofile = $request->all();
+        $v = \Validator::make($request->all(),
+            [
+                'filefoto' => 'required',
+            ]);
 
-                $filefoto = Input::file('filefoto');
-                $filefoto->move('dashboard/images/fotoprofile', $filefoto->getClientOriginalName());
-                $namafilefoto = $filefoto->getClientOriginalName();
+        if($v->fails())
+        {
+            
+            \Session::flash('message-uploadgagal', 'Upload Foto Gagal, Silahkan Upload Ulang');
+            return redirect()->back()->withErrors($v->errors());
 
-                $datatransaksiGambar = array(
-                        'id_user'      => $postprofile['id_usergambar'], 
-                        'url_foto'     => $namafilefoto, 
-                    );
+        } else {
 
-                $bukti_transaksiDonasi = DB::table('users')->where('id', $postprofile['id_usergambar'])->update(['url_foto' => $namafilefoto]);
+            if(Input::hasFile('filefoto')){
 
-                //$bukti_transaksiDonasi = DB::table('foto_profile')->insert($datatransaksiGambar);
+                    $filefoto = Input::file('filefoto');
+                    $filefoto->move('dashboard/images/fotoprofile', $filefoto->getClientOriginalName());
+                    $namafilefoto = $filefoto->getClientOriginalName();
 
-            	return redirect('dashboard/pengaturan');
+                    $datatransaksiGambar = array(
+                            'id_user'      => $postprofile['id_usergambar'], 
+                            'url_foto'     => $namafilefoto, 
+                        );
 
+                    $bukti_transaksiDonasi = DB::table('users')->where('id', $postprofile['id_usergambar'])->update(['url_foto' => $namafilefoto]);
+
+                    //$bukti_transaksiDonasi = DB::table('foto_profile')->insert($datatransaksiGambar);
+
+                	return redirect('dashboard/pengaturan');
+
+            }
         }
 
     }
@@ -45,34 +61,67 @@ class UsersController extends Controller
 
     public function editpassword(Request $request){
 
-        $posteditpassword = $request->all();
+        $validator = Validator::make(Input::all(),
+            array(
+                'passlama'           => 'required',
+                'password'           => 'required|min:6',
+                'konfirmasipassbaru' => 'required|same:password'
+            )
+        );
 
-        $posteditpassword = array(
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+
+        } else {
+            // Change
+            // passed validation
+
+        // Grab the current user
+            $posteditpassword = $request->all();
+
+            $posteditpassword = array(
                 'id_userpassword'    => $posteditpassword['id_userpassword'], 
                 'passlama'           => bcrypt($posteditpassword['passlama']), 
-                'passbaru'           => bcrypt($posteditpassword['passbaru']), 
+                'password'           => bcrypt($posteditpassword['password']), 
                 'konfirmasipassbaru' => bcrypt($posteditpassword['konfirmasipassbaru']), 
-            );
+            ); 
 
-        $userpendanaan = DB::table('users')
-                ->where('id', '=', $posteditpassword['id_userpassword'])
-                ->get();
+            $user           = Input::get('id_userpassword');
 
-        // $validator = Validator::make(Input::all(), $posteditpassword);
+            // Get passwords from the user's input
+            $old_password   = Input::get('passlama');
+            $old_passwordvalidation   = Input::get('password_userpassword');
+            $password       = Input::get('password');
 
-        foreach ($userpendanaan as $upd) {
-            $a = $upd->password;
-            $b = $posteditpassword['passlama'];
+            var_dump($old_passwordvalidation);
+            
 
-            // var_dump($a);
-            // if (!Hash::check($b, $a) {
-            //     echo "Mantab ".$a."Oke ".$b." ";
-            // } else {
-            //     echo "Gagal ".$a."Oke ".$b." ";
-            // }
+            // test input password against the existing one
+        //     if(Hash::check($old_password, $old_passwordvalidation){
 
+        //         $user->password = Hash::make($password);
+
+        //         // save the new password
+        //         if($user->save()) {
+
+        //             var_dump($posteditpassword->password);
+        //             // DB::table('users')->where('id', $posteditpassword['id_userpassword'])->update(['password' => bcrypt($posteditpassword['password'])]);
+
+        //             // return Redirect::route('dashboard.dashboard-pengaturan')
+        //             //         ->with('global', 'Your password has been changed.');
+
+                            
+        //         }
+
+        //     } else {
+        //         return Redirect::route('dashboard.dashboard-home')
+        //             ->with('global', 'Your old password is incorrect.');
+        //     }
+        // }
+
+        // return Redirect::route('dashboard.dashboard-pendanaan')
+        // ->with('global', 'Your password could not be changed.');
         }
-
     }
 
     public function input_lkm(Request $request)
@@ -99,7 +148,7 @@ class UsersController extends Controller
             $datatransaksi = array(
                 'name' => $datalkm['name'],
                 'email' => $datalkm['email'],
-                'password' => $datalkm['password'],
+                'password' => bcrypt($datalkm['password']),
                 'url_foto' => $datalkm['url_foto'],
                 'lembagaID' => $datalkm['lembagaID'],
                 'admin' => $datalkm['admin'],
@@ -147,7 +196,7 @@ class UsersController extends Controller
             $datatransaksi = array(
                 'name' => $databank['name'],
                 'email' => $databank['email'],
-                'password' => $databank['password'],
+                'password' => bcrypt($databank['password']),
                 'url_foto' => $databank['url_foto'],
                 'lembagaID' => $databank['lembagaID'],
                 'admin' => $databank['admin'],

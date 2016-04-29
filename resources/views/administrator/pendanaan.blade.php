@@ -15,14 +15,14 @@
 				<div class="col-lg-9">
 					<h3 class="page-header"><i class="fa fa-user-md"></i> Proyek </h3>
 					<ol class="breadcrumb">
-						<p><font color="green"><center><?php echo Session::get('message-inputberhasil'); ?></font></center></p>
-					</ol>
+						<p><center><font color="red"><?php echo Session::get('message-pesanerror'); ?></font></center></p>
+					</ol>	
 				</div>
 			</div>
 			</div>
           
 	<div class="row">
-		<div class="main">
+		<div class="main"> 
 			<div class="main-inner">
 		    	<div class="container">
 		      		<div class="row">
@@ -48,13 +48,27 @@
 											<input type="hidden" value="0" name="sementara_dana">
 						                    <input type="hidden" value="0" name="status">
 						                    <input type="hidden" name="tgl_transaksi" value="tgl_transaksi">
-						                    <input type="hidden" value="{{ Auth::user()->id }}" name="lembagaID">
-											
+						                    
 											
 											<div class="control-group">											
-												<label class="control-label" for="username">ID UMKM - Lihat Tabel UMKM</label>
+												<label class="control-label" for="username">Nama UMKM</label>
 												<div class="controls">
-													<input type="text" class="span6" name="id_umkm">
+													<select name="id_umkm">
+													  @foreach($userumkmpendanaan as $upd)
+													    <option value="{{$upd->id_umkm}}">{{$upd->nama_pj}}</option>
+													  @endforeach
+													</select>
+												</div> <!-- /controls -->				
+											</div> <!-- /control-group -->
+
+											<div class="control-group">											
+												<label class="control-label" for="username">Nama LKM</label>
+												<div class="controls">
+													<select name="id_lkm">
+													  @foreach($userumkmpendanaan2 as $upd)
+													    <option value="{{$upd->id}}">{{$upd->name}}</option>
+													  @endforeach
+													</select>
 												</div> <!-- /controls -->				
 											</div> <!-- /control-group -->
 											
@@ -78,6 +92,7 @@
 													  </select>
 	                                            	</div><!-- /controls -->			
 												</div> <!-- /control-group -->
+											</div>
 											<br>
 											<div class="control-group">											
 												<label class="control-label" for="since">Total Dana yang Dibutuhkan</label>
@@ -131,6 +146,7 @@
 									                <thead>
 									                  <tr>
 									                    <th>Nama</th>
+									                    <th>Nama LKM</th>
 														<th>Nama Proyek</th>
 														<th>Kategori</th>
 														<th>Dana Sementara</th>
@@ -152,6 +168,7 @@
 
 										                  <tr>
 										                    <td> {{$pda->nama_pj}} </td>
+										                    <td> {{$pda->name}} </td>
 										                    <td> {{$pda->nama_proyek}} </td>
 															<td> {{$pda->kategori}} </td>
 															<td> {{$pda->sementara_dana}} </td>

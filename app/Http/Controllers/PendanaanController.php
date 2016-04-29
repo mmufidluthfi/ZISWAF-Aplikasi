@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pendanaan;
-use App\laporan;
+use App\CrowdReport;
 use App\Http\Requests;
 
 use DB;
@@ -39,7 +39,7 @@ class PendanaanController extends Controller
 	    			->where('pendanaan.id_pendanaan', '=', $id_pendanaan)
 	    			->get();
 	    
-	    $laporan    = DB::table('laporan')->where('id_pendanaan', '=', $id_pendanaan)->get();
+	    $laporan    = DB::table('laporan_crowd')->where('id_pendanaan', '=', $id_pendanaan)->get();
 	    //return view('details-pendanaan')->withPendanaan($pendanaan);
 	    return view('details-pendanaan',['pendanaan' => $pendanaan],['laporan' => $laporan]);
 	}
@@ -89,54 +89,78 @@ class PendanaanController extends Controller
 	public function getAllPendanaanAdmin($id){
     	$pendanaanadmin  = DB::table('pendanaan')
 					    	->join('userumkm', 'pendanaan.id_umkm', '=', 'userumkm.id_umkm')
-					    	->select('pendanaan.*', 'userumkm.*')
+					    	->join('users', 'pendanaan.id_lkm', '=', 'users.id')
+					    	->select('pendanaan.*', 'userumkm.*', 'users.*')
 					    	->where('userumkm.lembagaID', '=', $id )
+					    	->where('users.admin', '=', 2)
 					    	->orderBy('pendanaan.id_pendanaan', 'desc')
 					    	->paginate(5);
 
+		$userumkmpendanaan2  = DB::table('users')
+		                    ->where('users.lembagaID', '=', $id )
+		                    ->where('users.admin', '=', 2)
+		                    ->get();
+
+		$userumkmpendanaan  = DB::table('userumkm')
+                    ->where('userumkm.lembagaID', '=', $id )
+                    ->get();
+
     	// return view('administrator.administrator-listdonasi')->withPendanaanadmin($pendanaanadmin);
-		return view('administrator.pendanaan')->withPendanaanadmin($pendanaanadmin);
+        return view('administrator.pendanaan',['pendanaanadmin' => $pendanaanadmin], ['userumkmpendanaan' => $userumkmpendanaan])->withUserumkmpendanaan2($userumkmpendanaan2);
+		// return view('administrator.pendanaan')->withPendanaanadmin($pendanaanadmin);
 	}
 
 	public function uploadpendanaan(Request $request){
 
-        if(Input::hasFile('file')){
+		$postpendanaan = $request->all();
 
-                $postpendanaan = $request->all();
+		$v = \Validator::make($request->all(),
+            [
+                'file' => 'required',
+            ]);
 
-                $file       = Input::file('file');
-                $file->move('images/proyek/', $file->getClientOriginalName());
-				$namafileproyek = $file->getClientOriginalName();
+        if($v->fails())
+        {
+            \Session::flash('message-pesanerror', 'Submit Gagal, Silahkan Coba Submit Ulang');
+            return redirect()->back()->withErrors($v->errors());
 
-                $dateimputpendanaan = Carbon::now()->format('Y-m-d H:i:s');
+        } else {
 
-                $postpendanaan = array(
-                		'lembagaID'      => $postpendanaan['lembagaID'], 
-                        'id_umkm'        => $postpendanaan['id_umkm'], 
-                        'nama_proyek'    => $postpendanaan['nama_proyek'], 
-                        'kategori'       => $postpendanaan['kategori'], 
-                        'total_dana'     => $postpendanaan['total_dana'], 
-                        'sementara_dana' => $postpendanaan['sementara_dana'], 
-                        'deskripsi'      => $postpendanaan['deskripsi'], 
-                        'foto_proyek'    => $namafileproyek,
-                        'status'         => $postpendanaan['status'],  
-                        'tgl_pendanaan'  => $dateimputpendanaan, 
-                    );
+	        if(Input::hasFile('file')){
+
+	                $file       = Input::file('file');
+	                $file->move('images/proyek/', $file->getClientOriginalName());
+					$namafileproyek = $file->getClientOriginalName();
+
+	                $dateimputpendanaan = Carbon::now()->format('Y-m-d H:i:s');
+
+	                $postpendanaan = array(
+	                        'id_umkm'        => $postpendanaan['id_umkm'], 
+	                        'id_lkm'    	 => $postpendanaan['id_lkm'], 
+	                        'nama_proyek'    => $postpendanaan['nama_proyek'], 
+	                        'kategori'       => $postpendanaan['kategori'], 
+	                        'total_dana'     => $postpendanaan['total_dana'], 
+	                        'sementara_dana' => $postpendanaan['sementara_dana'], 
+	                        'deskripsi'      => $postpendanaan['deskripsi'], 
+	                        'foto_proyek'    => $namafileproyek,
+	                        'status'         => $postpendanaan['status'],  
+	                        'tgl_pendanaan'  => $dateimputpendanaan, 
+	                    );
 
 
-            $i = DB::table('pendanaan')->insert($postpendanaan);
+	            $i = DB::table('pendanaan')->insert($postpendanaan);
 
-    		if ($i > 0) {
-    		  	
-    		  	$id_lembaga = $postpendanaan['lembagaID'];
+	    		if ($i > 0) {
+	    		  	
+	    		  	\Session::flash('message-inputberhasil', 'Input Pendaftaran Pendanaan Berhasil, Silahkan Cek Menu Proyek');
+	    		  	//return redirect('administrator/listdonasi');
+	    		  	return redirect('administrator/home');
+	              
+		    		} 
 
-    		  	\Session::flash('message-inputberhasil', 'UMKM Berhasil Ditambahkan');
-    		  	//return redirect('administrator/listdonasi');
-    		  	return redirect('administrator/pendanaan/'.$id_lembaga);
-              
-    		} 
+		        }
 
-        }
+   		}
 
     }
 

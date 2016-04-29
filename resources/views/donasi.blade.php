@@ -70,22 +70,11 @@
                                         
 
                                     @elseif (Auth::user()->admin==1)
-
-                                        <div class="widget-box">
-                                            <div class="form-group row">
-                                                <div class="col-md-12">
-                                                    <center><h3 class="grey"><h3>Silahkan Login Terlebih Dahulu:</h3></center><br/>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <center><a href="{{ url('/login') }}"><img width="80%" src="{{URL::to('/')}}/images/login-donatur.png"/></a></center>
-                                                </div>
-
-                                                 <div class="col-md-6">
-                                                    <center><a href="{{ url('/register') }}"><img width="80%" src="{{URL::to('/')}}/images/register-donatur.png"/></a></center>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <SCRIPT LANGUAGE='JavaScript'>
+                                            window.alert('Silahkan Login atau Register Terlebih Dahulu Menggunakan Akun Investor')
+                                        </SCRIPT>
+                                        
+                                        <meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 
                                     @else
                                         <form class="form-horizontal" role="form" method="POST" action="{{action('TransaksiController@save_nominal')}}" >

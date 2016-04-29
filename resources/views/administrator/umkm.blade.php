@@ -16,6 +16,7 @@
 					<h3 class="page-header"><i class="fa fa-user-md"></i> UMKM </h3>
 					<ol class="breadcrumb">
 						<p><font color="green"><center><?php echo Session::get('message-inputberhasil'); ?></font></center></p>
+						<p><center><font color="red"><?php echo Session::get('message-pesanerror'); ?></font></center></p>
 					</ol>					
 				</div>
 			</div>
@@ -129,7 +130,6 @@
 												                  <tr>
 												                    <th> ID UMKM </th>
 												                    <th> Username </th>
-																	<th> Password </th>
 																	<th> Nama PJ </th>
 																	<th> Email </th>
 																	<th> No.Hp </th>
@@ -144,7 +144,6 @@
 												                  <tr>
 												                    <td> {{$usmt->id_umkm}} </td>
 												                    <td> {{$usmt->username}} </td>
-																	<td> {{$usmt->password}} </td>
 																	<td> {{$usmt->nama_pj}} </td>
 																	<td> {{$usmt->email}} </td>
 																	<td> {{$usmt->no_hp}} </td>

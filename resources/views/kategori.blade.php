@@ -162,6 +162,10 @@
 
                         </div>
                     </div>
+
+                    <div class="col-md-12">
+                        <br/><center><a class="button-normal blue" href="{{ url('/pendanaan')}}">Lihat Daftar Pendanaan Lengkap</a></center>
+                    </div>
                     <!-- .posts -->
 
                     <!-- pagination -->
@@ -191,28 +195,11 @@
                             <div class="box-wrapper">
                                 <div class="box">
 
-                                    <!-- widget title -->
-                                    <div class="widget-title">
-                                        <h5>Pencarian</h5>
-                                    </div>
-                                    <!-- .widget title -->
-
-                                    <!-- widget box -->
-                                    <div class="widget-box">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Ketik Kata Kunci" />
-                                            <span class="input-group-addon">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <!-- .widget box -->
-
                                     <!-- widget box -->
                                     <div class="widget-box dropdown">
                                         <div class="widget-dropdown">
                                             <a class="button-normal full blue left-text" href="#" data-toggle="dropdown">Kategori <i class="fa fa-angle-down pull-right"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
+                                            <ul  role="menu">
                                                 <li><a href="{{URL::to('/kategori')}}/Zakat">Zakat <i class="fa fa-angle-right pull-right"></i></a>
                                                 </li>
                                                 <li><a href="{{URL::to('/kategori')}}/Infaq">Infaq<i class="fa fa-angle-right pull-right"></i></a>
@@ -223,12 +210,6 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
-                                    <!-- .widget-box -->
-
-                                    <!-- widget box -->
-                                    <div class="widget-box dropdown">
-                                        <a class="button-normal full white" href="#">Cari Sekarang</a>
                                     </div>
                                     <!-- .widget-box -->
                                 </div>

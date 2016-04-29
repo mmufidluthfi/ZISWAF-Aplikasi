@@ -80,7 +80,7 @@
 																if ($statuskonfirmasi1 == $statuskonfirmasi2) {
 																	echo "Belum";
 																} else {
-																	echo "<a target='_blank' href='../transaksi/".$statuskonfirmasi1."'><b><font color='green'>Download Bukti</font></b></a>";
+																	echo "<a target='_blank' href='../../transaksi/".$statuskonfirmasi1."'><b><font color='green'>Download Bukti</font></b></a>";
 																}
 															?>
 														</td>

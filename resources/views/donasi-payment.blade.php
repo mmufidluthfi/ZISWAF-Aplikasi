@@ -107,6 +107,7 @@
 
                                 <div class="widget-box">
                                     <div class="form-group row">
+                                        <center><font color="red"><?php echo Session::get('message-uploadgagal'); ?></font></center>
                                         <center><h3>Konfirmasi Pembayaran:</h3></center>
 
                                         <form action="{{ URL::to('upload') }}" method="post" enctype="multipart/form-data">
@@ -132,6 +133,7 @@
 
                                             <input type="hidden" value="{{ csrf_token() }}" name="_token">
                                             <input type="hidden" value="<?php echo Session::get('message-idtransaksi'); ?>" name="id_transaksiDonasi">
+                                            <input type="hidden" value="{{$pendanaannominal}}" name="nominal">
                                             
                                         </form>
 

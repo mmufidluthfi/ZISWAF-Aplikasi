@@ -32,18 +32,28 @@
                             {!! csrf_field() !!}
 
                             <input type="hidden" value="{{ Auth::user()->id }}" name="id_userpassword">
+                            <input type="hidden" value="{{ Auth::user()->password }}" name="password_userpassword">
 
 							<div class="field-wrap">
-								Password Lama : <br/><br/>
+								<br/><br/>Password Lama : <br/><br/>
 								<input type="password" name="passlama"/>
+								@if($errors->has('passlama'))
+									<font color="red"> {{ $errors->first('passlama')}}</font>
+								@endif
 							</div>
 							<div class="field-wrap">
-								Password Baru : <br/><br/>
-								<input type="password" name="passbaru"/>
+								<br/><br/>Password Baru : <br/><br/>
+								<input type="password" name="password"/>
+								@if($errors->has('password'))
+									<font color="red"> {{ $errors->first('password')}}</font>
+								@endif
 							</div>
 							<div class="field-wrap">
-								Password Baru : <br/><br/>
+								<br/><br/>Password Baru : <br/><br/>
 								<input type="password" name="konfirmasipassbaru"/>
+								@if($errors->has('konfirmasipassbaru'))
+									<font color="red"> {{ $errors->first('konfirmasipassbaru')}}</font>
+								@endif
 							</div>
 								<button type="submit" class="green">Simpan</button>
 						</form>
@@ -61,7 +71,7 @@
 				</header>
 				<div class="content no-padding timeline">
 					<div class="content">
-						
+						<center><font color="red"><?php echo Session::get('message-uploadgagal'); ?></font></center><br><br>
 						<div class="profile-img">
 							<center><p><img src="{{URL::to('dashboard/images/fotoprofile')}}/{{ Auth::user()->url_foto }}" alt="" height="150" width="150" /></p></center>
 						</div>

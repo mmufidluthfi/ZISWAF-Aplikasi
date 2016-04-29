@@ -25,37 +25,60 @@ class UserumkmController extends Controller
         return view('administrator.umkm')->withUserumkm($userumkm);
 	}
 
+    //Halaman Administrator Pendanaan
+    // public function getUserumkmpendanaan($id){
+    //     $userumkmpendanaan  = DB::table('userumkm')
+    //                 ->where('userumkm.lembagaID', '=', $id )
+    //                 ->get();
+
+    //     // return view('administrator.administrator-lihatumkm')->withUserumkm($userumkm);
+    //     return view('administrator.pendanaan')->withUserumkmpendanaan($userumkmpendanaan);
+    // }
+
 	//Submit UMKM
 	public function uploadumkm(Request $request){
 
-		if(Input::hasFile('file')){
+        $submitumkm = $request->all();
 
-            $submitumkm = $request->all();
+        $v = \Validator::make($request->all(),
+            [
+                'file' => 'required',
+            ]);
 
-            $file = Input::file('file');
-            $file->move('images/avatar/', $file->getClientOriginalName());
-            $namafile = $file->getClientOriginalName();
+        if($v->fails())
+        {
+            \Session::flash('message-pesanerror', 'Submit Gagal, Silahkan Coba Submit Ulang');
+            return redirect()->back()->withErrors($v->errors());
 
-            $listumkm = array(
-                'lembagaID'   => $submitumkm['lembagaID'], 
-                'username'    => $submitumkm['username'], 
-                'password'    => $submitumkm['password'], 
-                'nama_pj'     => $submitumkm['nama_pj'], 
-                'email'       => $submitumkm['email'], 
-                'no_hp'       => $submitumkm['no_hp'], 
-                'alamat_pj'   => $submitumkm['alamat_pj'], 
-                'alamat_umkm'  => $submitumkm['alamat_umkm'], 
-                'foto_pj'     => $namafile, 
-            );
+        } else {
 
-            $id_lembaga = $submitumkm['lembagaID'];
+    		if(Input::hasFile('file')){
 
-            $submitlistumkm = DB::table('userumkm')->insert($listumkm);
+                $file = Input::file('file');
+                $file->move('images/avatar/', $file->getClientOriginalName());
+                $namafile = $file->getClientOriginalName();
 
-            \Session::flash('message-inputberhasil', 'UMKM Berhasil Ditambahkan');
-            // return redirect('administrator/lihatumkm');
-            return redirect('administrator/umkm/'.$id_lembaga);
+                $listumkm = array(
+                    'lembagaID'   => $submitumkm['lembagaID'], 
+                    'username'    => $submitumkm['username'], 
+                    'password'    => $submitumkm['password'], 
+                    'nama_pj'     => $submitumkm['nama_pj'], 
+                    'email'       => $submitumkm['email'], 
+                    'no_hp'       => $submitumkm['no_hp'], 
+                    'alamat_pj'   => $submitumkm['alamat_pj'], 
+                    'alamat_umkm'  => $submitumkm['alamat_umkm'], 
+                    'foto_pj'     => $namafile, 
+                );
 
+                $id_lembaga = $submitumkm['lembagaID'];
+
+                $submitlistumkm = DB::table('userumkm')->insert($listumkm);
+
+                \Session::flash('message-inputberhasil', 'UMKM Berhasil Ditambahkan');
+                // return redirect('administrator/lihatumkm');
+                return redirect('administrator/umkm/'.$id_lembaga);
+
+            }
         }
     }
 
