@@ -60,8 +60,6 @@ class UserumkmController extends Controller
 
                 $listumkm = array(
                     'lembagaID'   => $submitumkm['lembagaID'], 
-                    'username'    => $submitumkm['username'], 
-                    'password'    => $submitumkm['password'], 
                     'nama_pj'     => $submitumkm['nama_pj'], 
                     'email'       => $submitumkm['email'], 
                     'no_hp'       => $submitumkm['no_hp'], 

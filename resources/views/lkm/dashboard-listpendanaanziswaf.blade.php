@@ -53,18 +53,53 @@
 						<thead>
 						<tr>
 							<th>Nama Transaksi</th>
+							<th>Nama UMKM</th>
 							<th>Kategori</th>
 							<th>Tanggal Transaksi</th>
 							<th>Total Dana</th>
+							<th>Action</th>
+							<th>Status</th>
 						</tr>
 						</thead>
 						<tbody>
 							@foreach($reportpendanaan as $rpdn)
 							<tr>
 								<td>{{$rpdn->nama_pendanaan}}</td>
+								<td>{{$rpdn->nama_pj}}</td>
 								<td>{{$rpdn->kategori}}</td>
 								<td>{{$rpdn->tgl_pendanaan}}</td>
-								<td>{{$rpdn->total_dana}}</td>						
+								<td>{{$rpdn->total_dana}}</td>		
+								<td>
+									<form action="{{ URL::to('updatestatusdanalkm') }}" method="post">
+									{!! csrf_field() !!}
+
+									<input type="hidden" value="{{$rpdn->id_pendanaan_ziswaf}}" name="id_pendanaan_ziswaf">
+
+									  <select name="status">
+									    <option value="#">Ubah Status</option>
+									    <option value="1">Telah Diterima</option>
+									    <option value="0">Belum Diterima</option>
+									  </select>
+
+									  <input type="submit" value="Update">
+
+									 </form>
+
+								</td>
+								<td>
+									<center>
+										<?php 
+											$statusbelum = "0";
+											$statussudah = "1";
+
+											if ($rpdn->status == $statussudah) {
+												echo "<font color='green'>Sudah Diterima</font>";
+											} else if ($rpdn->status == $statusbelum) {
+												echo "<font color='red'>Belum Diterima</font>";
+											} 
+										?>
+									</center>
+								</td>
 							</tr>
 							@endforeach
 						</tbody>

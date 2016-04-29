@@ -189,6 +189,19 @@ Route::post('/uploaddetaillaporan','LkmcrowdController@uploaddetaillaporan');
 
 Route::get('/lkm/dashboard-listpendanaanziswaf/{id}', 'FundziswafController@getAlltransaksidana');
 
+Route::post('updatestatusdanalkm', 'FundziswafController@updatestatusdanalkm');
 
+// Route::get('/lkm/dashboard-reportpendanaanziswaf', function () {
+//     return view('lkm.dashboard-reportpendanaanziswaf');
+// });
 
+Route::get('/lkm/dashboard-reportpendanaanziswaf/{id}','ZiswafController@listReportZiswaf');
+
+// Route::get('/lkm/dashboard-reportpendanaanziswaf/{id}','ZiswafController@listReportZiswaf');	
+
+Route::get('/lkm/detail_laporan_ziswaf/{id}','ZiswafController@detailReport');
+
+Route::post('/uploaddetaillaporanziswaf','ZiswafController@uploaddetaillaporan');
+
+Route::post('createLaporanZiswaf','ZiswafController@createLaporanZiswaf');
 

@@ -8,7 +8,7 @@ class fund_ziswaf extends Model
 {
     public $table = "fund_ziswaf";
   	
-  	protected $fillable = ['nama_pendanaan','kategori','tgl_pendanaan', 'id_lkm', 'total_dana'];
+  	protected $fillable = ['nama_pendanaan','kategori','tgl_pendanaan', 'id_lkm', 'total_dana', 'id_umkm', 'status'];
   	
   	protected $primaryKey = 'id_pendanaan_ziswaf';
   	

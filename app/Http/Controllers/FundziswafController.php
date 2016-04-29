@@ -19,13 +19,18 @@ class FundziswafController extends Controller
 
 		$reportpendanaan  = DB::table('fund_ziswaf')
 							->join('users', 'fund_ziswaf.id_lkm', '=', 'users.id')
-					    	->select('fund_ziswaf.*', 'users.name')
+							->join('userumkm', 'fund_ziswaf.id_umkm', '=', 'userumkm.id_umkm')
+					    	->select('fund_ziswaf.*', 'users.name', 'userumkm.*')
 					    	->where('fund_ziswaf.id_ziswaf', '=', $id )
 					    	->where('users.admin', '=', 2 )
 					    	->orderBy('fund_ziswaf.id_pendanaan_ziswaf', 'desc')
 					    	->paginate(5);
 
-       return view('administrator.dana',['userlkm' => $userlkm], ['reportpendanaan' => $reportpendanaan]);
+		$userumkmpendanaan  = DB::table('userumkm')
+		                    ->where('userumkm.lembagaID', '=', $id )
+		                    ->get();
+
+       return view('administrator.dana',['userlkm' => $userlkm], ['reportpendanaan' => $reportpendanaan])->withUserumkmpendanaan($userumkmpendanaan);
 
 	}
 
@@ -40,6 +45,7 @@ class FundziswafController extends Controller
                 'kategori' => 'required',
                 'tgl_pendanaan' => 'required',
                 'total_dana' => 'required',
+                'id_umkm' => 'required',
             ]);
 
         if($v->fails())
@@ -57,7 +63,8 @@ class FundziswafController extends Controller
 	                        'nama_pendanaan' => $postdana['nama_pendanaan'], 
 	                        'kategori'       => $postdana['kategori'], 
 	                        'tgl_pendanaan'  => $postdana['tgl_pendanaan'],
-	                        'total_dana'     => $postdana['total_dana'], 
+	                        'total_dana'     => $postdana['total_dana'],
+	                        'id_umkm'        => $postdana['id_umkm'],  
 	                    );
 
 
@@ -80,7 +87,8 @@ class FundziswafController extends Controller
     public function getAlltransaksidana($id){
 
 		$reportpendanaan  = DB::table('fund_ziswaf')
-					    	->select('fund_ziswaf.*')
+							->join('userumkm', 'fund_ziswaf.id_umkm', '=', 'userumkm.id_umkm')
+					    	->select('fund_ziswaf.*', 'userumkm.*')
 					    	->where('fund_ziswaf.id_lkm', '=', $id )
 					    	->orderBy('fund_ziswaf.id_pendanaan_ziswaf', 'desc')
 					    	->paginate(5);
@@ -89,5 +97,18 @@ class FundziswafController extends Controller
 
 	}
 
+	public function updatestatusdanalkm(Request $request){
+
+            $updatestatusdana = $request->all();
+
+            $statustransaksi = array(
+                            'id_pendanaan_ziswaf'   => $updatestatusdana['id_pendanaan_ziswaf'], 
+                            'status'                => $updatestatusdana['status'], 
+                        );
+
+            DB::table('fund_ziswaf')->where('id_pendanaan_ziswaf', $updatestatusdana['id_pendanaan_ziswaf'])->update(['status' => $updatestatusdana['status']]);
+
+            return redirect()->back();
+    }
 
 }

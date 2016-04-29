@@ -51,20 +51,6 @@
 														<input type="hidden" value="{{ Auth::user()->id }}" name="lembagaID">
 														
 														<div class="control-group">											
-															<label class="control-label" for="username">Username</label>
-															<div class="controls">
-																<input type="text" class="span6" name="username" >
-															</div> <!-- /controls -->				
-														</div> <!-- /control-group -->
-														
-														<div class="control-group">											
-															<label class="control-label" for="since">Password</label>
-															<div class="controls">
-																<input type="text" class="span6" name="password" >
-															</div> <!-- /controls -->				
-														</div> <!-- /control-group -->
-														
-														<div class="control-group">											
 															<label class="control-label" for="subject">Nama Penanggung Jawab</label>
 															<div class="controls">
 																<input type="text" class="span6" name="nama_pj" >
@@ -129,7 +115,6 @@
 												                <thead>
 												                  <tr>
 												                    <th> ID UMKM </th>
-												                    <th> Username </th>
 																	<th> Nama PJ </th>
 																	<th> Email </th>
 																	<th> No.Hp </th>
@@ -143,7 +128,6 @@
 												                @foreach($userumkm as $usmt)
 												                  <tr>
 												                    <td> {{$usmt->id_umkm}} </td>
-												                    <td> {{$usmt->username}} </td>
 																	<td> {{$usmt->nama_pj}} </td>
 																	<td> {{$usmt->email}} </td>
 																	<td> {{$usmt->no_hp}} </td>

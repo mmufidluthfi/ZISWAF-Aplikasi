@@ -58,6 +58,17 @@
 																</div> <!-- /control-group -->
 
 																<div class="control-group">								
+																	<label class="control-label" for="username">Nama UMKM</label>
+																	<div class="controls">
+																		<select name="id_umkm">
+																		  @foreach($userumkmpendanaan as $upd)
+																		    <option value="{{$upd->id_umkm}}">{{$upd->nama_pj}}</option>
+																		  @endforeach
+																		</select>
+																	</div> <!-- /controls -->				
+																</div> <!-- /control-group -->
+
+																<div class="control-group">								
 																	<label class="control-label" for="username">Nama Transaksi</label>
 																	<div class="controls">
 																		<input type="text" class="span6" name="nama_pendanaan">
@@ -113,20 +124,36 @@
 															                <thead>
 															                  <tr>
 															                    <th> Nama LKM </th>
+															                    <th> Nama UMKM </th>
 															                    <th> Nama Transaksi </th>
 															                    <th> Kategori </th>
 																				<th> Tanggal Transaksi </th>
 																				<th> Total Dana </th>
+																				<th> Status </th>
 															                  </tr>
 															                </thead>
 															                <tbody>
 															                  @foreach($reportpendanaan as $rpdn)
 																                  <tr>
 																                    <td> {{$rpdn->name}} </td>
+																                    <td> {{$rpdn->nama_pj}} </td>
 																					<td> {{$rpdn->nama_pendanaan}} </td>
 																					<td> {{$rpdn->kategori}} </td>
 																					<td> {{$rpdn->tgl_pendanaan}} </td>
 																					<td> {{$rpdn->total_dana}} </td>
+																					<td> <center>
+																						<?php 
+																							$statusbelum = "0";
+																							$statussudah = "1";
+
+																							if ($rpdn->status == $statussudah) {
+																								echo "<font color='green'>Sudah Diterima</font>";
+																							} else if ($rpdn->status == $statusbelum) {
+																								echo "<font color='red'>Belum Diterima</font>";
+																							} 
+																						?>
+																					</center>
+																					</td>
 																                  </tr>
 															                  @endforeach
 															                </tbody>
