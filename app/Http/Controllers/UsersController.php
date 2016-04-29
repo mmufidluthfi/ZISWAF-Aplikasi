@@ -204,7 +204,14 @@ class UsersController extends Controller
                 'updated_at' => $dateimputtgl,
             );
 
+            $datainformasibank = array(
+                'nama_bank' => $databank['name'],
+                'email_bank' => $databank['email'],
+                'lembagaID' => $databank['lembagaID'],
+            );
+
             $i = DB::table('users')->insert($datatransaksi);
+            $i2 = DB::table('userbank')->insert($datainformasibank);
 
             if ($i > 0) {
 

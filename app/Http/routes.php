@@ -171,7 +171,6 @@ Route::post('input_bank','UsersController@input_bank');
 
 
 //LKM Route
-//Dashboard Pengaturan
 Route::get('/lkm/home', function () {
     return view('lkm.dashboard-home');
 });
@@ -185,19 +184,15 @@ Route::post('createLaporanCrowd','LkmcrowdController@createLaporanCrowd');
 
 Route::get('/lkm/detail_laporan_crowdfunding/{id}','LkmcrowdController@detailReport');
 
+
+
 Route::post('/uploaddetaillaporan','LkmcrowdController@uploaddetaillaporan');
 
 Route::get('/lkm/dashboard-listpendanaanziswaf/{id}', 'FundziswafController@getAlltransaksidana');
 
 Route::post('updatestatusdanalkm', 'FundziswafController@updatestatusdanalkm');
 
-// Route::get('/lkm/dashboard-reportpendanaanziswaf', function () {
-//     return view('lkm.dashboard-reportpendanaanziswaf');
-// });
-
 Route::get('/lkm/dashboard-reportpendanaanziswaf/{id}','ZiswafController@listReportZiswaf');
-
-// Route::get('/lkm/dashboard-reportpendanaanziswaf/{id}','ZiswafController@listReportZiswaf');	
 
 Route::get('/lkm/detail_laporan_ziswaf/{id}','ZiswafController@detailReport');
 
@@ -205,3 +200,8 @@ Route::post('/uploaddetaillaporanziswaf','ZiswafController@uploaddetaillaporan')
 
 Route::post('createLaporanZiswaf','ZiswafController@createLaporanZiswaf');
 
+Route::get('/lkm/dashboard-pendanaanusaha/{id}','BankController@getBankPendanaan');
+
+Route::get('/lkm/dashboard-pendanaanusaha', function () {
+    return view('lkm.dashboard-pendanaanusaha');
+});

@@ -98,7 +98,7 @@
 <body>
 	<div class="testing">
 		<header class="main">
-			<a href="{{URL::to('/')}}"><h1><strong>ZISWAF Reporting UMKM</strong> Dashboard</h1></a>
+			<a href="{{URL::to('lkm/home')}}"><h1><strong>ZISWAF Reporting UMKM</strong> Dashboard</h1></a>
 			<input type="text" value="search" />
 		</header>
 		<section class="user">

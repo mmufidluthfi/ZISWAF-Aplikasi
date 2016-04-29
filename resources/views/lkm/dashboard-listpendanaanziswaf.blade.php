@@ -10,30 +10,26 @@
 			
 			<nav>
 				<ul>
-					<li><a href="{{ url('/dashboard/daftarpenggalangan')}}"> Crowdfunding</a>
+					<li><a href="#" > Penggalangan Dana</a>
 						<ul class="submenu">
-						<li><a href="{{ url('/dashboard/daftarpenggalangan')}}">Daftar Penggalangan Dana</a></li>
-						<li><a href="{{ url('/dashboard/listPenggalangan')}}">List Pendanaan UMKM</a></li>
-						<li><a href="{{ url('/dashboard/showReportPendanaan')}}">Laporan Crowdfunding</a></li>
+						<li><a href="{{ url('/lkm/listcrowd')}}/{{ Auth::user()->id }}">Daftar Penggalangan Dana</a></li>
+						<li><a href="{{ url('/lkm/laporancrowd')}}/{{ Auth::user()->id }}">Laporan Penggalangan Dana</a></li>
 						</ul>
 					</li>
-					<li ><a href="{{ url('/dashbord/daftarpendanaan')}}"> Pendanaan Usaha</a>
+					<li ><a href="#"> Pendanaan Usaha</a>
 						<ul class="submenu">
 						<li><a href="{{ url('/dashboard/daftarpendanaanbank')}}">Pengajuan Pendanaan</a></li>
 						<li><a href="{{ url('/dashboard/listPendanaanBank')}}">List Pendanaan UMKM</a></li>
-						<li><a href="{{ url('/dashboard/showReportPendanaanBank')}}">Laporan Crowdfunding</a></li>
+						<li><a href="{{ url('/dashboard/showReportPendanaanBank')}}">Laporan Pendanaan Bank</a></li>
 						</ul>
 					</li>
-					
-					<li><a href="{{ url('/dashboard/pendanaan')}}"> Pendanaan Lembaga ZISWAF</a>
+					<li class="section"><a href="#"> Pendanaan Lembaga ZISWAF</a>
 					<ul class="submenu">
-						<li><a href="{{ url('/dashboard/listPendanaanZiswaf')}}">List Pendanaan UMKM</a></li>
-						<li><a href="{{ url('/dashboard/showReportPendanaanZiswaf')}}">Laporan Crowdfunding</a></li>
+						<li class="section"><a href="{{ url('/lkm/dashboard-listpendanaanziswaf')}}/{{ Auth::user()->id }}">Daftar Pendanaan Lembaga</a></li>
+						<li><a href="{{ url('/lkm/dashboard-reportpendanaanziswaf/')}}/{{ Auth::user()->id }}">Laporan Pendanaan Lembaga</a></li>
 						</ul>
 					</li>
-					
 				</ul>
-				<br/><br/><center><img src="{{URL::to('/')}}../images/logo_white.png "/></center>
 			</nav>
 			
 			<br><br>
