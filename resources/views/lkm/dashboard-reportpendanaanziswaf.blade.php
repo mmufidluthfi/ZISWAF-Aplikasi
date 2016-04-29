@@ -18,11 +18,10 @@
 							</ul>
 						</li>
 						<li ><a href="#"> Pendanaan Usaha</a>
-							<ul class="submenu">
-							<li><a href="{{ url('/dashboard/daftarpendanaanbank')}}">Pengajuan Pendanaan</a></li>
-							<li><a href="{{ url('/dashboard/listPendanaanBank')}}">List Pendanaan UMKM</a></li>
+						<ul class="submenu">
+							<li><a href="{{ url('/lkm/dashboard-pendanaanusaha')}}/{{ Auth::user()->id }}">Daftar Pendanaan Bank</a></li>
 							<li><a href="{{ url('/dashboard/showReportPendanaanBank')}}">Laporan Pendanaan Bank</a></li>
-							</ul>
+						</ul>
 						</li>
 						<li class="section"><a href="#"> Pendanaan Lembaga ZISWAF</a>
 						<ul class="submenu">

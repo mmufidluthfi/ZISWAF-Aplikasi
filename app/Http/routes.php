@@ -202,6 +202,5 @@ Route::post('createLaporanZiswaf','ZiswafController@createLaporanZiswaf');
 
 Route::get('/lkm/dashboard-pendanaanusaha/{id}','BankController@getBankPendanaan');
 
-Route::get('/lkm/dashboard-pendanaanusaha', function () {
-    return view('lkm.dashboard-pendanaanusaha');
-});
+Route::post('createPendanaanBank','BankController@createPendanaanBank');
+
