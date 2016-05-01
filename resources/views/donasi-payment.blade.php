@@ -63,46 +63,39 @@
 
                                 <!-- tabs -->
                                     <center><h3>Pilihan Bank:</h3></center>
-
-                                    <!-- nav -->
+                                @foreach($rekeningbanklembaga as $rbl)
+                                    <!-- nav -->    
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a data-toggle="tab" href="#sectionA">Bank Mandiri</a>
+                                        <li class="active"><a data-toggle="tab" href="#norek1">{{$rbl->namarekening1}}</a>
                                         </li>
-                                        <li><a data-toggle="tab" href="#sectionB">Bank BCA</a>
+                                        <li ><a data-toggle="tab" href="#norek2">{{$rbl->namarekening2}}</a>
+                                        <li ><a data-toggle="tab" href="#norek3">{{$rbl->namarekening3}}</a>
                                         </li>
-                                        <li><a data-toggle="tab" href="#sectionC">Bank BNI</a>
+                                        <li ><a data-toggle="tab" href="#norek3">{{$rbl->namarekening4}}</a>
                                         </li>
                                     </ul>
                                     <!-- .nav -->
 
                                     <!-- content -->
                                     <div class="tab-content">
-
                                         <!-- 1 -->
-                                        <div id="sectionA" class="tab-pane fade in active">
-                                            <h4>No Rek : 1231312312313131231</h4>
-                                            <p>an. Muhammad Mufid Luthfi</p>
+                                        <div id="norek1" class="tab-pane fade in active">
+                                            <h5>{{$rbl->nomorrekening1}}</h5>
+                                        </div>
+                                        <div id="norek2" class="tab-pane fade ">
+                                            <h5>{{$rbl->nomorrekening2}}</h5>
+                                        </div>
+                                        <div id="norek3" class="tab-pane fade ">
+                                            <h5>{{$rbl->nomorrekening3}}</h5>
+                                        </div>
+                                        <div id="norek4" class="tab-pane fade ">
+                                            <h5>{{$rbl->nomorrekening4}}</h5>
                                         </div>
                                         <!-- .1 -->
-
-                                        <!-- 2 -->
-                                        <div id="sectionB" class="tab-pane fade">
-                                            <h4>No Rek : 123412423141223</h4>
-                                            <p>an. Muhammad Mufid Luthfi</p>
-                                        </div>
-                                        <!-- .2 -->
-
-                                        <!-- 3 -->
-                                        <div id="sectionC" class="tab-pane fade">
-                                            <h4>No Rek : 27645647457</h4>
-                                            <p>an. Muhammad Mufid Luthfi</p>
-                                        </div>
-                                        <!-- .3 -->
-
                                     </div>
                                     <!-- . content -->
 
-                                    </div>
+                                @endforeach
                                 <!-- tabs -->
 
                                 <div class="widget-box">

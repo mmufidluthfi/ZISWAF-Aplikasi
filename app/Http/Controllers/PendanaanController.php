@@ -74,7 +74,15 @@ class PendanaanController extends Controller
 		$pendanaanpayment  = Pendanaan::find($id_pendanaan);
 		$pendanaannominal = Session::get('message-nominal');
     	//return view('donasi-payment')->withPendanaanpayment($pendanaanpayment);
-    	return view('donasi-payment',['pendanaanpayment' => $pendanaanpayment],['pendanaannominal' => $pendanaannominal]);
+
+		$rekeningbanklembaga  = DB::table('rekeningbank')
+    					->join('userumkm', 'rekeningbank.lembagaID', '=', 'userumkm.lembagaID')
+    					->join('pendanaan', 'pendanaan.id_umkm', '=', 'userumkm.id_umkm')
+    					->select('rekeningbank.*', 'userumkm.*', 'pendanaan.*')
+				    	->where('pendanaan.id_pendanaan', '=', $id_pendanaan)
+				    	->get();
+
+    	return view('donasi-payment',['pendanaanpayment' => $pendanaanpayment],['pendanaannominal' => $pendanaannominal])->withRekeningbanklembaga($rekeningbanklembaga);
 	}
 
 	//Halaman Donasi Invoice

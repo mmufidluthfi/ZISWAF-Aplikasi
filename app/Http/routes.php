@@ -62,6 +62,7 @@ Route::post('save_nominal','TransaksiController@save_nominal');
 
 //Halaman Donasi by Payment
 Route::get('/donasi-payment/{id_pendanaan}', 'PendanaanController@getDonasiPayment');
+
 Route::post('upload', 'TransaksiController@upload');
 
 //Halaman Donasi by Invoice
@@ -107,9 +108,13 @@ Route::post('editpassword', 'UsersController@editpassword');
 Route::post('uploadfoto', 'UsersController@uploadfoto');
 
 //Administrator
-Route::get('/administrator/home', function () {
-    return view('administrator.administrator-home');
-});
+// Route::get('/administrator/home', function () {
+//     return view('administrator.administrator-home');
+// });
+
+Route::get('/administrator/home/{id}', 'RekeningbankController@getAllRekeningBank');
+
+Route::post('updatebank', 'RekeningbankController@updatebank');
 
 //Administrator Transaksi Donasi
 // Route::get('/administrator/transaksidonasi', 'TransaksiController@getTransaksipendanaan');

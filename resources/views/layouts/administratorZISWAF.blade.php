@@ -59,7 +59,7 @@
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li><a href="{{ url('administrator/home') }}"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
+        <li><a href="{{ url('administrator/home') }}/{{ Auth::user()->id }}"><i class="icon-dashboard"></i><span>Home</span> </a> </li>
         <li><a href="{{ url('administrator/manageuser') }}/{{ Auth::user()->id }}"><i class="icon-user"></i><span>Pengguna</span> </a> </li>
         <li><a href="{{ url('administrator/verifikasi') }}/{{ Auth::user()->id }}"><i class="icon-ok"></i><span>Verifikasi</span> </a> </li>
         <li><a href="{{ url('administrator/umkm') }}/{{ Auth::user()->id }}"><i class="icon-home"></i><span>UMKM</span> </a> </li>
