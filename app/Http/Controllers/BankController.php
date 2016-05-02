@@ -88,13 +88,108 @@ class BankController extends Controller
 
     }
 
- //    public function getAllPendanaanBank($id){
 
- //    	$pendanaans  = DB::table('fund_bank')
-	// 	    	->where('fund_bank.id_lkm', '=', $id )
-	// 	    	->paginate(5);
+    public function listReportBank(Request $request, $id){
+        $result = DB::table('laporan_bank')
+                    ->join('fund_bank', 'fund_bank.id_pendanaan_bank', '=', 'laporan_bank.id_pendanaan_bank')
+                    ->select('fund_bank.*', 'laporan_bank.*')
+                    // ->where('fund_ziswaf.id_pendanaan_ziswaf', '=', 'laporan_ziswaf.id_pendanaan_ziswaf' )
+                    ->orderBy('laporan_bank.id_laporan_b', 'desc')
+                    ->paginate(5);
 
- //    	return redirect('lkm/dashboard-pendanaanusaha/'.$id);
-	// }
+        $tampilnamabank  = DB::table('fund_bank')
+                            ->select('fund_bank.*')
+                            ->where('fund_bank.id_lkm', '=', $id )
+                            ->get();
+
+        return view('lkm.dashboard-reportpendanaanbank', ['tampilnamabank' => $tampilnamabank])->with('reportBank',$result);
+   
+    }
+
+    public function detailReportBank(Request $req, $id)
+    {
+        $detailDana['data']  = DB::table('laporan_penggunaan_bank')
+            ->where('laporan_penggunaan_bank.id_laporan_b','=',$id)
+            ->orderBy('id_laporan_bt', 'desc')
+            ->paginate(30);
+
+        $detailDana['id'] = $id;
+        return view('lkm.dashboard-detailreportpendanaanbank')->with('detailDana',$detailDana)->with('id', $id);;
+    }
+
+    
+    public function createLaporanBank(Request $request) {
+    
+    $inputlaporanbulananbank = $request->all();
+
+    $dateimputtgl = Carbon::now()->format('Y-m-d H:i:s');
+
+    $datalaporanbulananbank = array(
+            'id_pendanaan_bank' => $inputlaporanbulananbank['id_pendanaan_bank'],
+            'bulan'             => $inputlaporanbulananbank['bulan'],
+            'tahun'             => $inputlaporanbulananbank['tahun'],
+            'created_at'        => $dateimputtgl,
+            'updated_at'        => $dateimputtgl,
+        );
+
+    $i = DB::table('laporan_bank')->insert($datalaporanbulananbank);
+
+    if ($i > 0) {
+        
+        $id_pengguna = $inputlaporanbulananbank['id_lkm'];
+        return redirect('lkm/dashboard-reportpendanaanbank/'.$id_pengguna);
+      
+        }
+
+    }
+
+    public function uploaddetaillaporanbank(Request $request){
+        $postpendanaan = $request->all();
+        $dateimputpendanaan = Carbon::now()->format('Y-m-d H:i:s');
+
+        $postpendanaan = array(
+                'akun'               => $postpendanaan['transaksi'], 
+                'date'               => $postpendanaan['tgl_transaksi'], 
+                'kategori_transaksi' => $postpendanaan['kategori'], 
+                'jumlah_transaksi'   => $postpendanaan['jumlah_transaksi'], 
+                'id_laporan_b'       => $postpendanaan['id_laporan_b'],
+                'date'               => $dateimputpendanaan, 
+            );
+
+        $result = DB::select('SELECT * FROM laporan_penggunaan_bank
+            WHERE id_laporan_b = :id
+            ORDER BY id_laporan_bt DESC
+            LIMIT 0,1', [$postpendanaan['id_laporan_b']]);
+        
+        if (count($result)) {
+            $total_pemasukan = $result[0]->total_pemasukan;
+            $total_pengeluaran = $result[0]->total_pengeluaran;
+            $saldo_dana_usaha = $result[0]->saldo_dana_usaha;
+        }else{
+            $total_pemasukan = 0;
+            $total_pengeluaran = 0;
+            $saldo_dana_usaha = 0;
+        }
+        if ($postpendanaan['kategori_transaksi'] == 'Pemasukan') {
+            $penambahan = $postpendanaan['jumlah_transaksi'];
+            $postpendanaan['total_pemasukan'] = $total_pemasukan + $postpendanaan['jumlah_transaksi'];
+            $postpendanaan['total_pengeluaran'] = $total_pengeluaran;
+        }else{
+            $penambahan = 0 - $postpendanaan['jumlah_transaksi'];
+            $postpendanaan['total_pengeluaran'] = $total_pengeluaran + $postpendanaan['jumlah_transaksi'];
+            $postpendanaan['total_pemasukan'] = $total_pemasukan;
+        }
+        $postpendanaan['saldo_dana_usaha'] = $saldo_dana_usaha + $penambahan;
+        $i = DB::table('laporan_penggunaan_bank')->insert($postpendanaan);
+        $i2 = DB::table('laporan_bank')
+            ->where('id_laporan_b','=',$postpendanaan['id_laporan_b'])
+            ->update(array('total_pengeluaran' => $postpendanaan['total_pengeluaran'],
+                'total_pemasukan'=> $postpendanaan['total_pemasukan'],
+                'saldo_usaha' => $postpendanaan['saldo_dana_usaha']));
+        if ($i && $i2) {
+            return redirect('/lkm/dashboard-detailreportpendanaanbank/'.$postpendanaan['id_laporan_b']);
+        }
+    } 
+
 
 }

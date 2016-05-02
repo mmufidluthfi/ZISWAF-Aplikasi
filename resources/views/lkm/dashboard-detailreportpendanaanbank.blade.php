@@ -6,7 +6,9 @@
 
 		<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
 
-		@elseif (Auth::user()->admin==2)
+		@elseif (Auth::user()->admin==2)	
+				
+			<br><br>
 			<section class="widget">
 				<header>
 					<span class="icon">&#128196;</span>
@@ -18,7 +20,7 @@
 				<div class="content">
 				<table id="myTable" border="0" >
 				<div class="content" width="100">
-					<form action="{{ URL::to('uploaddetaillaporan') }}" method="post" enctype="multipart/form-data">
+					<form action="{{ URL::to('uploaddetaillaporanbank') }}" method="post" >
 						{!! csrf_field() !!}
 
 						<input type="hidden" value="0" name="sementara_dana">
@@ -42,9 +44,8 @@
 
 						<div class="field-wrap">
 							<input type="text" name="jumlah_transaksi" placeholder="Total Dana Yang Dibutuhkan"/>
-							<input type="hidden" name="id_laporan_c" value={{$detailDana['id']}} ></input>
+							<input type="hidden" name="id_laporan_b" value="{{$detailDana['id']}}" ></input>
 						</div>
-						
 						<button type="submit" class="green">Post</button>
 					</form>
 				</div>
@@ -74,9 +75,8 @@
 								
 							</tr>
 						</thead>
-						<tbody>
+						<tbody>							
 							@foreach($detailDana['data'] as $rc)		
-							
 							<tr>
 								<td>{{$rc->akun}}</td>
 								<td>{{$rc->total_pengeluaran}}</td>
@@ -90,7 +90,7 @@
 						</table>
 				</div>
 			</section>
-		
+
 
 		@elseif (Auth::user()->admin==1)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />

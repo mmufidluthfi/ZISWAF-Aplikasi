@@ -52,11 +52,7 @@
 				</table>
 				</div>
 			</section>
-			
 
-			<section class="widget">
-	 			<div id="chart"></div>
-	 		</section>
 	  		<br><br>
 			<section class="widget">
 				<header>

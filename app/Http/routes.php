@@ -211,3 +211,14 @@ Route::get('/lkm/dashboard-pendanaanusaha/{id}','BankController@getBankPendanaan
 
 Route::post('createPendanaanBank','BankController@createPendanaanBank');
 
+// Route::get('/lkm/dashboard-reportpendanaanbank', function () {
+//     return view('lkm.dashboard-reportpendanaanbank');
+// });
+
+Route::get('/lkm/dashboard-reportpendanaanbank/{id}','BankController@listReportBank');
+
+Route::post('createLaporanBank','BankController@createLaporanBank');
+
+Route::get('/lkm/dashboard-detailreportpendanaanbank/{id}','BankController@detailReportBank');
+
+Route::post('uploaddetaillaporanbank','BankController@uploaddetaillaporanbank');
