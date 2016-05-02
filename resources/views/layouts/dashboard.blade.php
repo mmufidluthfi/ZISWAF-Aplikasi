@@ -45,6 +45,23 @@
 		ul.pagination li a:hover:not(.active) {background-color: #ddd;}
 	</style>
 
+	    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            border: none;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+    </style>
+
 @if (Auth::guest())
 	<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
 @elseif (Auth::user()->admin==0)

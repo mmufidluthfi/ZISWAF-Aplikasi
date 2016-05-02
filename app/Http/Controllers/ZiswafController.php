@@ -11,11 +11,20 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class ZiswafController extends Controller
 {
     public function listReportZiswaf(Request $request, $id){
-    	$result = DB::select('SELECT * FROM laporan_ziswaf, fund_ziswaf
-            WHERE laporan_ziswaf.id_pendanaan_ziswaf=fund_ziswaf.id_pendanaan_ziswaf ORDER BY id_laporan_z DESC');
+    	// $result = DB::select('SELECT * FROM laporan_ziswaf, fund_ziswaf
+     //        WHERE laporan_ziswaf.id_pendanaan_ziswaf=fund_ziswaf.id_pendanaan_ziswaf ORDER BY id_laporan_z DESC');
+
+        $result = DB::table('laporan_ziswaf')
+                    ->join('fund_ziswaf', 'fund_ziswaf.id_pendanaan_ziswaf', '=', 'laporan_ziswaf.id_pendanaan_ziswaf')
+                    ->select('fund_ziswaf.*', 'laporan_ziswaf.*')
+                    // ->where('fund_ziswaf.id_pendanaan_ziswaf', '=', 'laporan_ziswaf.id_pendanaan_ziswaf' )
+                    ->orderBy('laporan_ziswaf.id_laporan_z', 'desc')
+                    ->paginate(5);
 
     	$tampilnamaproyek  = DB::table('fund_ziswaf')
 					    	->select('fund_ziswaf.*')

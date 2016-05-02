@@ -87,6 +87,13 @@
 														</div> <!-- /control-group -->
 
 														<div class="control-group">											
+															<label class="control-label" for="city">Tanggal Mendaftar</label>
+															<div class="controls">
+																<input type="date" class="span6" name="tgl_daftarumkm" >
+															</div> <!-- /controls -->				
+														</div> <!-- /control-group -->
+
+														<div class="control-group">											
 															<label class="control-label" for="address">Upload Foto Profile:</label>
 															
 															
@@ -105,7 +112,6 @@
 											</div>
 
 											<div class="tab-pane active" id="jscontrols">
-												<form id="edit-profile2" class="form-vertical">
 													<fieldset>                                                
 													<div class="control-group">
 														<div id="profile" class="tab-pane">
@@ -114,27 +120,61 @@
 												              <table class="table table-striped table-bordered">
 												                <thead>
 												                  <tr>
-												                    <th> ID UMKM </th>
-																	<th> Nama PJ </th>
+																	<th> Nama UMKM </th>
 																	<th> Email </th>
 																	<th> No.Hp </th>
 																	<th> Alamat PJ </th>
 																	<th> Alamat UMKM </th>
+																	<th> Tanggal Daftar </th>
 																	<th> Foto PJ </th>
-												                    <th class="td-actions">Action </th>
+												                    <th> Ubah Status UMKM </th>
+																	<th> Action </th>
+																	<th> Status </th>
 												                  </tr>
 												                </thead>
 												                <tbody>
 												                @foreach($userumkm as $usmt)
 												                  <tr>
-												                    <td> {{$usmt->id_umkm}} </td>
 																	<td> {{$usmt->nama_pj}} </td>
 																	<td> {{$usmt->email}} </td>
 																	<td> {{$usmt->no_hp}} </td>
 																	<td> {{$usmt->alamat_pj}} </td>
 																	<td> {{$usmt->alamat_umkm}} </td>
+																	<td> {{$usmt->tgl_daftarumkm}} </td>
 																	<td> <a target="_blank" href="{{URL::to('images/avatar/')}}/{{$usmt->foto_pj}}" class="btn btn-info btn-sm">Lihat</a></td>
-												                    <td class="td-actions"><a href="javascript:;" class="btn btn-edit-profile btn-sm">Edit</a></td>
+												                    <td><br>
+																	<form action="{{ URL::to('updatestatusumkm') }}" method="post">
+																		{!! csrf_field() !!}
+																			
+																			<input type="hidden" value="{{$usmt->id_umkm}}" name="id_umkm">
+
+																			<input type="hidden" value="{{ Auth::user()->id }}" name="id_lembaga">
+																			<input type="hidden" value="{{ csrf_token() }}" name="_token">
+																		
+																			  <select name="status_umkm">
+																			    <option value="1">UMKM</option>
+																			    <option value="0">New UMKM</option>
+																			  </select>
+												                    </td>
+												                    <td> 
+												                    	<input type="submit" value="Update">
+												                    	
+												                    </td>
+												                    </form> 
+												                    <td>
+													                    <center>
+																			<?php 
+																				$usmtlama = "0";
+																				$usmtbaru = "1";
+
+																				if ($usmt->status_umkm == $usmtbaru) {
+																					echo "<a href='#' class='btn btn-small btn-success'>UMKM</a>";
+																				} else {
+																					echo "<a href='#' class='btn btn-danger btn-small'>New UMKM</a>";
+																				}
+																			?>
+																		</center>
+																	</td>
 												                  </tr>
 												                @endforeach
 												                </tbody>
@@ -147,7 +187,6 @@
 			                                            </div>
 													</div> <!-- /controls -->	
 													</fieldset>
-												</form>
 											</div>
 										</div>	
 								</div>

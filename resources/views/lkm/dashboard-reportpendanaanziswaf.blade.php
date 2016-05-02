@@ -32,81 +32,65 @@
 					</ul>
 				</nav>
 
-					<!--Input Laporan Baru-->
-					<section class="content">
-						<section class="widget">
-							<header>
-								<span class="icon">&#128196;</span>
-								<hgroup>
-									<h1>Buat Laporan Baru</h1>
-									
-								</hgroup>
-							</header>
-							<div class="content">
-								<table id="myTable" border="0" width="100">
-									<thead>
-										<tr>
-											<th>Nama Proyek</th>
-											<th>Bulan</th>
-											<th>Tahun</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-										<tbody>
-										<tr>
-											<form action="{{ URL::to('createLaporanZiswaf') }}" method="post">
-												{!! csrf_field() !!}
-
-												<input type="hidden" value="{{ Auth::user()->id }}" name="id_user">
-
-												<td>
-													<select name="id_pendanaan">
-											 			@foreach ($tampilnamaproyek as $tpl)
-											 				<option value="{{ $tpl->id_pendanaan_ziswaf }}">{{ $tpl->nama_pendanaan }}</option>
-											 			@endforeach
-											 		</select>
-												</td>
-												<td>
-													<select name="bulan">
-													    <option value="1">Januari</option>
-													    <option value="2">Februari</option>
-													    <option value="3">Maret</option>
-													    <option value="4">April</option>
-													    <option value="5">Mei</option>
-													    <option value="6">Juni</option>
-													    <option value="7">Juli</option>
-													    <option value="8">Agustus</option>
-													    <option value="9">September</option>
-													    <option value="10">Oktober</option>
-													    <option value="11">November</option>
-													    <option value="12">Desember</option>
-													</select>
-												</td>
-												<td>
-													<input type="text" name="tahun">
-												</td>
-												<td><button type="submit" class="green">Post</button></td>
-											</form>
-										</tr>
-										</tbody>
-									</table>
-									
-							</div>
-						</section>
-					</section>
-
-
 					<section class="content">
 					<section class="widget">
 						<header>
 							<span class="icon">&#128196;</span>
 							<hgroup>
-								<h1>Pendanaan</h1>
-								<h2>Laporan Penggunaan Dana Penggalangan</h2>
+								<h2>Laporan Penggunaan Dana ZISWAF</h2>
 							</hgroup>
 						</header>
 						<div class="content">
-						
+							<center><font size="+2">Submit Laporan</font></center><br>
+							<table id="myTable" border="0" width="100">
+							<thead>
+								<tr>
+									<th>Nama Proyek</th>
+									<th>Bulan</th>
+									<th>Tahun</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+								<tbody>
+								<tr>
+									<form action="{{ URL::to('createLaporanZiswaf') }}" method="post">
+										{!! csrf_field() !!}
+
+										<input type="hidden" value="{{ Auth::user()->id }}" name="id_user">
+
+										<td>
+											<select name="id_pendanaan">
+									 			@foreach ($tampilnamaproyek as $tpl)
+									 				<option value="{{ $tpl->id_pendanaan_ziswaf }}">{{ $tpl->nama_pendanaan }}</option>
+									 			@endforeach
+									 		</select>
+										</td>
+										<td>
+											<select name="bulan">
+											    <option value="1">Januari</option>
+											    <option value="2">Februari</option>
+											    <option value="3">Maret</option>
+											    <option value="4">April</option>
+											    <option value="5">Mei</option>
+											    <option value="6">Juni</option>
+											    <option value="7">Juli</option>
+											    <option value="8">Agustus</option>
+											    <option value="9">September</option>
+											    <option value="10">Oktober</option>
+											    <option value="11">November</option>
+											    <option value="12">Desember</option>
+											</select>
+										</td>
+										<td>
+											<input type="text" name="tahun">
+										</td>
+										<td><button type="submit" class="green">Post</button></td>
+									</form>
+								</tr>
+								</tbody>
+							</table>
+							<br><br>
+							<center><font size="+2">List Laporan</font></center><br>
 							<table id="myTable" border="0" width="100">
 								<thead>
 									<tr>
@@ -136,7 +120,7 @@
 										@endforeach
 										</tbody>
 								</table>
-								
+								<br/><?php echo $reportZiswaf->render(); ?>
 						</div>
 					</section>
 				</section>

@@ -153,6 +153,8 @@ Route::get('/administrator/verifikasi/{id}', 'TransaksiController@getTransaksipe
 
 Route::post('updatestatus', 'TransaksiController@updatestatus');
 
+Route::post('updatestatusumkm', 'UserumkmController@updatestatusumkm');
+
 
 // Route::get('/administrator/manageuser', function () {
 //     return view('administrator.manageuser');

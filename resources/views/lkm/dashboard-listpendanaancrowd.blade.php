@@ -43,17 +43,18 @@
 					</hgroup>
 				</header>
 				<div class="content">
-					
+					<div style="overflow-x:auto;">
 					<table id="myTable" border="0" >
-						<thead><tr>
-										<th>Nama UMKM</th>
-										<th>Proyek Pendanaan</th>
-										<th>Kategori</th>
-										<th>Total Dana</th>
-										<th>Dana Sementara</th>
-										<th>Tanggal Pengajuan</th>
-										<th>Status </th>
-									</tr>
+						<thead>
+							<tr>
+								<th>Nama UMKM</th>
+								<th>Proyek Pendanaan</th>
+								<th>Kategori</th>
+								<th>Total Dana</th>
+								<th>Dana Sementara</th>
+								<th>Tanggal Pengajuan</th>
+								<th>Status </th>
+							</tr>
 						</thead>
 						<tbody>
 							@foreach($pendanaanlkm as $pda)
@@ -69,6 +70,7 @@
 							@endforeach
 						</tbody>
 					</table>
+					</div>
 					
 					<?php echo $pendanaanlkm->render(); ?>
 					

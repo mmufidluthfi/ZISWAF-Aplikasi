@@ -65,6 +65,7 @@ class UserumkmController extends Controller
                     'no_hp'       => $submitumkm['no_hp'], 
                     'alamat_pj'   => $submitumkm['alamat_pj'], 
                     'alamat_umkm'  => $submitumkm['alamat_umkm'], 
+                    'tgl_daftarumkm'   => $submitumkm['tgl_daftarumkm'], 
                     'foto_pj'     => $namafile, 
                 );
 
@@ -78,6 +79,38 @@ class UserumkmController extends Controller
 
             }
         }
+    }
+
+    public function updatestatusumkm(Request $request){
+
+            $statusumkm = $request->all();
+
+            $updateumkmstatus = array(
+                    'id_umkm'   => $statusumkm['id_umkm'], 
+                    'status_umkm'     => $statusumkm['status_umkm'], 
+                );
+
+            // var_dump($updateumkmstatus);
+            // $v = \Validator::make($request->all(),
+            // [
+            //     'status_umkm' => 'required',
+            // ]);
+
+            // if($v->fails())
+            // {
+            //     \Session::flash('message-pesanerror', 'Submit Gagal, Silahkan Coba Submit Ulang');
+            //     return redirect()->back()->withErrors($v->errors());
+
+            // } else {
+
+            DB::table('userumkm')->where('id_umkm', $statusumkm['id_umkm'])->update(['status_umkm' => $statusumkm['status_umkm']]);
+
+            $idlembaga = $statusumkm['id_lembaga'];
+
+            \Session::flash('message-inputberhasil', 'Status UMKM Berhasil di-Update');
+            // return redirect('administrator/transaksidonasi');
+            return redirect('administrator/umkm/'.$idlembaga);
+        // }
     }
 
 }
