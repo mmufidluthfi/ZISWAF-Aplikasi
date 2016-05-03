@@ -3,13 +3,15 @@
 @section('content')
     
     @if (Auth::guest())
-
         <meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
-
     @elseif (Auth::user()->admin==1)
-
         <meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
-
+    @elseif (Auth::user()->admin==2)
+        <meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+    @elseif (Auth::user()->admin==3)
+        <meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+    @elseif (Auth::user()->admin==4)
+        <meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
     @else
 
 	<!-- breadcrumbs -->

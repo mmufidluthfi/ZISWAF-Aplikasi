@@ -309,7 +309,12 @@
 		</section>
 
 	@elseif (Auth::user()->admin==0)
-		<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
-		
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+
+	@elseif (Auth::user()->admin==2)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+
+	@elseif (Auth::user()->admin==4)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 	@endif
 @endsection

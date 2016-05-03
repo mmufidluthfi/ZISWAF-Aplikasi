@@ -23,12 +23,18 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class PendanaanController extends Controller
 {
     public function getAllPendanaan(){
-    	$pendanaans  = DB::table('pendanaan')->paginate(4);
+    	$pendanaans  = DB::table('pendanaan')
+			    	->orderBy('pendanaan.id_pendanaan', 'desc')
+			    	->paginate(4);
+
     	return view('home')->withPendanaans($pendanaans);
 	}
 
 	public function getAllPendanaans1(){
-    	$pendanaans1  = DB::table('pendanaan')->paginate(6);
+    	$pendanaans1  = DB::table('pendanaan')
+			    	->orderBy('pendanaan.id_pendanaan', 'desc')
+			    	->paginate(6);
+
     	return view('pendanaan')->withPendanaans1($pendanaans1);
 	}
 
@@ -45,7 +51,10 @@ class PendanaanController extends Controller
 	}
 
 	public function getKategoriPendanaan($kategori){	    
-		$pendanaank = DB::table('pendanaan')->where('kategori', '=', $kategori)->paginate(6);
+		$pendanaank = DB::table('pendanaan')
+					->orderBy('pendanaan.id_pendanaan', 'desc')
+					->where('kategori', '=', $kategori)
+					->paginate(6);
     	return view('kategori')->withPendanaank($pendanaank);
 	}
 

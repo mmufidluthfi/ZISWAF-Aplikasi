@@ -51,7 +51,6 @@
 	<div class="testing">
 		<header class="main">
 			<a href="{{URL::to('administrator/home')}}"><h1><strong>ZISWAF Crowdfunding</strong> Administrator</h1></a>
-			<input type="text" value="search" />
 		</header>
 		<section class="user">
 			<div class="profile-img">

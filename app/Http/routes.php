@@ -26,6 +26,8 @@ Route::group(['middleware' => ['web','auth']], function()
 			return view('dashboard.dashboard-home');
 		} elseif (Auth::user()->admin == 2){
 			return view('lkm.dashboard-home');
+		} elseif (Auth::user()->admin == 4){
+			return view('superadmin.superadmin');
 		} else {
 			return view('login');
 		}
@@ -33,6 +35,14 @@ Route::group(['middleware' => ['web','auth']], function()
 	});
 });
 
+//SuperAdmin
+// Route::get('/superadmin/superadmin', function () {
+//     return view('superadmin.superadmin');
+// });
+
+Route::post('daftarlembaga', 'UsersController@daftarlembaga');
+
+Route::get('/superadmin/superadmin', 'UsersController@getAllLembaga');
 
 // Route::get('admin', ['middleware' => ['web', 'auth', 'admin'], function(){
 // 	return view('administrator/administrator-home');

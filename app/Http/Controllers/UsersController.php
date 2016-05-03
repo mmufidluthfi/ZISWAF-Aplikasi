@@ -248,4 +248,67 @@ class UsersController extends Controller
         // return view('administrator.listuser')->withListlkm($listlkm);
     }
 
+    public function daftarlembaga(Request $request)
+    {
+
+        $datalembaga = $request->all();
+
+        $v = \Validator::make($request->all(),
+            [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:6|confirmed',
+            ]);
+
+        $dateimputtgl = Carbon::now()->format('Y-m-d H:i:s');
+
+        if($v->fails())
+        {
+
+            return redirect()->back()->withErrors($v->errors());
+
+        } else {
+
+            $inputdatalembaga = array(
+                'name'       => $datalembaga['name'],
+                'email'      => $datalembaga['email'],
+                'password'   => bcrypt($datalembaga['password']),
+                'url_foto'   => $datalembaga['url_foto'],
+                'admin'      => 1,
+                'created_at' => $dateimputtgl,
+                'updated_at' => $dateimputtgl,
+            );
+
+            $inputdatabanklembaga = array(
+                'updated_at' => $dateimputtgl,
+            );
+
+                $i = DB::table('users')->insertGetId($inputdatalembaga);
+
+                DB::table('rekeningbank')->insert(['lembagaID' => $i]);
+
+                if ($i > 0) {
+                    
+                    \Session::flash('message-inputberhasil', 'Lembaga Berhasil ditambahkan');
+                  
+                    return redirect('superadmin/superadmin/');
+                  
+                } 
+            
+        }
+
+    }
+
+    public function getAllLembaga(){
+        
+        $listlembaga = DB::table('users')
+                    ->select('users.*')
+                    ->where('users.admin', '=', 1)
+                    ->orderBy('users.id', 'desc')
+                    ->paginate(10);
+
+        return view('superadmin.superadmin')->withListlembaga($listlembaga);
+    }
+
+
 }

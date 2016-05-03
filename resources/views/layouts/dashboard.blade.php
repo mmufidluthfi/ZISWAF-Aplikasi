@@ -71,7 +71,6 @@
 	<div class="testing">
 		<header class="main">
 			<a href="{{URL::to('/')}}"><h1><strong>ZISWAF Crowdfunding</strong> Dashboard</h1></a>
-			<input type="text" value="search" />
 		</header>
 		<section class="user">
 			<div class="profile-img">
