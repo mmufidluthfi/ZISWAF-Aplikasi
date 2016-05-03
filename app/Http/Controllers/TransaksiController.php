@@ -160,8 +160,18 @@ class TransaksiController extends Controller
                         ->orderBy('transaksi.id_transaksi', 'desc')
                         ->paginate(5);
 
+            $tampilfundbankadmin  = DB::table('fund_bank')
+                        ->join('userbank', 'fund_bank.id_bank', '=', 'userbank.id_bank')
+                        ->join('users', 'userbank.lembagaID', '=', 'users.id')
+                        // ->where('fund_bank.id_bank', '=', 'userbank.id_bank' )
+                        ->where('userbank.lembagaID', '=', $id )
+                        ->select('fund_bank.*', 'userbank.*', 'users.*')
+                        ->orderBy('fund_bank.id_pendanaan_bank', 'desc')
+                        ->paginate(5);
+
             // return view('administrator.administrator-transaksidonasi')->withTransaksipendanaan($transaksipendanaan);
-                        return view('administrator.verifikasi')->withTransaksipendanaan($transaksipendanaan);
+                        // return view('administrator.verifikasi')->withTransaksipendanaan($transaksipendanaan);
+            return view('administrator.verifikasi',['transaksipendanaan' => $transaksipendanaan],['tampilfundbankadmin' => $tampilfundbankadmin]);
         
      }
 

@@ -19,7 +19,7 @@
 				<li class="section"><a href="#"> Pendanaan Usaha</a>
 				<ul class="submenu">
 					<li class="section"><a href="{{ url('/lkm/dashboard-pendanaanusaha')}}/{{ Auth::user()->id }}">Daftar Pendanaan Bank</a></li>
-					<li><a href="{{ url('/dashboard/showReportPendanaanBank')}}">Laporan Pendanaan Bank</a></li>
+					<li><a href="{{ url('/lkm/dashboard-reportpendanaanbank')}}/{{ Auth::user()->id }}">Laporan Pendanaan Bank</a></li>
 				</ul>
 				</li>
 				
@@ -94,7 +94,7 @@
 								<th>Nama UMKM</th>
 								<th>Nominal</th>
 								<th>Tanggal Permohonan</th>
-								<th>Action</th>
+								<th>Status</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -105,7 +105,23 @@
 								<td>{{$tfb->nama_pj}}</td>
 								<td>{{$tfb->total_dana}}</td>
 								<td>{{$tfb->tgl_pendanaan}}</td>
-								<td>Action</td>
+								<td>
+									<center>
+										<?php 
+											$statuspending = "0";
+											$statuslembaga = "1";
+											$statusbank = "2";
+
+											if ($tfb->status == $statuslembaga) {
+												echo "<font color='green'>ACC Lembaga</font>";
+											} else if ($tfb->status == $statusbank) {
+												echo "<font color='green'>ACC Bank</font>";
+											} else {
+												echo "<font color='orange'>Status Pending</font>";
+											}
+										?>
+									</center>
+								</td>
 							</tr>
 							@endforeach
 						</tbody>

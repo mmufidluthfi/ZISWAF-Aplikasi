@@ -222,3 +222,5 @@ Route::post('createLaporanBank','BankController@createLaporanBank');
 Route::get('/lkm/dashboard-detailreportpendanaanbank/{id}','BankController@detailReportBank');
 
 Route::post('uploaddetaillaporanbank','BankController@uploaddetaillaporanbank');
+
+Route::post('updatestatusbank', 'BankController@updatestatusbank');

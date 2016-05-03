@@ -37,6 +37,40 @@ class BankController extends Controller
     	 return view('lkm.dashboard-pendanaanusaha',['userumkmpendanaan' => $userumkmpendanaan],['userbankpendanaan' => $userbankpendanaan])->withTampilfundbank($tampilfundbank);
 	}
 
+    public function updatestatusbank(Request $request){
+
+                $updatestatusbankadmin = $request->all();
+
+                $v = \Validator::make($request->all(),
+                    [
+                        'status' => 'required',
+                    ]);
+
+                if($v->fails())
+                {
+                    \Session::flash('message-inputberhasil', 'Update Gagal, Silahkan update kembali');
+                    return redirect()->back()->withErrors($v->errors());
+
+                } else {
+
+                    $statustransaksibank = array(
+                            'lembagaID'          => $updatestatusbankadmin['lembagaID'], 
+                            'id_pendanaan_bank'  => $updatestatusbankadmin['id_pendanaan_bank'], 
+                            'status'             => $updatestatusbankadmin['status'], 
+                        );
+
+                    DB::table('fund_bank')->where('id_pendanaan_bank', $updatestatusbankadmin['id_pendanaan_bank'])->update(['status' => $updatestatusbankadmin['status']]);
+
+                    // var_dump($statustransaksibank);
+                    $id_lembaga = $updatestatusbankadmin['lembagaID'];
+
+                    \Session::flash('message-inputberhasil', 'Status Pendanaan Bank Berhasil di-Update');
+
+                    return redirect('administrator/verifikasi/'.$id_lembaga);
+            }
+
+        }
+
 
 	public function createPendanaanBank(Request $request){
 

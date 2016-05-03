@@ -136,7 +136,6 @@
 								</div>
 								
 								<div class="tab-pane active" id="jscontrols">
-									<form id="edit-profile2" class="form-vertical">
 										<fieldset>                                            
 											<div class="control-group">
 											<div id="profile" class="tab-pane">
@@ -145,25 +144,61 @@
 										              <table class="table table-striped table-bordered">
 										                <thead>
 										                  <tr>
-										                    <th> No.Transaksi </th>
 										                    <th> Nama Bank </th>
-															<th> Nama UMKM </th>
-															<th> Nominal </th>
-															<th> Tanggal Transaksi </th>
-															<th> Status </th>
-															<th> Invoice </th>
+															<th> Nama Proyek </th>
+															<th> Total Dana </th>
+															<th> Tanggal Pendanaan </th>
+															<th> Ubah Status </th>
+															<th> Action </th>
+															<th> status </th>
 										                  </tr>
 										                </thead>
 										                <tbody>
+										                @foreach($tampilfundbankadmin as $tfb)
 										                  <tr>
-										                    <td> 1 </td>
-															<td> Bank Mandiri Syariah </td>
-															<td> Podomoro </td>
-															<td> 500000000 </td>
-															<td> 2016-04-21 </td>
-															 <td class="td-actions"><a href="javascript:;" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> </i></a><a href="javascript:;" class="btn btn-danger btn-small"><i class="btn-icon-only icon-remove"> </i></a></td>
-															<td class="td-actions"><a href="javascript:;" class="btn btn-info btn-sm">Download</a> </td>
+										                    <td>{{$tfb->nama_bank}}</td>
+										                    <td>{{$tfb->nama_proyek}}</td>
+										                    <td>{{$tfb->total_dana}}</td>
+										                    <td>{{$tfb->tgl_pendanaan}}</td>
+										                    <td> <br>
+																<center>
+																<form action="{{ URL::to('updatestatusbank') }}" method="post">
+																	{!! csrf_field() !!}
+																	<input type="hidden" value="{{ csrf_token() }}" name="_token">
+
+																	<input type="hidden" value="{{$tfb->id_pendanaan_bank}}" name="id_pendanaan_bank">
+
+																	<input type="hidden" value="{{ Auth::user()->id }}" name="lembagaID">
+																	
+																	  <select name="status">
+																	    <option>Ubah Status</option>
+																	    <option value="0">Status Pending</option>
+																	    <option value="1">ACC Lembaga</option>
+																	  </select>
+															 </td><td>  
+																  <input type="submit" value="Update">
+																</form>
+																</center>
+															</td>
+										                    <td>
+										                    	<center>
+																	<?php 
+																		$statuspending = "0";
+																		$statuslembaga = "1";
+																		$statusbank = "2";
+
+																		if ($tfb->status == $statuslembaga) {
+																			echo "<a href='#' class='btn btn-small btn-success'>ACC Lembaga</a>";
+																		} else if ($tfb->status == $statusbank) {
+																			echo "<a href='#' class='btn btn-small btn-success'>ACC Bank</a>";
+																		} else {
+																			echo "<a href='#' class='btn btn-warning btn-small'>Status Pending</a>";
+																		}
+																	?>
+																</center>
+										                    </td>
 										                  </tr>
+										                 @endforeach
 										                </tbody>
 										              </table>
 
@@ -171,7 +206,6 @@
                                             </div>
 											</div> <!-- /controls -->	
 										</fieldset>
-									</form>
 								</div>
 								
 							</div>
