@@ -26,6 +26,8 @@ Route::group(['middleware' => ['web','auth']], function()
 			return view('dashboard.dashboard-home');
 		} elseif (Auth::user()->admin == 2){
 			return view('lkm.dashboard-home');
+		} elseif (Auth::user()->admin == 3){
+			return view('bank.bank-home');
 		} elseif (Auth::user()->admin == 4){
 			return view('superadmin.superadmin');
 		} else {
@@ -234,3 +236,14 @@ Route::get('/lkm/dashboard-detailreportpendanaanbank/{id}','BankController@detai
 Route::post('uploaddetaillaporanbank','BankController@uploaddetaillaporanbank');
 
 Route::post('updatestatusbank', 'BankController@updatestatusbank');
+
+
+//LKM Route
+Route::get('/bank/home/{id}','BankController@getAllPendanaanBank');
+
+Route::get('/bank/details/{id}','BankController@getAllPendanaanBankDetails');
+
+Route::post('uploadinvoicebank', 'BankController@uploadinvoicebank');
+
+Route::post('uploadinvoicereject', 'BankController@uploadinvoicereject');
+

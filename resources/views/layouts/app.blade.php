@@ -159,6 +159,10 @@
                                     <li><a href="{{url('/lkm/home')}}"><img width="30" height="30" src="{{URL::to('images/Dashboard.png')}}">   {{ Auth::user()->name }}</a></li>
                                     <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
                                     <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
+                                @elseif (Auth::user()->admin==3)
+                                    <li><a href="{{url('/bank/home')}}"><img width="30" height="30" src="{{URL::to('images/Dashboard.png')}}">   {{ Auth::user()->name }}</a></li>
+                                    <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
+                                    <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
                                 @elseif (Auth::user()->admin==4)
                                     <li><a href="{{url('/superadmin/superadmin')}}"><img width="30" height="30" src="{{URL::to('images/Dashboard.png')}}">   {{ Auth::user()->name }}</a></li>
                                     <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>

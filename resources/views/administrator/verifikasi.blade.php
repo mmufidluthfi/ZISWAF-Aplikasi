@@ -173,7 +173,8 @@
 																	  <select name="status">
 																	    <option>Ubah Status</option>
 																	    <option value="0">Status Pending</option>
-																	    <option value="1">ACC Lembaga</option>
+																	    <option value="1">Disetujui Lembaga</option>
+																	    <option value="2">Ditolak Lembaga</option>
 																	  </select>
 															 </td><td>  
 																  <input type="submit" value="Update">
@@ -183,14 +184,14 @@
 										                    <td>
 										                    	<center>
 																	<?php 
-																		$statuspending = "0";
-																		$statuslembaga = "1";
-																		$statusbank = "2";
-
-																		if ($tfb->status == $statuslembaga) {
-																			echo "<a href='#' class='btn btn-small btn-success'>ACC Lembaga</a>";
-																		} else if ($tfb->status == $statusbank) {
-																			echo "<a href='#' class='btn btn-small btn-success'>ACC Bank</a>";
+																		if ($tfb->status == 1) {
+																			echo "<a href='#' class='btn btn-small btn-success'>Disetujui Lembaga</a>";
+																		} else if ($tfb->status == 2) {
+																			echo "<a href='#' class='btn btn-small btn-danger'>Ditolak Lembaga</a>";
+																		} else if ($tfb->status == 3) {
+																			echo "<a href='#' class='btn btn-small btn-success'>Disetujui Bank</a>";
+																		} else if ($tfb->status == 4) {
+																			echo "<a href='#' class='btn btn-small btn-danger'>Ditolak Bank</a>";
 																		} else {
 																			echo "<a href='#' class='btn btn-warning btn-small'>Status Pending</a>";
 																		}

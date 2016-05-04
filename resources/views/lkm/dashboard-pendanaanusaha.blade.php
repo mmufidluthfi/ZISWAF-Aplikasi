@@ -108,14 +108,14 @@
 								<td>
 									<center>
 										<?php 
-											$statuspending = "0";
-											$statuslembaga = "1";
-											$statusbank = "2";
-
-											if ($tfb->status == $statuslembaga) {
-												echo "<font color='green'>ACC Lembaga</font>";
-											} else if ($tfb->status == $statusbank) {
-												echo "<font color='green'>ACC Bank</font>";
+											if ($tfb->status == 1) {
+												echo "<font color='green'>Disetujui Lembaga</font>";
+											} else if ($tfb->status == 2) {
+												echo "<font color='red'>Ditolak Lembaga</font>";
+											} else if ($tfb->status == 3) {
+												echo "<font color='green'>Disetujui Bank</font>";
+											} else if ($tfb->status == 4) {
+												echo "<font color='red'>Ditolak Lembaga</font>";
 											} else {
 												echo "<font color='orange'>Status Pending</font>";
 											}

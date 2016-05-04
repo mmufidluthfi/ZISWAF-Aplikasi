@@ -1,0 +1,74 @@
+body{
+	font-family: 'Exo 2';
+}
+main{
+	margin-top: 65px;
+}
+td{
+	font-size: 17px;
+}
+.nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus, .nav-tabs.nav-justified>.active>a:hover {
+	border: none;
+}
+@media (min-width: 768px){
+	.nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:focus, .nav-tabs.nav-justified>.active>a:hover {
+		
+		border-bottom: 3px solid #337AB7;
+	}
+	.nav-tabs.nav-justified>li>a {
+		border-bottom: 3px solid #ddd;
+		border-radius: 0;
+	}
+}
+table{
+	margin-top: 25px;
+}
+hr{
+	border: 1px solid #eee;
+	margin-top: 25px;
+	margin-bottom: 45px;
+}
+.invoicebox{
+	padding: 10px;
+	background: rgba(0,0,0,0.1);
+	text-align: center;
+}
+.accepted{
+	background: green;
+	color: white;
+}
+.accepted h3{
+	margin: 0;
+}
+.invoicebox h3{
+	margin: 0;
+	margin-bottom: 10px;
+}
+.invoicebox button{
+	margin-top: 10px;
+}
+.primaryinfo{
+	background-size: cover;
+	height: 400px;
+	position: relative;
+	color: white;
+	margin-bottom: 25px;
+}
+.primaryinfo .meta{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 15px;
+	background-color: rgba(0,0,0,0.4);
+	width: 100%;
+}
+.owner{
+	margin-right: 15px;
+	float: left;
+}
+.primaryinfo h3, .primaryinfo h5{
+	margin: 0 0 7px 0 ;
+}
+.main-info{
+	padding-top: 20px;
+}

@@ -21,7 +21,9 @@ class IsAdmin
             return $next($request);
         } elseif (auth()->check() && $request->user()->admin == 4){
             return $next($request);
-        } 
+        } elseif (auth()->check() && $request->user()->admin == 3){
+            return $next($request);
+        }
 
         // return redirect()->guest('/login');
         return $next($request);

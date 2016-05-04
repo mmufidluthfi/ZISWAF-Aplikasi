@@ -8,6 +8,8 @@ use App\Http\Requests;
 use DB;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Input;
+
 class BankController extends Controller
 {
     
@@ -225,5 +227,109 @@ class BankController extends Controller
         }
     } 
 
+    public function getAllPendanaanBank($id){
+        $pendanaanbank  = DB::table('fund_bank')
+                    ->join('userumkm', 'fund_bank.id_umkm', '=', 'userumkm.id_umkm')
+                    ->join('users', 'fund_bank.id_lkm', '=', 'users.id')
+                    ->select('fund_bank.*', 'userumkm.*', 'users.*')
+                    // ->where('users.id', '=', 'fund_bank.id_lkm' )
+                    ->where('fund_bank.status', '=', 1 )
+                    ->where('fund_bank.id_bank', '=', $id )
+                    ->orderBy('fund_bank.id_pendanaan_bank', 'desc')
+                    ->paginate(5);
 
+        $pendanaanbankacc  = DB::table('fund_bank')
+                    ->join('userumkm', 'fund_bank.id_umkm', '=', 'userumkm.id_umkm')
+                    ->join('users', 'fund_bank.id_lkm', '=', 'users.id')
+                    ->select('fund_bank.*', 'userumkm.*', 'users.*')
+                    // ->where('users.id', '=', 'fund_bank.id_lkm' )
+                    ->where('fund_bank.status', '=', 3 )
+                    ->where('fund_bank.id_bank', '=', $id )
+                    ->orderBy('fund_bank.id_pendanaan_bank', 'desc')
+                    ->paginate(5);
+        // var_dump($pendanaanbank);
+
+        $pendanaanbankreject  = DB::table('fund_bank')
+                    ->join('userumkm', 'fund_bank.id_umkm', '=', 'userumkm.id_umkm')
+                    ->join('users', 'fund_bank.id_lkm', '=', 'users.id')
+                    ->select('fund_bank.*', 'userumkm.*', 'users.*')
+                    // ->where('users.id', '=', 'fund_bank.id_lkm' )
+                    ->where('fund_bank.status', '=', 4 )
+                    ->where('fund_bank.id_bank', '=', $id )
+                    ->orderBy('fund_bank.id_pendanaan_bank', 'desc')
+                    ->paginate(5);
+
+        return view('bank.bank-home',['pendanaanbank' => $pendanaanbank],['pendanaanbankacc' => $pendanaanbankacc])->withPendanaanbankreject($pendanaanbankreject);
+
+        // return view('bank.bank-home')->withPendanaanbank($pendanaanbank);
+    }
+
+    public function getAllPendanaanBankDetails($id){
+        $pendanaanbankdetails  = DB::table('fund_bank')
+                    ->join('userumkm', 'fund_bank.id_umkm', '=', 'userumkm.id_umkm')
+                    ->join('users', 'fund_bank.id_lkm', '=', 'users.id')
+                    ->select('fund_bank.*', 'userumkm.*', 'users.name')
+                    ->where('fund_bank.id_pendanaan_bank', '=', $id )
+                    ->get();
+
+        // var_dump($pendanaanbankdetails);
+        return view('bank.bank-details')->withPendanaanbankdetails($pendanaanbankdetails);
+    }
+
+
+    public function uploadinvoicebank(Request $request){
+
+        $uploadinvoice = $request->all();
+
+        $v = \Validator::make($request->all(),
+            [
+                'file' => 'required',
+            ]);
+
+        if($v->fails())
+        {
+            \Session::flash('message-bank', 'Submit Invoice Gagal, Silahkan Coba Submit Ulang');
+            return redirect()->back()->withErrors($v->errors());
+
+        } else {
+
+            if(Input::hasFile('file')){
+
+                    $file       = Input::file('file');
+                    $file->move('bank/img/invoice/', $file->getClientOriginalName());
+                    $namafileinvoice = $file->getClientOriginalName();
+
+                DB::table('fund_bank')->where('id_pendanaan_bank', $uploadinvoice['id_pendanaan_bank'])->update(['status' => $uploadinvoice['status']]);
+
+                DB::table('fund_bank')->where('id_pendanaan_bank', $uploadinvoice['id_pendanaan_bank'])->update(['gambar_invoice' => $namafileinvoice]);
+
+                // \Session::flash('message-bank', 'Input Invoice Bank Berhasil');
+                return redirect('bank/home/'.$uploadinvoice['id_bank']);
+                
+                }
+
+        }
+
+    }
+
+    public function uploadinvoicereject(Request $request){
+
+        $uploadinvoicereject = $request->all();
+
+        DB::table('fund_bank')->where('id_pendanaan_bank', $uploadinvoicereject['id_pendanaan_bank'])->update(['status' => $uploadinvoicereject['status']]);
+
+        return redirect('bank/home/'.$uploadinvoicereject['id_bank']);
+
+    }
+
+    // public function getIDBank(){
+    //     $idbank  = DB::table('userbank')
+    //                 ->join('users', 'userbank.email_bank', '=', 'users.email')
+    //                 ->select('userbank.*', 'users.*')
+    //                 // ->where('fund_bank.id_pendanaan_bank', '=', $id )
+    //                 ->get();
+
+    //     // var_dump($pendanaanbankdetails);
+    //     return view('layouts.app')->withIdbank($idbank);
+    // }
 }
