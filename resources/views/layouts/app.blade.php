@@ -94,10 +94,22 @@
                         <!-- menu list -->
                         <nav>
                             <ul class="list-inline">
-                                <li><a href="#"><i class="fa fa-phone"></i> +628 5351 4567 11</a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-envelope-o"></i> mufid@idcloudhost.com</a>
-                                </li>
+                                @if (Auth::guest())
+                                    <li><a href="#"><i class="fa fa-phone"></i> +628 5351 4567 11</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-envelope-o"></i> mufid@idcloudhost.com</a>
+                                    </li>
+                                @elseif (Auth::user()->admin==0)
+                                    <li><font color="white">Selamat Datang <b>{{ Auth::user()->name }}</b></font></li>
+                                @elseif (Auth::user()->admin==1)
+                                    <li><font color="white">Selamat Datang <b>{{ Auth::user()->name }}</b></font></li>
+                                @elseif (Auth::user()->admin==2)
+                                    <li><font color="white">Selamat Datang <b>{{ Auth::user()->name }}</b></font></li>
+                                @elseif (Auth::user()->admin==3)
+                                    <li><font color="white">Selamat Datang <b>{{ Auth::user()->name }}</b></font></li>
+                                @elseif (Auth::user()->admin==4)
+                                    <li><font color="white">Selamat Datang <b>{{ Auth::user()->name }}</b></font></li>
+                                @endif
                             </ul>
                             <!-- .menu list -->
                         </nav>
@@ -148,23 +160,23 @@
                                     <li><a href="{{ url('/register') }}">Daftar</a></li>
                                     <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
                                 @elseif (Auth::user()->admin==0)
-                                    <li><a href="{{url('/dashboard/home')}}"><img width="30" height="30" src="{{URL::to('images/Dashboard.png')}}">   {{ Auth::user()->name }}</a></li>
+                                    <li class="button"><a href="{{url('/dashboard/home')}}">Dashboard Pengguna</a></li>
                                     <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
                                     <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
                                 @elseif (Auth::user()->admin==1)
-                                    <li><a href="{{url('/administrator/home')}}/{{ Auth::user()->id }}"><img width="30" height="30" src="{{URL::to('images/Dashboard.png')}}">   {{ Auth::user()->name }}</a></li>
-                                    <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
+                                    <li class="button"><a href="{{url('/administrator/home')}}/{{ Auth::user()->id }}">Lihat Pendanaan</a></li>
+                                    <li class="button"><a href="{{ url('/pendanaan')}}">Dashboard Pengguna</a></li>
                                     <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
                                 @elseif (Auth::user()->admin==2)
-                                    <li><a href="{{url('/lkm/home')}}"><img width="30" height="30" src="{{URL::to('images/Dashboard.png')}}">   {{ Auth::user()->name }}</a></li>
+                                    <li class="button"><a href="{{url('/lkm/home')}}">Dashboard Pengguna</a></li>
                                     <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
                                     <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
                                 @elseif (Auth::user()->admin==3)
-                                    <li><a href="{{url('/bank/home')}}"><img width="30" height="30" src="{{URL::to('images/Dashboard.png')}}">   {{ Auth::user()->name }}</a></li>
+                                    <li class="button"><a href="{{url('/bank/home')}}">Dashboard Pengguna</a></li>
                                     <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
                                     <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
                                 @elseif (Auth::user()->admin==4)
-                                    <li><a href="{{url('/superadmin/superadmin')}}"><img width="30" height="30" src="{{URL::to('images/Dashboard.png')}}">   {{ Auth::user()->name }}</a></li>
+                                    <li class="button"><a href="{{url('/superadmin/superadmin')}}">Dashboard Pengguna</a></li>
                                     <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
                                     <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
                                 @endif

@@ -142,8 +142,18 @@
 
                                                         <!-- rised slider meta -->
                                                         <div class="slider-meta clearfix">
-                                                            <span class="pull-left">Rp {{$pd->sementara_dana}}</span>
-                                                            <span class="pull-right">Rp {{$pd->total_dana}}</span>
+                                                            <span class="pull-left">Rp {{ $pd->sementara_dana}}</span>
+                                                            <?php 
+
+                                                                $danasemetara = (int)$pd->sementara_dana;
+                                                                $danatotal    = (int)$pd->total_dana;
+
+                                                                if($danasemetara >= $danatotal){
+                                                                    echo "<span class='pull-right'><font color='green'><b>TERDANAI</b></font><span>";
+                                                                } else {
+                                                                    echo "<span class='pull-right'>Rp ".$pd->total_dana."</span>";
+                                                                }    
+                                                            ?>
                                                         </div>
                                                         <!-- .rised slider meta -->
 

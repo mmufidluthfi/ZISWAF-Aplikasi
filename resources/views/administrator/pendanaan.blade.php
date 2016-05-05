@@ -75,7 +75,7 @@
 											<div class="control-group">											
 												<label class="control-label" for="since">Nama Proyek</label>
 												<div class="controls">
-													<input type="text" class="span6" name="nama_proyek" >
+													<input required type="text" class="span6" name="nama_proyek" >
 												</div> <!-- /controls -->				
 											</div> <!-- /control-group -->
 											
@@ -95,9 +95,9 @@
 											</div>
 											<br>
 											<div class="control-group">											
-												<label class="control-label" for="since">Total Dana yang Dibutuhkan</label>
+												<label class="control-label" for="since">Total Dana yang Dibutuhkan (Rp)</label>
 												<div class="controls">
-													<input type="text" class="span6" name="total_dana" >
+													<input required type="text" class="span6" name="total_dana" >
 												</div> <!-- /controls -->				
 											</div> <!-- /control-group -->
 											
@@ -123,7 +123,7 @@
 											<div class="control-group">											
 												<label class="control-label" for="since">Upload Foto Proyek</label>
 												<div class="controls">
-													<input type="file" name="file" id="file">
+													<input required type="file" name="file" id="file">
 												</div> <!-- /controls -->				
 											</div> <!-- /control-group -->
 											
@@ -149,8 +149,8 @@
 									                    <th>Nama LKM</th>
 														<th>Nama Proyek</th>
 														<th>Kategori</th>
-														<th>Dana Sementara</th>
-														<th>Total Dana</th>
+														<th>Dana Sementara (Rp)</th>
+														<th>Total Dana (Rp)</th>
 														<th>Deskripsi</th>
 														<th>Foto Proyek</th>
 														<th>Foto PJ</th>
@@ -212,8 +212,12 @@
 
 	@elseif (Auth::user()->admin==2)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+			
+	@elseif (Auth::user()->admin==3)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 
 	@elseif (Auth::user()->admin==4)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
-    @endif
+		
+	@endif
 @endsection

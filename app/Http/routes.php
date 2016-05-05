@@ -46,6 +46,8 @@ Route::post('daftarlembaga', 'UsersController@daftarlembaga');
 
 Route::get('/superadmin/superadmin', 'UsersController@getAllLembaga');
 
+// Route::get('/', 'BankController@getIDBank');
+
 // Route::get('admin', ['middleware' => ['web', 'auth', 'admin'], function(){
 // 	return view('administrator/administrator-home');
 // }]);
@@ -239,11 +241,23 @@ Route::post('updatestatusbank', 'BankController@updatestatusbank');
 
 
 //LKM Route
-Route::get('/bank/home/{id}','BankController@getAllPendanaanBank');
+// Route::get('/bank/home', function () {
+//     return view('bank.bank-home');
+// });
+
+Route::get('/bank/home/','BankController@getIDBank');
+
+Route::get('/bank/pendanaan/{id}','BankController@getAllPendanaanBank');
 
 Route::get('/bank/details/{id}','BankController@getAllPendanaanBankDetails');
 
 Route::post('uploadinvoicebank', 'BankController@uploadinvoicebank');
 
 Route::post('uploadinvoicereject', 'BankController@uploadinvoicereject');
+
+
+//HAPUS FUNCTION
+Route::post('hapuslkm', 'UsersController@hapuslkm');
+
+Route::post('hapusbank', 'UsersController@hapusbank');
 

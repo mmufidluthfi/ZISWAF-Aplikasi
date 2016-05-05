@@ -16,6 +16,7 @@
 					</hgroup>
 				</header>
 				<div class="content">
+				<div style="overflow-x:auto;">
 				<table id="myTable" border="0" >
 				<div class="content" width="100">
 					<form action="{{ URL::to('uploaddetaillaporan') }}" method="post" enctype="multipart/form-data">
@@ -26,11 +27,11 @@
 	              
 
 						<div class="field-wrap">
-							<input type="text" name="transaksi" placeholder="Transaksi" />
+							<input required type="text" name="transaksi" placeholder="Transaksi" />
 						</div>
 
 						Tanggal Transaksi : <br>
-						<input type="date" name="tgl_transaksi" id="tgl_transaksi">
+						<input required type="date" name="tgl_transaksi" id="tgl_transaksi">
 
 						
 						Kategori : 
@@ -41,7 +42,7 @@
 						<br><br>
 
 						<div class="field-wrap">
-							<input type="text" name="jumlah_transaksi" placeholder="Total Dana Yang Dibutuhkan"/>
+							<input required type="text" name="jumlah_transaksi" placeholder="Total Dana Yang Dibutuhkan"/>
 							<input type="hidden" name="id_laporan_c" value={{$detailDana['id']}} ></input>
 						</div>
 						
@@ -49,6 +50,7 @@
 					</form>
 				</div>
 				</table>
+				</div>
 				</div>
 			</section>
 
@@ -62,14 +64,15 @@
 					</hgroup>
 				</header>
 				<div class="content">
+				<div style="overflow-x:auto;">
 					<table id="myTable" border="0" width="100">
 						<thead>
 							<tr>
 								<th>Nama Transaksi</th>
-								<th>Total Pengeluaran</th>
-								<th>Total Pemasukan </th>
-								<th>Saldo Proyek</th>
-								<th>Jumlah Uang</th>
+								<th>Total Pengeluaran (Rp)</th>
+								<th>Total Pemasukan (Rp)</th>
+								<th>Saldo Proyek (Rp)</th>
+								<th>Jumlah Uang (Rp)</th>
 								<th>Tanggal Transaksi</th>
 								
 							</tr>
@@ -88,6 +91,7 @@
 							@endforeach
 							</tbody>
 						</table>
+						</div>
 				</div>
 			</section>
 		

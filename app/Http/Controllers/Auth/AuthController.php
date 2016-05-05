@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use Session;
+
 class AuthController extends Controller
 {
     /*
@@ -55,7 +57,10 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
+
     }
+
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -73,5 +78,6 @@ class AuthController extends Controller
             'lembagaID' => '0',
             'admin' => $data['admin'],
         ]);
+
     }
 }

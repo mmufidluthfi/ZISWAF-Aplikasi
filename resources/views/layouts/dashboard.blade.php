@@ -45,21 +45,13 @@
 		ul.pagination li a:hover:not(.active) {background-color: #ddd;}
 	</style>
 
-	    <style>
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-            width: 100%;
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            border: none;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even){background-color: #f2f2f2}
+	<style>
+        @media screen and (max-width: 640px) {
+			table {
+				overflow-x: auto;
+				display: block;
+			}
+		}
     </style>
 
 @if (Auth::guest())
@@ -153,6 +145,7 @@
 	});
 	</script>
 
+	
 @elseif (Auth::user()->admin==1)
 		<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 @endif

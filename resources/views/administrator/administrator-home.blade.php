@@ -53,6 +53,7 @@
 		            </div>
 		            <!-- /widget-header -->
 			             <div class="widget-content">
+			             <div style="overflow-x:auto;">
 			              	<table class="table table-striped table-bordered">
 				                <thead>
 				                  <tr>
@@ -68,20 +69,20 @@
 								<input type="hidden" value="{{ Auth::user()->id }}" name="lembagaID">
 
 					                  <tr>
-										<td><input type="text" name="namarekening1" placeholder="{{$rkb->namarekening1}}"></td>
-										<td><input type="text" name="nomorrekening1" placeholder="{{$rkb->nomorrekening1}}"></td>
+										<td><input type="text" name="namarekening1" value="{{$rkb->namarekening1}}"></td>
+										<td><input type="text" name="nomorrekening1" value="{{$rkb->nomorrekening1}}"></td>
 					                  </tr>	
 					                  <tr>
-										<td><input type="text" name="namarekening2" placeholder="{{$rkb->namarekening2}}"></td>
-										<td><input type="text" name="nomorrekening2" placeholder="{{$rkb->nomorrekening2}}"></td>
+										<td><input type="text" name="namarekening2" value="{{$rkb->namarekening2}}"></td>
+										<td><input type="text" name="nomorrekening2" value="{{$rkb->nomorrekening2}}"></td>
 					                  </tr>	
 					                  <tr>
-										<td><input type="text" name="namarekening3" placeholder="{{$rkb->namarekening3}}"></td>
-										<td><input type="text" name="nomorrekening3" placeholder="{{$rkb->nomorrekening3}}"></td>
+										<td><input type="text" name="namarekening3" value="{{$rkb->namarekening3}}"></td>
+										<td><input type="text" name="nomorrekening3" value="{{$rkb->nomorrekening3}}"></td>
 					                  </tr>	
 					                  <tr>
-										<td><input type="text" name="namarekening4" placeholder="{{$rkb->namarekening4}}"></td>
-										<td><input type="text" name="nomorrekening4" placeholder="{{$rkb->nomorrekening4}}"></td>
+										<td><input type="text" name="namarekening4" value="{{$rkb->namarekening4}}"></td>
+										<td><input type="text" name="nomorrekening4" value="{{$rkb->nomorrekening4}}"></td>
 					                  </tr>
 				                  @endforeach	
 				                  <tr>
@@ -95,6 +96,7 @@
 				                </form>							                
 				                </tbody>
 				              </table>
+				              </div>
 			             </div>
 		              <!-- /shortcuts --> 
 		            </div>
@@ -116,6 +118,9 @@
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 
 	@elseif (Auth::user()->admin==2)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+			
+	@elseif (Auth::user()->admin==3)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 
 	@elseif (Auth::user()->admin==4)

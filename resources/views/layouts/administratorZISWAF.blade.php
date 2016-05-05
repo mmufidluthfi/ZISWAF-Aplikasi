@@ -20,6 +20,15 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+    <style>
+        @media screen and (max-width: 640px) {
+      table {
+        overflow-x: auto;
+        display: block;
+      }
+    }
+    </style>
+
 </head>
 
   @if (Auth::guest())

@@ -99,11 +99,11 @@
                                                 <!-- rised slider meta -->
                                                 <div class="clearfix">
                                                     <p class="pull-left lead">
-                                                        <span class="light-grey">Raised:</span>
+                                                        <span class="light-grey">Dana Terkumpul:</span>
                                                         Rp {{ $pdn->sementara_dana}}
                                                     </p>
                                                     <p class="pull-right lead">
-                                                        <span class="light-grey">Goal:</span>
+                                                        <span class="light-grey">Dana Dibutuhkan:</span>
                                                         Rp {{ $pdn->total_dana}}
                                                     </p>
                                                 </div>

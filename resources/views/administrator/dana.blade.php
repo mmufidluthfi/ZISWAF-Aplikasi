@@ -71,7 +71,7 @@
 																<div class="control-group">								
 																	<label class="control-label" for="username">Nama Transaksi</label>
 																	<div class="controls">
-																		<input type="text" class="span6" name="nama_pendanaan">
+																		<input required type="text" class="span6" name="nama_pendanaan">
 																	</div> <!-- /controls -->				
 																</div> <!-- /control-group -->
 
@@ -92,7 +92,7 @@
 																<div class="control-group">								
 																	<label class="control-label" for="namabank">Tanggal Transaksi</label>
 																	<div class="controls">
-																		<input type="date" class="span6" name="tgl_pendanaan" >
+																		<input required type="date" class="span6" name="tgl_pendanaan" >
 																	</div> <!-- /controls -->				
 																</div> <!-- /control-group -->
 																
@@ -101,7 +101,7 @@
 																<div class="control-group">											
 																	<label class="control-label" for="Phone">Total Dana</label>
 																	<div class="controls">
-																		<input type="text" class="span6" name="total_dana" >
+																		<input required type="text" class="span6" name="total_dana" >
 																	</div> <!-- /controls -->				
 																</div> <!-- /control-group -->
 																
@@ -190,8 +190,12 @@
 
 	@elseif (Auth::user()->admin==2)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+			
+	@elseif (Auth::user()->admin==3)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 
 	@elseif (Auth::user()->admin==4)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
-    @endif
+		
+	@endif
 @endsection

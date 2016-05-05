@@ -43,7 +43,7 @@
 					</hgroup>
 				</header>
 				<div class="content">
-					
+					<div style="overflow-x:auto;">
 					<table id="myTable" border="0" >
 						<thead>
 						<tr>
@@ -51,7 +51,7 @@
 							<th>Nama UMKM</th>
 							<th>Kategori</th>
 							<th>Tanggal Transaksi</th>
-							<th>Total Dana</th>
+							<th>Total Dana (Rp)</th>
 							<th>Action</th>
 							<th>Status</th>
 						</tr>
@@ -99,7 +99,7 @@
 							@endforeach
 						</tbody>
 					</table>
-
+					</div>
 					<br><br>
 					<?php echo $reportpendanaan->render(); ?>
 					

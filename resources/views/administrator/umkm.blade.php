@@ -53,7 +53,7 @@
 														<div class="control-group">											
 															<label class="control-label" for="subject">Nama Penanggung Jawab</label>
 															<div class="controls">
-																<input type="text" class="span6" name="nama_pj" >
+																<input required type="text" class="span6" name="nama_pj" >
 															</div> <!-- /controls -->				
 														</div> <!-- /control-group -->
 														
@@ -61,35 +61,35 @@
 														<div class="control-group">											
 															<label class="control-label" for="Owner">Alamat Email Penanggung Jawab</label>
 															<div class="controls">
-																<input type="text" class="span6" name="email" >
+																<input required type="text" class="span6" name="email" >
 															</div> <!-- /controls -->				
 														</div> <!-- /control-group -->
 														
 														<div class="control-group">											
 															<label class="control-label" for="city">Nomor HP Penanggung Jawab</label>
 															<div class="controls">
-																<input type="text" class="span6" name="no_hp" >
+																<input required type="text" class="span6" name="no_hp" >
 															</div> <!-- /controls -->				
 														</div> <!-- /control-group -->
 														
 														<div class="control-group">											
 															<label class="control-label" for="city">Alamat Penanggung Jawab</label>
 															<div class="controls">
-																<input type="text" class="span6" name="alamat_pj" >
+																<input required type="text" class="span6" name="alamat_pj" >
 															</div> <!-- /controls -->				
 														</div> <!-- /control-group -->
 														
 														<div class="control-group">											
 															<label class="control-label" for="city">Alamat UMKM</label>
 															<div class="controls">
-																<input type="text" class="span6" name="alamat_umkm" >
+																<input required type="text" class="span6" name="alamat_umkm" >
 															</div> <!-- /controls -->				
 														</div> <!-- /control-group -->
 
 														<div class="control-group">											
 															<label class="control-label" for="city">Tanggal Mendaftar</label>
 															<div class="controls">
-																<input type="date" class="span6" name="tgl_daftarumkm" >
+																<input required type="date" class="span6" name="tgl_daftarumkm" >
 															</div> <!-- /controls -->				
 														</div> <!-- /control-group -->
 
@@ -98,7 +98,7 @@
 															
 															
 				                                            <div class="controls">
-				                                            <input type="file" name="file" id="file">		
+				                                            <input required type="file" name="file" id="file">		
 															</div> <!-- /controls -->				
 														</div> <!-- /control-group -->
 														
@@ -210,8 +210,12 @@
 
 	@elseif (Auth::user()->admin==2)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+			
+	@elseif (Auth::user()->admin==3)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 
 	@elseif (Auth::user()->admin==4)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
-    @endif
+		
+	@endif
 @endsection

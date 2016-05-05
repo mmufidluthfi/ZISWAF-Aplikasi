@@ -16,6 +16,8 @@ use Carbon\Carbon;
 
 use Hash;
 
+use Auth;
+
 class UsersController extends Controller
 {
 
@@ -210,18 +212,20 @@ class UsersController extends Controller
                 'lembagaID' => $databank['lembagaID'],
             );
 
-            $i = DB::table('users')->insert($datatransaksi);
-            $i2 = DB::table('userbank')->insert($datainformasibank);
+            $i = DB::table('users')->insertGetId($datatransaksi);
+            $i2 = DB::table('userbank')->insertGetId($datainformasibank);
 
-            if ($i > 0) {
+            DB::table('userbank')->where('id_bank', $i2)->update(['id_users' => $i]);
 
-                $id_lembaga = $databank['lembagaID'];
-                
-                  \Session::flash('message-inputberhasil', 'Bank Berhasil ditambahkan');
-              
-              return redirect('administrator/manageuser/'.$id_lembaga);
-              
-            } 
+                if ($i > 0) {
+
+                    $id_lembaga = $databank['lembagaID'];
+                    
+                      \Session::flash('message-inputberhasil', 'Bank Berhasil ditambahkan');
+                  
+                  return redirect('administrator/manageuser/'.$id_lembaga);
+                  
+                } 
             
         }
 
@@ -308,6 +312,30 @@ class UsersController extends Controller
                     ->paginate(10);
 
         return view('superadmin.superadmin')->withListlembaga($listlembaga);
+    }
+
+    public function hapuslkm(Request $request)
+    {
+        $hapusdatalkm = $request->all();
+
+        DB::table('users')->where('id', '=', $hapusdatalkm['id'])->delete();
+
+        $iduseraktif = Auth::user()->id;
+
+        return redirect('administrator/manageuser/'.$iduseraktif);
+    }
+
+    public function hapusbank(Request $request)
+    {
+
+        $hapusdatabank = $request->all();
+
+        DB::table('users')->where('id', '=', $hapusdatabank['id'])->delete();
+        DB::table('userbank')->where('id_users', '=', $hapusdatabank['id'])->delete();
+
+        $iduseraktif = Auth::user()->id;
+
+        return redirect('administrator/manageuser/'.$iduseraktif);
     }
 
 

@@ -56,7 +56,7 @@
 													<th>Nama Pendonasi</th>
 													<th>Judul Pendanaan</th>
 													<th>Kategori</th>
-													<th>Nominal Donasi</th>
+													<th>Nominal Donasi (RP)</th>
 													<th>Tanggal Donasi</th>
 													<th>Konfirmasi</th>
 													<th>Edit Status <br>Pilih Opsi, Lalu Klik "Update"</th>
@@ -146,7 +146,7 @@
 										                  <tr>
 										                    <th> Nama Bank </th>
 															<th> Nama Proyek </th>
-															<th> Total Dana </th>
+															<th> Total Dana (Rp)</th>
 															<th> Tanggal Pendanaan </th>
 															<th> Ubah Status </th>
 															<th> Action </th>
@@ -231,8 +231,12 @@
 
 	@elseif (Auth::user()->admin==2)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+			
+	@elseif (Auth::user()->admin==3)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 
 	@elseif (Auth::user()->admin==4)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
-    @endif
+		
+	@endif
 @endsection

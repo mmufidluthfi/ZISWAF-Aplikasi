@@ -26,6 +26,7 @@
 				</hgroup>
 			</header>
 			<div class="content">
+			<div style="overflow-x:auto;">
 				<table id="myTable" border="0" width="100">
 					<thead>
 						<tr>
@@ -43,19 +44,26 @@
 								<td>{{$lpr->nama_proyek}}</td>
 								<td>{{$lpr->nama_pj}}</td>
 								<td>{{$lpr->bulan}} / {{$lpr->tahun}}</td>
-								<td>{{$lpr->total_pengeluaran}}</td>
-								<td>{{$lpr->total_pemasukan}}</td>
-								<td>{{$lpr->saldo_usaha}}</td>
+								<td>Rp {{$lpr->total_pengeluaran}}</td>
+								<td>Rp {{$lpr->total_pemasukan}}</td>
+								<td>Rp {{$lpr->saldo_usaha}}</td>
 							</tr>
 						@endforeach
 						</tbody>
 					</table>
+					</div>
 					<br/><?php echo $laporanpendanaan->render(); ?>
 			</div>
 		</section>
 	</section>
 
-	@elseif (Auth::user()->admin==1)
+		@elseif (Auth::user()->admin==1)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+		@elseif (Auth::user()->admin==2)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+		@elseif (Auth::user()->admin==3)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+		@elseif (Auth::user()->admin==4)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 		
 	@endif

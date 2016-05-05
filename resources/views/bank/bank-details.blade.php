@@ -33,7 +33,7 @@
 
 	                <?php 
 
-					if ($pdbankdetails->status == 1 || $pdbankdetails->status == 4) { ?>
+					if ($pdbankdetails->status == 1) { ?>
 
 		                <div class="invoicebox">
 		                    <h3>Upload Invoice</h3>
@@ -62,7 +62,12 @@
 		                    <h3>Selamat</h3>
 		                    <h5>Proyek Sudah Terdanai</h5>
 		                </div>
-		              <?php } ?>
+		              <?php } else if ($pdbankdetails->status == 4) { ?>
+		              	<div class="invoicebox rejected">
+		                    <h3>Mohon Maaf</h3>
+		                    <h5>Proyek Tidak Disetujui Bank</h5>
+		                </div>
+		                <?php } ?>
 	            </div>
 
 	            <div class="col-md-8 description">

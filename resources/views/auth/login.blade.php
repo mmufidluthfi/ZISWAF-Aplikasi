@@ -10,6 +10,7 @@
                             <h5 class="grey">Silahkan Login :</h5>
                     </div>
                     <div class="panel-body">
+                        <center><p><?php echo Session::get('message-errorr'); ?></p></center>
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                             {!! csrf_field() !!}
 
@@ -17,7 +18,7 @@
                                 <label class="col-md-4 control-label">Email Address</label>
 
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                    <input required type="email" class="form-control" name="email" value="{{ old('email') }}">
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -31,7 +32,7 @@
                                 <label class="col-md-4 control-label">Password</label>
 
                                 <div class="col-md-6">
-                                    <input type="password" class="form-control" name="password">
+                                    <input required type="password" class="form-control" name="password">
 
                                     @if ($errors->has('password'))
                                         <span class="help-block">

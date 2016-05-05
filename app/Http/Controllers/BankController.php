@@ -10,9 +10,11 @@ use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Input;
 
+use Auth;
+
 class BankController extends Controller
 {
-    
+     
 	public function getBankPendanaan($id){
 
 		$userbankpendanaan  = DB::table('userbank')
@@ -259,7 +261,7 @@ class BankController extends Controller
                     ->orderBy('fund_bank.id_pendanaan_bank', 'desc')
                     ->paginate(5);
 
-        return view('bank.bank-home',['pendanaanbank' => $pendanaanbank],['pendanaanbankacc' => $pendanaanbankacc])->withPendanaanbankreject($pendanaanbankreject);
+        return view('bank.bank-pendanaan',['pendanaanbank' => $pendanaanbank],['pendanaanbankacc' => $pendanaanbankacc])->withPendanaanbankreject($pendanaanbankreject);
 
         // return view('bank.bank-home')->withPendanaanbank($pendanaanbank);
     }
@@ -304,7 +306,7 @@ class BankController extends Controller
                 DB::table('fund_bank')->where('id_pendanaan_bank', $uploadinvoice['id_pendanaan_bank'])->update(['gambar_invoice' => $namafileinvoice]);
 
                 // \Session::flash('message-bank', 'Input Invoice Bank Berhasil');
-                return redirect('bank/home/'.$uploadinvoice['id_bank']);
+                return redirect('bank/pendanaan/'.$uploadinvoice['id_bank']);
                 
                 }
 
@@ -318,18 +320,23 @@ class BankController extends Controller
 
         DB::table('fund_bank')->where('id_pendanaan_bank', $uploadinvoicereject['id_pendanaan_bank'])->update(['status' => $uploadinvoicereject['status']]);
 
-        return redirect('bank/home/'.$uploadinvoicereject['id_bank']);
+        return redirect('bank/pendanaan/'.$uploadinvoicereject['id_bank']);
 
     }
 
-    // public function getIDBank(){
-    //     $idbank  = DB::table('userbank')
-    //                 ->join('users', 'userbank.email_bank', '=', 'users.email')
-    //                 ->select('userbank.*', 'users.*')
-    //                 // ->where('fund_bank.id_pendanaan_bank', '=', $id )
-    //                 ->get();
+    public function getIDBank(){
+        $iduseraktif = Auth::user()->id;
 
-    //     // var_dump($pendanaanbankdetails);
-    //     return view('layouts.app')->withIdbank($idbank);
-    // }
+        $idbank  = DB::table('userbank')
+                    ->join('users', 'users.id', '=', 'userbank.id_users')
+                    ->select('userbank.id_bank')
+                    ->where('userbank.id_users', '=', $iduseraktif )
+                    ->get();
+
+                    // var_dump($idbank);
+
+        // var_dump($pendanaanbankdetails);
+        return view('bank.bank-home')->withIdbank($idbank);
+    }
+    
 }

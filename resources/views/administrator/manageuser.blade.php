@@ -64,7 +64,7 @@
 								                            <label class="col-md-4 control-label">Nama Lengkap</label>
 
 								                            <div class="col-md-6 controls">
-								                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+								                                <input required type="text" class="form-control" name="name" value="{{ old('name') }}">
 
 								                                @if ($errors->has('name'))
 								                                    <span class="help-block">
@@ -78,7 +78,7 @@
 								                            <label class="col-md-4 control-label">Email</label>
 
 								                            <div class="col-md-6 controls" >
-								                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+								                                <input required type="email" class="form-control" name="email" value="{{ old('email') }}">
 
 								                                @if ($errors->has('email'))
 								                                    <span class="help-block">
@@ -92,7 +92,7 @@
 								                            <label class="col-md-4 control-label">Password</label>
 
 								                            <div class="col-md-6 controls">
-								                                <input type="password" class="form-control" name="password">
+								                                <input required type="password" class="form-control" name="password">
 
 								                                @if ($errors->has('password'))
 								                                    <span class="help-block">
@@ -106,7 +106,7 @@
 								                            <label class="col-md-4 control-label">Konfirmasi Password</label>
 
 								                            <div class="col-md-6 controls">
-								                                <input type="password" class="form-control" name="password_confirmation">
+								                                <input required type="password" class="form-control" name="password_confirmation">
 
 								                                @if ($errors->has('password_confirmation'))
 								                                    <span class="help-block">
@@ -130,13 +130,13 @@
 											</div>
 
 											<div class="tab-pane" id="jscontrols1">
-												<form id="edit-profile2" class="form-vertical">
 													<fieldset>
 														                                
 														<div class="control-group">
 														<div id="list_ukm" class="tab-pane">
 															
 															<div class="widget-content">
+															
 															  <table class="table table-striped table-bordered">
 																<thead>
 																  <tr>
@@ -154,18 +154,18 @@
 																	<td> {{$lkm->name}} </td>
 																	<td> {{$lkm->email}} </td>
 																	<td> {{$lkm->password}} </td>
-																	<td class="td-actions"><center><a href="javascript:;" class="btn btn-info btn-sm">Detail</a> <a href="javascript:;" class="btn btn-primary btn-sm">Edit</a> <a href="javascript:;" class="btn btn-danger btn-sm">Delete</a></center></td>
+																	<td class="td-actions"><center><form class="form-horizontal" role="form" method="POST" action="{{ URL::to('hapuslkm') }}">{!! csrf_field() !!}<input type="hidden" value="{{$lkm->id}}" name="id"><button type="submit" class="btn btn-danger"><i class="fa fa-btn fa-user"></i>Delete</button></form></center></td>
 																  </tr>
 																  @endforeach
 																</tbody>
 															  </table>
+															  
 
 															  <?php echo $listlkm->render(); ?>
 															</div>
 														</div> <!-- /controls -->	
 														</div> <!-- /control-group -->
 													</fieldset>
-												</form>
 											</div>
 											
 											<div class="tab-pane" id="formcontrols2">
@@ -182,7 +182,7 @@
 								                            <label class="col-md-4 control-label">Nama Bank</label>
 
 								                            <div class="col-md-6 controls">
-								                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+								                                <input required type="text" class="form-control" name="name" value="{{ old('name') }}">
 
 								                                @if ($errors->has('name'))
 								                                    <span class="help-block">
@@ -196,7 +196,7 @@
 								                            <label class="col-md-4 control-label">Email Bank</label>
 
 								                            <div class="col-md-6 controls" >
-								                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+								                                <input required type="email" class="form-control" name="email" value="{{ old('email') }}">
 
 								                                @if ($errors->has('email'))
 								                                    <span class="help-block">
@@ -210,7 +210,7 @@
 								                            <label class="col-md-4 control-label">Password</label>
 
 								                            <div class="col-md-6 controls">
-								                                <input type="password" class="form-control" name="password">
+								                                <input required type="password" class="form-control" name="password">
 
 								                                @if ($errors->has('password'))
 								                                    <span class="help-block">
@@ -224,7 +224,7 @@
 								                            <label class="col-md-4 control-label">Konfirmasi Password</label>
 
 								                            <div class="col-md-6 controls">
-								                                <input type="password" class="form-control" name="password_confirmation">
+								                                <input required type="password" class="form-control" name="password_confirmation">
 
 								                                @if ($errors->has('password_confirmation'))
 								                                    <span class="help-block">
@@ -248,13 +248,13 @@
 											</div>
 											
 											<div class="tab-pane active" id="jscontrols2">
-												<form id="pendaftaran_lkm" class="form-horizontal">
 													<fieldset>
 															                                
 															<div class="control-group">
 															<div id="list_ukm" class="tab-pane">
 																
 																<div class="widget-content">
+																	  
 																	  <table class="table table-striped table-bordered">
 																		<thead>
 																		  <tr>
@@ -272,19 +272,18 @@
 																			<td> {{$bank->name}} </td>
 																			<td> {{$bank->email}} </td>
 																			<td> {{$bank->password}} </td>
-																			<td class="td-actions"><center><a href="javascript:;" class="btn btn-info btn-sm">Detail</a> <a href="javascript:;" class="btn btn-primary btn-sm">Edit</a> <a href="javascript:;" class="btn btn-danger btn-sm">Delete</a></center></td>
+																			<td class="td-actions"><center><form class="form-horizontal" role="form" method="POST" action="{{ URL::to('hapusbank') }}">{!! csrf_field() !!}<input type="hidden" value="{{$bank->id}}" name="id"><button type="submit" class="btn btn-danger"><i class="fa fa-btn fa-user"></i>Delete</button></form></center></td>
 																		  </tr>
 																		  @endforeach
 																		</tbody>
 																	  </table>
-
+																	  
 																	  <?php echo $listbank->render(); ?>
 																	</div>
 															</div> <!-- /controls -->	
 													</div> <!-- /control-group -->
 													<br />
 														</fieldset>
-												</form>
 											</div>
 
 
@@ -313,8 +312,12 @@
 
 	@elseif (Auth::user()->admin==2)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+			
+	@elseif (Auth::user()->admin==3)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 
 	@elseif (Auth::user()->admin==4)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+		
 	@endif
 @endsection

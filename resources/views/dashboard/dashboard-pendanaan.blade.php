@@ -27,6 +27,7 @@
 				</hgroup>
 			</header>
 			<div class="content">
+				<div style="overflow-x:auto;">
 				<table id="myTable" border="0" width="100">
 					<thead>
 						<tr>
@@ -45,7 +46,7 @@
 							<tr>
 								<td>{{$pdt->nama_proyek}}</td>
 								<td>{{$pdt->kategori}}</td>
-								<td>{{$pdt->nominal}}</td>
+								<td>Rp. {{$pdt->nominal}}</td>
 								<td>{{$pdt->tanggal_transaksi}}</td>
 								<td>
 									<form action="{{ URL::to('uploadbukti') }}" method="post" enctype="multipart/form-data">
@@ -78,12 +79,19 @@
 						@endforeach
 						</tbody>
 					</table>
+					</div>
 					<br/><?php echo $pendanaantransaksi->render(); ?>
 			</div>
 		</section>
 	</section>
 
-	@elseif (Auth::user()->admin==1)
+		@elseif (Auth::user()->admin==1)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+		@elseif (Auth::user()->admin==2)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+		@elseif (Auth::user()->admin==3)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+		@elseif (Auth::user()->admin==4)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 		
 	@endif

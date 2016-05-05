@@ -42,6 +42,7 @@
 					</header>
 					<div class="content">
 						<center><font size="+2">Submit Laporan Pendanaan Bank</font></center><br>
+						<div style="overflow-x:auto;">
 						<table id="myTable" border="0" width="100">
 						<thead>
 							<tr>
@@ -82,25 +83,27 @@
 										</select>
 									</td>
 									<td>
-										<input type="text" name="tahun">
+										<input required type="text" name="tahun">
 									</td>
 									<td><button type="submit" class="green">Post</button></td>
 								</form>
 							</tr>
 							</tbody>
 						</table>
+						</div>
 
 						<br/><br/>
 						<center><font size="+2">List Laporan Pendanaan Bank</font></center><br>
+						<div style="overflow-x:auto;">
 						<table id="myTable" border="0" width="100">
 							<thead>
 								<tr>
 									<th>Nama Proyek</th>
 									<th>Bulan</th>
 									<th>Tahun</th>
-									<th>Total Pengeluaran</th>
-									<th>Total Pemasukan </th>
-									<th>Saldo Proyek</th>
+									<th>Total Pengeluaran (Rp)</th>
+									<th>Total Pemasukan (Rp)</th>
+									<th>Saldo Proyek (Rp)</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -120,6 +123,7 @@
 								</tbody>
 								<br/><?php echo $reportBank->render(); ?>
 							</table>
+							</div>
 							<br/>
 					</div>
 				</section>

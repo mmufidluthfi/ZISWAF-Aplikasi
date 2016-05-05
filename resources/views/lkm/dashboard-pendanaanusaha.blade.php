@@ -42,13 +42,14 @@
 				</header>
 				<div class="content">
 				<center><font size="+2">Submit Pendanaan Usaha</font></center><br>
+				<div style="overflow-x:auto;">
 					<table id="myTable" border="0" width="100">
 					<thead>
 						<tr>
 							<th>Nama Pendanaan</th>
 							<th>Nama Bank</th>
 							<th>Nama UMKM</th>
-							<th>Nominal</th>
+							<th>Nominal (Rp)</th>
 							<th>Tanggal Permohonan</th>
 							<th>Action</th>
 						</tr>
@@ -60,7 +61,7 @@
 						<input type="hidden" value="{{ Auth::user()->id }}" name="id_user">
 
 							<tr>
-								<td><input type="text" name="nama_proyek"></td>
+								<td><input required type="text" name="nama_proyek"></td>
 								<td>
 									<select name="id_bank">
 							 			@foreach ($userbankpendanaan as $ubp)
@@ -75,24 +76,26 @@
 							 			@endforeach
 							 		</select>
 								</td>
-								<td><input type="text" name="total_dana"></td>
-								<td><input type="date" name="tgl_pendanaan"></td>
+								<td><input required type="text" name="total_dana"></td>
+								<td><input required type="date" name="tgl_pendanaan"></td>
 
 								<td><button type="submit" class="green">Submit</button></td>						
 							</tr>
 						</form>
 						</tbody>
 					</table>
+					</div>
 
 					<br><br>
 					<center><font size="+2">Lihat List Pendanaan Usaha</font></center><br>
+					<div style="overflow-x:auto;">
 					<table id="myTable" border="0" width="100">
 						<thead>
 							<tr>
 								<th>Nama Pendanaan</th>
 								<th>Nama Bank</th>
 								<th>Nama UMKM</th>
-								<th>Nominal</th>
+								<th>Nominal (Rp)</th>
 								<th>Tanggal Permohonan</th>
 								<th>Status</th>
 							</tr>
@@ -126,6 +129,7 @@
 							@endforeach
 						</tbody>
 					</table>
+					</div>
 					<br><br><?php echo $tampilfundbank->render(); ?>
 				</div>
 			</section>

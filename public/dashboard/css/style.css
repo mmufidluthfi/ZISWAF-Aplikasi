@@ -1732,7 +1732,7 @@ div.wysiwyg iframe { clear: left; background-color:white; padding:10px; margin:0
 		float: right;	
 	}
 	
-	table tr th:nth-child(3),
+	/*table tr th:nth-child(3),
 	table tr th:nth-child(4),
 	table tr th:nth-child(5),
 	table tr th:nth-child(6),
@@ -1747,7 +1747,7 @@ div.wysiwyg iframe { clear: left; background-color:white; padding:10px; margin:0
 	table tr td:nth-child(8),
 	table tr td:nth-child(9) {
 		display: none;
-	}
+	}*/
 	
 	table#myTable th {
 		min-width: 50px;

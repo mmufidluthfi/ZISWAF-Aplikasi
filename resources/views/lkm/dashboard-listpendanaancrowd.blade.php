@@ -50,8 +50,8 @@
 								<th>Nama UMKM</th>
 								<th>Proyek Pendanaan</th>
 								<th>Kategori</th>
-								<th>Total Dana</th>
-								<th>Dana Sementara</th>
+								<th>Total Dana (Rp)</th>
+								<th>Dana Sementara (Rp)</th>
 								<th>Tanggal Pengajuan</th>
 								<th>Status </th>
 							</tr>
