@@ -109,6 +109,8 @@
                                     <li><font color="white">Selamat Datang <b>{{ Auth::user()->name }}</b></font></li>
                                 @elseif (Auth::user()->admin==4)
                                     <li><font color="white">Selamat Datang <b>{{ Auth::user()->name }}</b></font></li>
+                                @elseif (Auth::user()->admin==5)
+                                    <li><font color="white">Selamat Datang <b>{{ Auth::user()->name }}</b></font></li>
                                 @endif
                             </ul>
                             <!-- .menu list -->
@@ -164,8 +166,8 @@
                                     <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
                                     <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
                                 @elseif (Auth::user()->admin==1)
-                                    <li class="button"><a href="{{url('/administrator/home')}}/{{ Auth::user()->id }}">Lihat Pendanaan</a></li>
-                                    <li class="button"><a href="{{ url('/pendanaan')}}">Dashboard Pengguna</a></li>
+                                    <li class="button"><a href="{{url('/administrator/home')}}/{{ Auth::user()->id }}">Dashboard Pengguna</a></li>
+                                    <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
                                     <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
                                 @elseif (Auth::user()->admin==2)
                                     <li class="button"><a href="{{url('/lkm/home')}}">Dashboard Pengguna</a></li>
@@ -177,6 +179,10 @@
                                     <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
                                 @elseif (Auth::user()->admin==4)
                                     <li class="button"><a href="{{url('/superadmin/superadmin')}}">Dashboard Pengguna</a></li>
+                                    <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
+                                    <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
+                                @elseif (Auth::user()->admin==5)
+                                    <li class="button"><a href="{{url('/person/dashboard')}}">Dashboard Pengguna</a></li>
                                     <li class="button"><a href="{{ url('/pendanaan')}}">Lihat Pendanaan</a></li>
                                     <li class="button"><a href="{{ url('/logout') }}">Logout</a></li>
                                 @endif

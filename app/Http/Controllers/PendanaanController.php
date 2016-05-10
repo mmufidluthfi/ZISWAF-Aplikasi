@@ -18,6 +18,8 @@ use Session;
 
 use Carbon\Carbon;
 
+use Auth;
+
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class PendanaanController extends Controller
@@ -168,10 +170,11 @@ class PendanaanController extends Controller
 	            $i = DB::table('pendanaan')->insert($postpendanaan);
 
 	    		if ($i > 0) {
+	    			$iduseraktif = Auth::user()->id;
 	    		  	
 	    		  	\Session::flash('message-inputberhasil', 'Input Pendaftaran Pendanaan Berhasil, Silahkan Cek Menu Proyek');
 	    		  	//return redirect('administrator/listdonasi');
-	    		  	return redirect('administrator/home');
+	    		  	return redirect('administrator/home/'.$iduseraktif);
 	              
 		    		} 
 

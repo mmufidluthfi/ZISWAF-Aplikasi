@@ -34,9 +34,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="promo-box heading text-center">
-                        <h2>About Us</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                        <h2>Apa itu ZISWAF Funding?</h2>
+                        <p class="lead">Aplikasi ZISWAF Funding merupakan salah satu aplikasi pendanaan secara online untuk melakukan aktifitas pendanaan Zakat, Infaq, Sadaqah dan Waqaf secara online.</p>
+
+                        <p>Aplikasi ini dapat diakses secara GRATIS dan berlandaskan sesuai dengan syariah islam yang berlaku. Tujuan dibuatkannya aplikasi ZISWAF funding ini adalah untuk mempermudah masyarakat melakukan ibadah terhadap tanggung jawab membayar Zakat, Infaq, Sadaqah dan Waqaf. Bersamaan dengan hal tersbut didukung dengan teknologi informasi yang terus berkembang sehingga pendanaan dapat dilakukan kapanpun dan dimanapun</p>
                         <hr />
+
+                        <a class="button-normal blue" href="{{URL::to('/faq')}}">Frequently asked questions (FAQ)</a>&nbsp; &nbsp; &nbsp; &nbsp;<a class="button-normal blue" href="{{URL::to('/tos')}}">Terms of Service (TOS)</a>
                     </div>
                 </div>
 
@@ -96,7 +100,6 @@
                                         <div class="excerpt">
                                             <h6><a href="#">M Mufid Luthfi</a>
                                             </h6>
-                                            <p>Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit.</p>
                                         </div>
                                         <!-- .excerpt -->
 
@@ -148,7 +151,6 @@
                                         <div class="excerpt">
                                             <h6><a href="#">Reicka Sofi Azzura</a>
                                             </h6>
-                                            <p>Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit.</p>
                                         </div>
                                         <!-- .excerpt -->
 
@@ -200,7 +202,6 @@
                                         <div class="excerpt">
                                             <h6><a href="#">Nana Ramadhewi</a>
                                             </h6>
-                                            <p>Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit.</p>
                                         </div>
                                         <!-- .excerpt -->
 
@@ -252,7 +253,6 @@
                                         <div class="excerpt">
                                             <h6><a href="#">Elzar Esen</a>
                                             </h6>
-                                            <p>Sed nunc nulla, vehicula non porttitor in, pharetra et dolor. Fusce nec velit velit.</p>
                                         </div>
                                         <!-- .excerpt -->
 
@@ -284,10 +284,10 @@
                 <div class="col-md-12">
                     <div class="full-promo text-center">
                         <h2>
-                            <strong>Donate &amp; Help Them To Have Bright Future</strong>
+                            <strong>Bersama Menciptakan Masa Depan</strong>
                         </h2>
-                        <h6>Our charity fund have 300+ donators from all over the world</h6>
-                        <a class="button-normal blue" href="#">DONATE NOW</a>
+                        <h6>Pendanaan ZISWAF Crowdfunding sudah melibatkan +4000 Orang Berdonasi</h6>
+                        <a class="button-normal blue" href="{{URL::to('/kategori')}}/Zakat">Zakat</a> <a class="button-normal blue" href="{{URL::to('/kategori')}}/Infaq">Infaq</a> <a class="button-normal blue" href="{{URL::to('/kategori')}}/Sadaqah">Sadaqah</a> <a class="button-normal blue" href="{{URL::to('/kategori')}}/Waqaf">Waqaf</a>
                     </div>
                 </div>
             </div>

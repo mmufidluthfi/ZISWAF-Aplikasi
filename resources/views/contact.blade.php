@@ -58,16 +58,17 @@
                                 <!-- border -->
                                 <hr />
                                 <!-- .border -->
-
+                                <center><font color="greeb"><?php echo Session::get('message-kontakkita'); ?></font></font></center>
                                 <!-- form -->
                                 <div class="content">
-                                    <form class="form-horizontal" role="form">
+                                    <form class="form-horizontal" role="form" action="{{ URL::to('simpan_pesan') }}" method="post">
+                                    {!! csrf_field() !!}
 
                                         <!-- widget box -->
                                         <div class="widget-box">
                                             <div class="form-group">
-                                                <label>Your name</label>
-                                                <input type="text" class="form-control" />
+                                                <label>Nama Lengkap</label>
+                                                <input required type="text" class="form-control" name="nama_lengkap" />
                                             </div>
                                         </div>
                                         <!-- .widget box -->
@@ -75,8 +76,8 @@
                                         <!-- widget box -->
                                         <div class="widget-box">
                                             <div class="form-group">
-                                                <label>Your name</label>
-                                                <input type="text" class="form-control" />
+                                                <label>Email</label>
+                                                <input required type="text" class="form-control" name="email" />
                                             </div>
                                         </div>
                                         <!-- .widget box -->
@@ -84,8 +85,8 @@
                                         <!-- widget box -->
                                         <div class="widget-box">
                                             <div class="form-group">
-                                                <label>Your message</label>
-                                                <textarea class="form-control"></textarea>
+                                                <label>Pesan </label>
+                                                <textarea required class="form-control" name="pesan"></textarea>
                                             </div>
                                         </div>
                                         <!-- .widget box -->
@@ -93,7 +94,7 @@
                                         <!-- widget box -->
                                         <div class="widget-box">
                                             <div class="form-group">
-                                                <a class="button-normal full white" href="#">SEND MESSAGE</a>
+                                                <button type="submit">KIRIM PESAN</button>
                                             </div>
                                         </div>
                                         <!-- .widget-box -->
@@ -117,11 +118,9 @@
                                 <h5>Additional Info</h5>
                             </div>
                             <hr />
-                            <div class="content">
-                                <p>Lorem ipsum dolor sit consectutor adiscipit elit voluptatem:</p>
-                                <br />
+                            <div class="content">                                
                                 <p>Address:
-                                    <span class="pull-right grey">Jalan Sukabiru, Bandung</span>
+                                    <span class="pull-right grey">Jalan Sukabirus, Bandung</span>
                                 </p>
                                 <p>Phone:
                                     <span class="pull-right grey">+628 5351 4567 11</span>
@@ -130,10 +129,10 @@
                                     <span class="pull-right grey">+628 5351 4567 11</span>
                                 </p>
                                 <p>Email:
-                                    <span class="pull-right grey">mufid@idcloudhost.com</span>
+                                    <span class="pull-right grey">info@ziswaf.org</span>
                                 </p>
                                 <p>Web:
-                                    <span class="pull-right grey">https://idcloudhost.com</span>
+                                    <span class="pull-right grey">https://ziswaf.org/</span>
                                 </p>
 
 

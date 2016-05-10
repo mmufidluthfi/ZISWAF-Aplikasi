@@ -15,46 +15,9 @@ Route::group(['middleware' => 'web'], function () {
 	Route::auth();
 });
 
-Route::group(['middleware' => ['web','auth']], function()
-{
-	Route::get('/home', 'HomeController@index');
-
-	Route::get('/',function(){
-		if(Auth::user()->admin == 1) {
-			return view('administrator.administrator-home');
-		} elseif (Auth::user()->admin == 0){
-			return view('dashboard.dashboard-home');
-		} elseif (Auth::user()->admin == 2){
-			return view('lkm.dashboard-home');
-		} elseif (Auth::user()->admin == 3){
-			return view('bank.bank-home');
-		} elseif (Auth::user()->admin == 4){
-			return view('superadmin.superadmin');
-		} else {
-			return view('login');
-		}
-
-	});
-});
-
-//SuperAdmin
-// Route::get('/superadmin/superadmin', function () {
-//     return view('superadmin.superadmin');
-// });
-
 Route::post('daftarlembaga', 'UsersController@daftarlembaga');
 
 Route::get('/superadmin/superadmin', 'UsersController@getAllLembaga');
-
-// Route::get('/', 'BankController@getIDBank');
-
-// Route::get('admin', ['middleware' => ['web', 'auth', 'admin'], function(){
-// 	return view('administrator/administrator-home');
-// }]);
-
-
-//Halaman Welcome
-// Route::get('/welcome', 'HomeController@index');
 
 //Pendanaan (Halaman Utama)
 Route::get('/', 'PendanaanController@getAllPendanaan');
@@ -101,6 +64,9 @@ Route::get('/tos', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+Route::post('simpan_pesan', 'ContactusController@simpan_pesan');
+
 
 //Dashboard Home
 Route::get('/dashboard/home', function () {
@@ -260,4 +226,10 @@ Route::post('uploadinvoicereject', 'BankController@uploadinvoicereject');
 Route::post('hapuslkm', 'UsersController@hapuslkm');
 
 Route::post('hapusbank', 'UsersController@hapusbank');
+
+
+//PERSON
+Route::get('/person/dashboard', function () {
+    return view('person.dashboard-reportpendanaan');
+});
 
