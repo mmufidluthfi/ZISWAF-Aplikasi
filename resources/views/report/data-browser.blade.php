@@ -21,32 +21,32 @@
 		               <div class="row-fluid stats-box" >
 		                  <div class="span2">
 		                  	<div class="stats-box-title">Total Lembaga ZISWAF</div>
-		                    <div class="stats-box-all-info"><i  style="color:#3366cc;"></i> 1 </div>
+		                    <div class="stats-box-all-info"><i  style="color:#3366cc;"></i> {{$totallembaga}} </div>
 		                  </div>
 		                  
 		                  <div class="span2">
-		                    <div class="stats-box-title">Total Bank yang mendanai</div>
-		                    <div class="stats-box-all-info"><i  style="color:#F30"></i> 3 </div>
+		                    <div class="stats-box-title">Total Bank Terdaftar</div>
+		                    <div class="stats-box-all-info"><i  style="color:#F30"></i> {{$totalbank}} </div>
 		                  </div>
 		                  
 		                  <div class="span2">
 		                    <div class="stats-box-title">Total LKM</div>
-		                    <div class="stats-box-all-info"><i style="color:#3C3"></i> 5 </div>
+		                    <div class="stats-box-all-info"><i style="color:#3C3"></i> {{$totallkm}} </div>
 		                  </div>
 						  
 						  <div class="span2">
 		                    <div class="stats-box-title">Total New UMKM</div>
-		                    <div class="stats-box-all-info"><i style="color:#3C3"></i> 15 </div>
+		                    <div class="stats-box-all-info"><i style="color:#3C3"></i> {{$totalnewumkm}} </div>
 		                  </div>
 						  
 						  <div class="span2">
 		                    <div class="stats-box-title">Total UMKM</div>
-		                    <div class="stats-box-all-info"><i style="color:#3C3"></i> 5 </div>
+		                    <div class="stats-box-all-info"><i style="color:#3C3"></i> {{$totalumkm}} </div>
 		                  </div>
 						  
 						  <div class="span2">
 		                    <div class="stats-box-title">Total Donatur</div>
-		                    <div class="stats-box-all-info"><i style="color:#3C3"></i> 5 </div>
+		                    <div class="stats-box-all-info"><i style="color:#3C3"></i> {{$totaldonatur}} </div>
 		                  </div>
 		               </div>
 		            </div>
