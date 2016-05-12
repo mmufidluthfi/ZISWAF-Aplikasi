@@ -44,4 +44,23 @@ class mmsreportController extends Controller
         return view('report.data-browser',['totallembaga' => $totallembaga], ['totalbank' => $totalbank])->withTotallkm($totallkm)->withTotalumkm($totalumkm)->withTotalnewumkm($totalnewumkm)->withTotaldonatur($totaldonatur);
 		// return view('report.data-browser')->withTotalnewumkm($totalnewumkm)->withTotallembaga($total;
 	}
+
+    public function getdatadahsboardPendanaan(){
+        $totalumkmterdaftar = DB::table('pendanaan')
+                        ->distinct('pendanaan.id_umkm')
+                        ->count('pendanaan.id_umkm');
+
+        $totalumkmterdaftarterdanai = DB::table('pendanaan')
+                        ->where('pendanaan.status', '=', 1)
+                        ->distinct('pendanaan.id_umkm')
+                        ->count('pendanaan.id_umkm');
+
+        $totaltransaksi = DB::table('transaksi')
+                        ->where('transaksi.status', '=', 1)
+                        ->sum('transaksi.nominal');
+
+        // return view('administrator.administrator-listdonasi')->withPendanaanadmin($pendanaanadmin);
+        return view('report.dashboard',['totalumkmterdaftar' => $totalumkmterdaftar], ['totalumkmterdaftarterdanai' => $totalumkmterdaftarterdanai])->withTotaltransaksi($totaltransaksi);
+        // return view('report.data-browser')->withTotalnewumkm($totalnewumkm)->withTotallembaga($total;
+    }
 }

@@ -236,9 +236,9 @@ Route::get('/person/dashboard', function () {
 });
 
 //REPORT
-Route::get('/report/dashboard', function () {
-    return view('report.dashboard');
-});
+// Route::get('/report/dashboard', function () {
+//     return view('report.dashboard');
+// });
 
 Route::get('/report/forecast', function () {
     return view('report.forecast');
@@ -249,3 +249,7 @@ Route::get('/report/forecast', function () {
 // });
 
 Route::get('/report/data-browser/','mmsreportController@getdatabrowser');
+
+Route::get('/report/dashboard/','mmsreportController@getdatadahsboardPendanaan');
+
+

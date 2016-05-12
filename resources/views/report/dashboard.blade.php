@@ -25,17 +25,17 @@
 	                 <div class="row-fluid stats-box">
 	                    <div class="span4">
 	                    	<div class="stats-box-title">New UMKM yang terdaftar</div>
-	                      <div class="stats-box-all-info"><i class="icon-home" style="color:#3366cc;"></i> 55 </div>
+	                      <div class="stats-box-all-info"><i class="icon-home" style="color:#3366cc;"></i> {{$totalumkmterdaftar}} </div>
 	                    </div>
 	                    
 	                    <div class="span4">
 	                      <div class="stats-box-title">New UMKM yang didanai</div>
-	                      <div class="stats-box-all-info"><i class="icon-heart"  style="color:#F30"></i> 30 </div>
+	                      <div class="stats-box-all-info"><i class="icon-heart"  style="color:#F30"></i> {{$totalumkmterdaftarterdanai}} </div>
 	                    </div>
 	                    
 	                    <div class="span4">
-	                      <div class="stats-box-title">Distribusi dana New UMKM</div>
-	                      <div class="stats-box-all-info"><i class="icon-money" style="color:#3C3"></i> 135Jt </div>
+	                      <div class="stats-box-title">Distribusi Dana New UMKM</div>
+	                      <div class="stats-box-all-info"><i class="icon-money" style="color:#3C3"></i> {{$totaltransaksi}} </div>
 	                    </div>
 	                 </div>
 	              </div>
