@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-
+ 
 @section('content')
 	@if (Auth::guest())
 
@@ -28,6 +28,7 @@
 				</header>
 				<div class="content no-padding timeline">
 					<div class="content">
+						<center><font color="green"><?php echo Session::get('message-password'); ?></font></center><br>
 						<form action="{{ URL::to('editpassword') }}" method="post">
                             {!! csrf_field() !!}
 
@@ -36,21 +37,21 @@
 
 							<div class="field-wrap">
 								<br/><br/>Password Lama : <br/><br/>
-								<input type="password" name="passlama"/>
+								<input required type="password" name="passlama"/>
 								@if($errors->has('passlama'))
 									<font color="red"> {{ $errors->first('passlama')}}</font>
 								@endif
 							</div>
 							<div class="field-wrap">
 								<br/><br/>Password Baru : <br/><br/>
-								<input type="password" name="password"/>
+								<input required type="password" name="password"/>
 								@if($errors->has('password'))
 									<font color="red"> {{ $errors->first('password')}}</font>
 								@endif
 							</div>
 							<div class="field-wrap">
-								<br/><br/>Password Baru : <br/><br/>
-								<input type="password" name="konfirmasipassbaru"/>
+								<br/><br/>Konfirmasi Password Baru : <br/><br/>
+								<input required type="password" name="konfirmasipassbaru"/>
 								@if($errors->has('konfirmasipassbaru'))
 									<font color="red"> {{ $errors->first('konfirmasipassbaru')}}</font>
 								@endif

@@ -17,7 +17,7 @@ Route::group(['middleware' => 'web'], function () {
 
 Route::post('daftarlembaga', 'UsersController@daftarlembaga');
 
-Route::get('/superadmin/superadmin', 'UsersController@getAllLembaga');
+Route::get('/superadmin/superadmin', 'UsersController@getAllLembagaBank');
 
 //Pendanaan (Halaman Utama)
 Route::get('/', 'PendanaanController@getAllPendanaan');
@@ -85,6 +85,7 @@ Route::get('/dashboard/pengaturan', function () {
 });
 
 Route::post('editpassword', 'UsersController@editpassword');
+
 Route::post('uploadfoto', 'UsersController@uploadfoto');
 
 //Administrator
@@ -156,6 +157,7 @@ Route::post('input_lkm','UsersController@input_lkm');
 
 Route::post('input_bank','UsersController@input_bank');
 
+Route::post('input_umkm','UsersController@input_umkm');
 
 //LKM Route
 Route::get('/lkm/home', function () {
@@ -230,6 +232,18 @@ Route::post('hapusbank', 'UsersController@hapusbank');
 
 //PERSON
 Route::get('/person/dashboard', function () {
-    return view('person.dashboard-reportpendanaan');
+    return view('person.dashboard');
 });
 
+//REPORT
+Route::get('/report/dashboard', function () {
+    return view('report.dashboard');
+});
+
+Route::get('/report/forecast', function () {
+    return view('report.forecast');
+});
+
+Route::get('/report/data-browser', function () {
+    return view('report.data-browser');
+});

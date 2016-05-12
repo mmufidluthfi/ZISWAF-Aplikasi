@@ -35,14 +35,8 @@
 										  <li>
 										    <a href="#formcontrols1" data-toggle="tab">Pendaftaran akun LKM</a>
 										  </li>
-										  <li>
-										    <a href="#jscontrols1" data-toggle="tab">List LKM</a>
-										  </li>
-										  <li>
-										    <a href="#formcontrols2" data-toggle="tab">Pendaftaran akun Bank</a>
-										  </li>
 										  <li class="active">
-										    <a href="#jscontrols2" data-toggle="tab">List Bank</a>
+										    <a href="#jscontrols1" data-toggle="tab">List LKM</a>
 										  </li>
 										</ul>
 									
@@ -129,7 +123,7 @@
 												</form>
 											</div>
 
-											<div class="tab-pane" id="jscontrols1">
+											<div class="tab-pane active" id="jscontrols1">
 													<fieldset>
 														                                
 														<div class="control-group">
@@ -167,126 +161,6 @@
 														</div> <!-- /control-group -->
 													</fieldset>
 											</div>
-											
-											<div class="tab-pane" id="formcontrols2">
-												<form class="form-horizontal" role="form" method="POST" action="{{ URL::to('input_bank') }}">
-													{!! csrf_field() !!}
-													<fieldset>
-														<input type="hidden" value="default.png" name="url_foto">
-														<input type="hidden" value="{{ Auth::user()->id }}" name="lembagaID">
-
-								                        <!-- Register LKM -->
-								                        <input type="hidden" value="3" name="admin">
-														
-														<div class="control-group form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-								                            <label class="col-md-4 control-label">Nama Bank</label>
-
-								                            <div class="col-md-6 controls">
-								                                <input required type="text" class="form-control" name="name" value="{{ old('name') }}">
-
-								                                @if ($errors->has('name'))
-								                                    <span class="help-block">
-								                                        <strong>{{ $errors->first('name') }}</strong>
-								                                    </span>
-								                                @endif
-								                            </div>
-								                        </div>
-														
-														<div class="control-group form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-								                            <label class="col-md-4 control-label">Email Bank</label>
-
-								                            <div class="col-md-6 controls" >
-								                                <input required type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-								                                @if ($errors->has('email'))
-								                                    <span class="help-block">
-								                                        <strong>{{ $errors->first('email') }}</strong>
-								                                    </span>
-								                                @endif
-								                            </div>
-								                        </div>
-
-								                        <div class="control-group form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-								                            <label class="col-md-4 control-label">Password</label>
-
-								                            <div class="col-md-6 controls">
-								                                <input required type="password" class="form-control" name="password">
-
-								                                @if ($errors->has('password'))
-								                                    <span class="help-block">
-								                                        <strong>{{ $errors->first('password') }}</strong>
-								                                    </span>
-								                                @endif
-								                            </div>
-								                        </div>
-
-								                        <div class="control-group form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-								                            <label class="col-md-4 control-label">Konfirmasi Password</label>
-
-								                            <div class="col-md-6 controls">
-								                                <input required type="password" class="form-control" name="password_confirmation">
-
-								                                @if ($errors->has('password_confirmation'))
-								                                    <span class="help-block">
-								                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-								                                    </span>
-								                                @endif
-								                            </div>
-								                        </div>
-
-														
-														<div class="form-group">
-								                            <div class="col-md-6 col-md-offset-4">
-								                                <button type="submit" class="btn btn-primary">
-								                                    <i class="fa fa-btn fa-user"></i>Daftar Bank
-								                                </button>
-								                            </div>
-								                        </div>
-
-													</fieldset>
-												</form>
-											</div>
-											
-											<div class="tab-pane active" id="jscontrols2">
-													<fieldset>
-															                                
-															<div class="control-group">
-															<div id="list_ukm" class="tab-pane">
-																
-																<div class="widget-content">
-																	  
-																	  <table class="table table-striped table-bordered">
-																		<thead>
-																		  <tr>
-																			<th> ID Bank </th>
-																			<th> Nama Bank </th>
-																			<th> Email </th>
-																			<th> Password </th>
-																			<th class="td-actions"> Action </th>
-																		  </tr>
-																		</thead>
-																		<tbody>
-																		  @foreach($listbank as $bank)
-																		  <tr>
-																			<td> {{$bank->id}} </td>
-																			<td> {{$bank->name}} </td>
-																			<td> {{$bank->email}} </td>
-																			<td> {{$bank->password}} </td>
-																			<td class="td-actions"><center><form class="form-horizontal" role="form" method="POST" action="{{ URL::to('hapusbank') }}">{!! csrf_field() !!}<input type="hidden" value="{{$bank->id}}" name="id"><button type="submit" class="btn btn-danger"><i class="fa fa-btn fa-user"></i>Delete</button></form></center></td>
-																		  </tr>
-																		  @endforeach
-																		</tbody>
-																	  </table>
-																	  
-																	  <?php echo $listbank->render(); ?>
-																	</div>
-															</div> <!-- /controls -->	
-													</div> <!-- /control-group -->
-													<br />
-														</fieldset>
-											</div>
-
-
 											
 										</div>
 									  

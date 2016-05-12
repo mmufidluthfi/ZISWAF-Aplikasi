@@ -72,57 +72,45 @@ class UsersController extends Controller
         );
 
         if($validator->fails()) {
+            
             return redirect()->back()->withErrors($validator);
 
         } else {
-            // Change
-            // passed validation
 
-        // Grab the current user
-            $posteditpassword = $request->all();
+            $postpengaturan = $request->all();
 
-            $posteditpassword = array(
-                'id_userpassword'    => $posteditpassword['id_userpassword'], 
-                'passlama'           => bcrypt($posteditpassword['passlama']), 
-                'password'           => bcrypt($posteditpassword['password']), 
-                'konfirmasipassbaru' => bcrypt($posteditpassword['konfirmasipassbaru']), 
+            $post = array(
+                'id_userpassword'        => $postpengaturan['id_userpassword'], 
+                'password_userpassword'  => $postpengaturan['password_userpassword'],
+                'passlama'               => $postpengaturan['passlama'], 
+                'password'               => $postpengaturan['password'],
             ); 
 
-            $user           = Input::get('id_userpassword');
+            $user          = Input::get('id_userpassword');
 
-            // Get passwords from the user's input
-            $old_password   = Input::get('passlama');
-            $old_passwordvalidation   = Input::get('password_userpassword');
-            $password       = Input::get('password');
+            $newpassword   = Input::get('password');
 
-            var_dump($old_passwordvalidation);
+            $newpasswordencrypt = bcrypt($newpassword);
+
+            $oldpassword   = Input::get('passlama');
+
+            $oldpassworddb = Input::get('password_userpassword');
             
 
-            // test input password against the existing one
-        //     if(Hash::check($old_password, $old_passwordvalidation){
+            if(Hash::check($oldpassword, $oldpassworddb)){
 
-        //         $user->password = Hash::make($password);
+                DB::table('users')->where('id', $user)->update(['password' => $newpasswordencrypt]);
 
-        //         // save the new password
-        //         if($user->save()) {
+                \Session::flash('message-password', 'Password Berhasil diubah');
+                return redirect('dashboard/pengaturan/');
 
-        //             var_dump($posteditpassword->password);
-        //             // DB::table('users')->where('id', $posteditpassword['id_userpassword'])->update(['password' => bcrypt($posteditpassword['password'])]);
+            } else {
+                
+                \Session::flash('message-password', 'Password Gagal diubah, Coba masukkan kembali');
+                return redirect('dashboard/pengaturan/');
 
-        //             // return Redirect::route('dashboard.dashboard-pengaturan')
-        //             //         ->with('global', 'Your password has been changed.');
+            }
 
-                            
-        //         }
-
-        //     } else {
-        //         return Redirect::route('dashboard.dashboard-home')
-        //             ->with('global', 'Your old password is incorrect.');
-        //     }
-        // }
-
-        // return Redirect::route('dashboard.dashboard-pendanaan')
-        // ->with('global', 'Your password could not be changed.');
         }
     }
 
@@ -196,12 +184,11 @@ class UsersController extends Controller
         } else {
 
             $datatransaksi = array(
-                'name' => $databank['name'],
-                'email' => $databank['email'],
-                'password' => bcrypt($databank['password']),
-                'url_foto' => $databank['url_foto'],
-                'lembagaID' => $databank['lembagaID'],
-                'admin' => $databank['admin'],
+                'name'       => $databank['name'],
+                'email'      => $databank['email'],
+                'password'   => bcrypt($databank['password']),
+                'url_foto'   => $databank['url_foto'],
+                'admin'      => $databank['admin'],
                 'created_at' => $dateimputtgl,
                 'updated_at' => $dateimputtgl,
             );
@@ -209,7 +196,6 @@ class UsersController extends Controller
             $datainformasibank = array(
                 'nama_bank' => $databank['name'],
                 'email_bank' => $databank['email'],
-                'lembagaID' => $databank['lembagaID'],
             );
 
             $i = DB::table('users')->insertGetId($datatransaksi);
@@ -218,14 +204,58 @@ class UsersController extends Controller
             DB::table('userbank')->where('id_bank', $i2)->update(['id_users' => $i]);
 
                 if ($i > 0) {
-
-                    $id_lembaga = $databank['lembagaID'];
                     
                       \Session::flash('message-inputberhasil', 'Bank Berhasil ditambahkan');
                   
-                  return redirect('administrator/manageuser/'.$id_lembaga);
+                  return redirect('superadmin/superadmin/');
                   
                 } 
+            
+        }
+
+    }
+
+    public function input_umkm(Request $request)
+    {
+
+        $datalkm = $request->all();
+
+        $v = \Validator::make($request->all(),
+            [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:6|confirmed',
+            ]);
+
+        $dateimputtgl = Carbon::now()->format('Y-m-d H:i:s');
+
+        if($v->fails())
+        {
+
+            return redirect()->back()->withErrors($v->errors());
+
+        } else {
+
+            $datatransaksi = array(
+                'name' => $datalkm['name'],
+                'email' => $datalkm['email'],
+                'password' => bcrypt($datalkm['password']),
+                'url_foto' => $datalkm['url_foto'],
+                'lembagaID' => $datalkm['lembagaID'],
+                'admin' => $datalkm['admin'],
+                'created_at' => $dateimputtgl,
+                'updated_at' => $dateimputtgl,
+            );
+
+            $i = DB::table('users')->insert($datatransaksi);
+
+            if ($i > 0) {
+                
+                  \Session::flash('message-inputberhasil', 'UMKM Berhasil ditambahkan');
+              
+              return redirect('lkm/home/');
+              
+            } 
             
         }
 
@@ -239,18 +269,23 @@ class UsersController extends Controller
                     ->orderBy('users.id', 'desc')
                     ->paginate(5);
 
-        $listbank = DB::table('users')
-                    ->select('users.*')
-                    ->where('users.lembagaID', '=', $id )
-                    ->where('users.admin', '=', 3)
-                    ->orderBy('users.id', 'desc')
-                    ->paginate(5);
-
-        return view('administrator.manageuser',['listlkm' => $listlkm],['listbank' => $listbank]);  
-
-        // return view('administrator.administrator-listdonasi')->withPendanaanadmin($pendanaanadmin);
-        // return view('administrator.listuser')->withListlkm($listlkm);
+        return view('administrator.manageuser',['listlkm' => $listlkm]);  
     }
+
+    // public function getAllInfobank(){
+
+    //     $listbank = DB::table('users')
+    //                 ->select('users.*')
+    //                 ->where('users.lembagaID', '=', $id )
+    //                 ->where('users.admin', '=', 3)
+    //                 ->orderBy('users.id', 'desc')
+    //                 ->paginate(5);
+
+    //     return view('superadmin.superadmin',['listbank' => $listbank]);  
+
+    //     // return view('administrator.administrator-listdonasi')->withPendanaanadmin($pendanaanadmin);
+    //     // return view('administrator.listuser')->withListlkm($listlkm);
+    // }
 
     public function daftarlembaga(Request $request)
     {
@@ -303,7 +338,7 @@ class UsersController extends Controller
 
     }
 
-    public function getAllLembaga(){
+    public function getAllLembagaBank(){
         
         $listlembaga = DB::table('users')
                     ->select('users.*')
@@ -311,7 +346,15 @@ class UsersController extends Controller
                     ->orderBy('users.id', 'desc')
                     ->paginate(10);
 
-        return view('superadmin.superadmin')->withListlembaga($listlembaga);
+        $listbank = DB::table('users')
+                    ->select('users.*')
+                    ->where('users.admin', '=', 3)
+                    ->orderBy('users.id', 'desc')
+                    ->paginate(5);
+
+        return view('superadmin.superadmin',['listlembaga' => $listlembaga],['listbank' => $listbank]);  
+
+        // return view('superadmin.superadmin')->withListlembaga($listlembaga);
     }
 
     public function hapuslkm(Request $request)
@@ -322,6 +365,7 @@ class UsersController extends Controller
 
         $iduseraktif = Auth::user()->id;
 
+        \Session::flash('message-inputberhasil', 'LKM Berhasil Dihapus');
         return redirect('administrator/manageuser/'.$iduseraktif);
     }
 
@@ -333,9 +377,9 @@ class UsersController extends Controller
         DB::table('users')->where('id', '=', $hapusdatabank['id'])->delete();
         DB::table('userbank')->where('id_users', '=', $hapusdatabank['id'])->delete();
 
-        $iduseraktif = Auth::user()->id;
+        \Session::flash('message-inputberhasil', 'Bank Berhasil Dihapus');
+        return redirect('superadmin/superadmin/');
 
-        return redirect('administrator/manageuser/'.$iduseraktif);
     }
 
 

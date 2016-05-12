@@ -6,32 +6,24 @@
 
 		<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
 
-		@elseif (Auth::user()->admin==2)
+		@elseif (Auth::user()->admin==5)
 
 		<nav>
-			<ul>
-				<li class="section"><a href="#" > Penggalangan Dana</a>
-					<ul class="submenu">
-					<li><a href="{{ url('/lkm/listcrowd')}}/{{ Auth::user()->id }}">Daftar Penggalangan Dana</a></li>
-					<li class="section"><a href="{{ url('/lkm/laporancrowd')}}/{{ Auth::user()->id }}">Laporan Penggalangan Dana</a></li>
-					</ul>
-				</li>
-				<li ><a href="#"> Pendanaan Usaha</a>
-				<ul class="submenu">
-					<li><a href="{{ url('/lkm/dashboard-pendanaanusaha')}}/{{ Auth::user()->id }}">Daftar Pendanaan Bank</a></li>
-					<li><a href="{{ url('/lkm/dashboard-reportpendanaanbank')}}/{{ Auth::user()->id }}">Laporan Pendanaan Bank</a></li>
-				</ul>
-				</li>
-				
-				<li><a href="#"> Pendanaan Lembaga ZISWAF</a>
-				<ul class="submenu">
-					<li><a href="{{ url('/lkm/dashboard-listpendanaanziswaf')}}/{{ Auth::user()->id }}">Daftar Pendanaan Lembaga</a></li>
-					<li><a href="{{ url('/lkm/dashboard-reportpendanaanziswaf/')}}/{{ Auth::user()->id }}">Laporan Pendanaan Lembaga</a></li>
-					</ul>
-				</li>
-			</ul>
-		</nav>
+		<ul>
 			
+			<li ><a href="#"> Pendanaan Usaha</a>
+			<ul class="submenu">
+				<li><a href="{{ url('/person/dashboard-pendanaanusaha')}}/{{ Auth::user()->id }}">Daftar Pendanaan Bank</a></li>
+				<li><a href="{{ url('/person/dashboard-reportusahabank')}}/{{ Auth::user()->id }}">Laporan Pendanaan Bank</a></li>
+			</li>
+			</ul>
+			<li ><a href="{{ url('/person/dashboard-pendanaancrowd')}}/{{ Auth::user()->id }}">Laporan Proyek</a></li>
+			<li ><a href="{{ url('/person/dashboard-pendanaanziswaf')}}/{{ Auth::user()->id }}">Laporan Ziswaf </a>
+			</li>
+			
+		</ul>
+		</nav>
+
 			<section class="content">
 				<section class="widget">
 					<header>
@@ -57,12 +49,12 @@
 								<form action="{{ URL::to('createLaporanBank') }}" method="post">
 									{!! csrf_field() !!}
 
-									<input type="hidden" value="{{ Auth::user()->id }}" name="id_lkm">
+									<input type="hidden" value="{{ Auth::user()->id }}" name="id_person">
 
 									<td>
 										<select name="id_pendanaan_bank">
 								 			@foreach ($tampilnamabank as $tpb)
-								 				<option value="{{ $tpb->id_pendanaan_bank }}">{{ $tpb->nama_proyek }}</option>
+								 				<option value="{{ $tpb->id_pendanaan_usaha }}">{{ $tpb->nama_proyek }}</option>
 								 			@endforeach
 								 		</select>
 									</td>
@@ -92,6 +84,8 @@
 						</table>
 						</div>
 
+						<br/><br/>					
+
 						<br/><br/>
 						<center><font size="+2">List Laporan Pendanaan Bank</font></center><br>
 						<div style="overflow-x:auto;">
@@ -117,7 +111,7 @@
 									<td>{{$rpb->total_pemasukan}}</td>
 									<td>{{$rpb->saldo_usaha}}
 									</td>
-									<td><a href="{{ URL::to('/lkm/dashboard-detailreportpendanaanbank/'.$rpb->id_laporan_b)}}"><button>Lihat</button></a></td>
+									<td><a href="{{ URL::to('/person/dashboard-detailreportpendanaanbank/'.$rpb->id_laporan_b.'/'. Auth::user()->id)}}"><button>Lihat</button></a></td>
 								</tr>
 								@endforeach
 								</tbody>

@@ -9,27 +9,19 @@
 		@elseif (Auth::user()->admin==5)
 
 		<nav>
-			<ul>
-				<li class="section"><a href="#" > Penggalangan Dana</a>
-					<ul class="submenu">
-					<li><a href="{{ url('/lkm/listcrowd')}}/{{ Auth::user()->id }}">Daftar Penggalangan Dana</a></li>
-					<li class="section"><a href="{{ url('/lkm/laporancrowd')}}/{{ Auth::user()->id }}">Laporan Penggalangan Dana</a></li>
-					</ul>
-				</li>
-				<li ><a href="#"> Pendanaan Usaha</a>
-				<ul class="submenu">
-					<li><a href="{{ url('/lkm/dashboard-pendanaanusaha')}}/{{ Auth::user()->id }}">Daftar Pendanaan Bank</a></li>
-					<li><a href="{{ url('/lkm/dashboard-reportpendanaanbank')}}/{{ Auth::user()->id }}">Laporan Pendanaan Bank</a></li>
-				</ul>
-				</li>
-				
-				<li><a href="#"> Pendanaan Lembaga ZISWAF</a>
-				<ul class="submenu">
-					<li><a href="{{ url('/lkm/dashboard-listpendanaanziswaf')}}/{{ Auth::user()->id }}">Daftar Pendanaan Lembaga</a></li>
-					<li><a href="{{ url('/lkm/dashboard-reportpendanaanziswaf/')}}/{{ Auth::user()->id }}">Laporan Pendanaan Lembaga</a></li>
-					</ul>
-				</li>
+		<ul>
+			
+			<li ><a href="#"> Pendanaan Usaha</a>
+			<ul class="submenu">
+				<li><a href="{{ url('/person/dashboard-pendanaanusaha')}}/{{ Auth::user()->id }}">Daftar Pendanaan Bank</a></li>
+				<li><a href="{{ url('/person/dashboard-reportusahabank')}}/{{ Auth::user()->id }}">Laporan Pendanaan Bank</a></li>
+			</li>
 			</ul>
+			<li ><a href="{{ url('/person/dashboard-pendanaancrowd')}}/{{ Auth::user()->id }}">Laporan Proyek</a></li>
+			<li ><a href="{{ url('/person/dashboard-pendanaanziswaf')}}/{{ Auth::user()->id }}">Laporan Ziswaf </a>
+			</li>
+			
+		</ul>
 		</nav>
 			
 			<section class="content">
@@ -41,24 +33,6 @@
 						</hgroup>
 					</header>
 					<div class="content">
-						<center><font size="+2">Submit Laporan</font></center><br>
-						<div style="overflow-x:auto;">
-						<table id="myTable" border="0" width="100">
-						<thead>
-							<tr>
-								<th>Nama Proyek</th>
-								<th>Bulan</th>
-								<th>Tahun</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-							<tbody>
-							
-							</tbody>
-						</table>
-						</div>
-
-						<br/><br/>
 						<center><font size="+2">List Laporan</font></center><br>
 						<div style="overflow-x:auto;">
 						<table id="myTable" border="0" width="100">
@@ -74,10 +48,26 @@
 								</tr>
 							</thead>
 								<tbody>
+								@foreach($reportbulanan as $rc)		
 								
+								<tr>
+									<td>{{$rc->nama_proyek}}</td>
+									<td>{{date('F', mktime(0, 0, 0, $rc->bulan, 10))}}</td>
+									<td>{{$rc->tahun}}</td>
+									<td>{{$rc->total_pengeluaran}}</td>
+									<td>{{$rc->total_pemasukan}}</td>
+									<td>{{$rc->saldo_usaha}}
+									</td>
+								
+									<td><a href="{{ URL::to('/person/dashboard-detailreportpendanaan/'.$rc->id_laporan_c.'/'. Auth::user()->id)}}"><button>Lihat</button></a></td>
+									
+								</tr>
+
+								@endforeach
 								</tbody>
 							</table>
-							
+							<div style="overflow-x:auto;">
+							<br/><?php echo $reportbulanan->render(); ?>
 					</div>
 				</section>
 			</section>

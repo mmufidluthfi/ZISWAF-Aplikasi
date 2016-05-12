@@ -6,31 +6,23 @@
 
 		<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
 
-		@elseif (Auth::user()->admin==2)
+		@elseif (Auth::user()->admin==5)
 			
-			<nav>
-			<ul>
-				<li><a href="#"> Penggalangan Dana</a>
-					<ul class="submenu">
-					<li><a href="{{ url('/lkm/listcrowd')}}/{{ Auth::user()->id }}">Daftar Penggalangan Dana</a></li>
-					<li><a href="{{ url('/lkm/laporancrowd')}}/{{ Auth::user()->id }}">Laporan Penggalangan Dana</a></li>
-					</ul>
-				</li>
-				<li class="section"><a href="#"> Pendanaan Usaha</a>
-				<ul class="submenu">
-					<li class="section"><a href="{{ url('/lkm/dashboard-pendanaanusaha')}}/{{ Auth::user()->id }}">Daftar Pendanaan Bank</a></li>
-					<li><a href="{{ url('/lkm/dashboard-reportpendanaanbank')}}/{{ Auth::user()->id }}">Laporan Pendanaan Bank</a></li>
-				</ul>
-				</li>
-				
-				<li><a href="#"> Pendanaan Lembaga ZISWAF</a>
-				<ul class="submenu">
-					<li><a href="{{ url('/lkm/dashboard-listpendanaanziswaf')}}/{{ Auth::user()->id }}">Daftar Pendanaan Lembaga</a></li>
-					<li><a href="{{ url('/lkm/dashboard-reportpendanaanziswaf/')}}/{{ Auth::user()->id }}">Laporan Pendanaan Lembaga</a></li>
-					</ul>
-				</li>
+		<nav>
+		<ul>
+			
+			<li ><a href="#"> Pendanaan Usaha</a>
+			<ul class="submenu">
+				<li><a href="{{ url('/person/dashboard-pendanaanusaha')}}/{{ Auth::user()->id }}">Daftar Pendanaan Bank</a></li>
+				<li><a href="{{ url('/person/dashboard-reportusahabank')}}/{{ Auth::user()->id }}">Laporan Pendanaan Bank</a></li>
+			</li>
 			</ul>
-			</nav>
+			<li ><a href="{{ url('/person/dashboard-pendanaancrowd')}}/{{ Auth::user()->id }}">Laporan Proyek</a></li>
+			<li ><a href="{{ url('/person/dashboard-pendanaanziswaf')}}/{{ Auth::user()->id }}">Laporan Ziswaf </a>
+			</li>
+			
+		</ul>
+		</nav>
 
 			<section class="content">
 			<section class="widget">
@@ -48,14 +40,13 @@
 						<tr>
 							<th>Nama Pendanaan</th>
 							<th>Nama Bank</th>
-							<th>Nama UMKM</th>
 							<th>Nominal (Rp)</th>
 							<th>Tanggal Permohonan</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<form action="{{ URL::to('createPendanaanBank') }}" method="post">
+						<form action="{{ URL::to('createPendanaanUsahaBank') }}" method="post">
 						{!! csrf_field() !!}
 
 						<input type="hidden" value="{{ Auth::user()->id }}" name="id_user">
@@ -65,14 +56,7 @@
 								<td>
 									<select name="id_bank">
 							 			@foreach ($userbankpendanaan as $ubp)
-							 				<option value="{{ $ubp->id_bank }}">{{ $ubp->nama_bank }}</option>
-							 			@endforeach
-							 		</select>
-								</td>
-								<td>
-									<select name="id_umkm">
-							 			@foreach ($userumkmpendanaan as $tpl)
-							 				<option value="{{ $tpl->id_umkm }}">{{ $tpl->nama_pj }}</option>
+							 				<option value="{{ $ubp->id}}">{{ $ubp->name }}</option>
 							 			@endforeach
 							 		</select>
 								</td>
@@ -94,7 +78,6 @@
 							<tr>
 								<th>Nama Pendanaan</th>
 								<th>Nama Bank</th>
-								<th>Nama UMKM</th>
 								<th>Nominal (Rp)</th>
 								<th>Tanggal Permohonan</th>
 								<th>Status</th>
@@ -104,21 +87,16 @@
 							@foreach($tampilfundbank as $tfb)
 							<tr>
 								<td>{{$tfb->nama_proyek}}</td>
-								<td>{{$tfb->nama_bank}}</td>
-								<td>{{$tfb->nama_pj}}</td>
+								<td>{{$tfb->namabank}}</td>
 								<td>{{$tfb->total_dana}}</td>
 								<td>{{$tfb->tgl_pendanaan}}</td>
 								<td>
 									<center>
 										<?php 
 											if ($tfb->status == 1) {
-												echo "<font color='green'>Disetujui Lembaga</font>";
-											} else if ($tfb->status == 2) {
-												echo "<font color='red'>Ditolak Lembaga</font>";
-											} else if ($tfb->status == 3) {
 												echo "<font color='green'>Disetujui Bank</font>";
-											} else if ($tfb->status == 4) {
-												echo "<font color='red'>Ditolak Lembaga</font>";
+											} else if ($tfb->status == 2) {
+												echo "<font color='red'>Ditolak Bank</font>";
 											} else {
 												echo "<font color='orange'>Status Pending</font>";
 											}
@@ -140,6 +118,9 @@
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 
 		@elseif (Auth::user()->admin==1)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+
+		@elseif (Auth::user()->admin==2)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 		
 		@elseif (Auth::user()->admin==3)

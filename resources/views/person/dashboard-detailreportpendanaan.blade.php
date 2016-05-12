@@ -6,9 +6,7 @@
 
 		<meta http-equiv="refresh" content="0;URL='{{ url('/login') }}'" />
 
-		@elseif (Auth::user()->admin==2)	
-				
-			<br><br>
+		@elseif (Auth::user()->admin==5)
 			<section class="widget">
 				<header>
 					<span class="icon">&#128196;</span>
@@ -21,7 +19,7 @@
 				<div style="overflow-x:auto;">
 				<table id="myTable" border="0" >
 				<div class="content" width="100">
-					<form action="{{ URL::to('uploaddetaillaporanbank') }}" method="post" >
+					<form action="{{ URL::to('uploaddetaillaporancrowdperson') }}" method="post" enctype="multipart/form-data">
 						{!! csrf_field() !!}
 
 						<input type="hidden" value="0" name="sementara_dana">
@@ -45,7 +43,8 @@
 
 						<div class="field-wrap">
 							<input required type="text" name="jumlah_transaksi" placeholder="Total Dana Yang Dibutuhkan"/>
-							<input type="hidden" name="id_laporan_b" value="{{$detailDana['id']}}" ></input>
+							<input type="hidden" name="id_laporan_c" value="{{$detailDana['id']}}" ></input>
+							<input type="hidden" name="id_by" value="{{$detailDana['ids']}}" ></input>
 						</div>
 						<button type="submit" class="green">Post</button>
 					</form>
@@ -54,8 +53,6 @@
 				</div>
 				</div>
 			</section>
-
-	  		<br><br>
 			<section class="widget">
 				<header>
 					<span class="icon">&#128196;</span>
@@ -78,8 +75,9 @@
 								
 							</tr>
 						</thead>
-						<tbody>							
+						<tbody>
 							@foreach($detailDana['data'] as $rc)		
+							
 							<tr>
 								<td>{{$rc->akun}}</td>
 								<td>{{$rc->total_pengeluaran}}</td>
@@ -94,12 +92,14 @@
 						</div>
 				</div>
 			</section>
-
+		
 
 		@elseif (Auth::user()->admin==0)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 
 		@elseif (Auth::user()->admin==1)
+			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
+		@elseif (Auth::user()->admin==2)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
 		
 		@elseif (Auth::user()->admin==3)
@@ -107,7 +107,7 @@
 
 		@elseif (Auth::user()->admin==4)
 			<meta http-equiv="refresh" content="0;URL='{{ url('/logout') }}'" />
-		
+			
 	@endif
 
 @endsection
