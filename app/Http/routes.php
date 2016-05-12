@@ -244,6 +244,8 @@ Route::get('/report/forecast', function () {
     return view('report.forecast');
 });
 
-Route::get('/report/data-browser', function () {
-    return view('report.data-browser');
-});
+// Route::get('/report/data-browser', function () {
+//     return view('report.data-browser');
+// });
+
+Route::get('/report/data-browser/','mmsreportController@getdatabrowser');
