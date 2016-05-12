@@ -245,5 +245,52 @@ Route::get('/report/forecast', function () {
 });
 
 Route::get('/report/data-browser', function () {
-    return view('report.data-browser');
+    $umkm = DB::select('SELECT FLOOR(DATEDIFF(NOW(), users.created_at) / 365) AS period FROM users JOIN pendanaan_bank ON users.id = pendanaan_bank.id_person WHERE admin = 5 GROUP BY id');
+    $newUmkm = DB::select('SELECT FLOOR(DATEDIFF(NOW(), users.created_at) / 365) AS period FROM users WHERE admin = 5 AND id NOT IN (SELECT id_person FROM pendanaan_bank)');
+
+    $period = collect([]);
+
+    foreach ($umkm as $u) {
+        if ($period->contains('period', $u->period)) {
+            $period = $period->map(function (&$item, $key) use ($u) {
+                if ($item['period'] == $u->period) {
+                    $item['umkm'] -= 1;
+                }
+
+                return $item;
+            });
+        } else {
+            $period[] = [
+                'period' => $u->period,
+                'umkm' => -1,
+                'newUmkm' => 0
+            ];
+        }
+    }
+
+    foreach ($newUmkm as $n) {
+        if ($period->contains('period', $n->period)) {
+            $period = $period->map(function (&$item, $key) use ($n) {
+                if ($item['period'] == $n->period) {
+                    $item['newUmkm'] += 1;
+                }
+
+                return $item;
+            });
+        } else {
+            $period[] = [
+                'period' => $n->period,
+                'umkm' => 0,
+                'newUmkm' => 1
+            ];
+        }
+    }
+
+    $period = $period->sortBy('period');
+
+    return view('report.data-browser', [
+        'period' => $period,
+        'umkm' => $umkm,
+        'newUmkm' => $newUmkm
+    ]);
 });

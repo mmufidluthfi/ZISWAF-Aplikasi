@@ -126,17 +126,17 @@
 		      text: 'Periode New UMKM &UMKM'   
 		   };   
 		   var xAxis = {
-		      categories: ['1 tahun', '2 tahun', '3 tahun', '4 tahun', '5 tahun']
+		      categories: [{{ $period->implode('period', ', ') }}], labels: { enabled: true, formatter: function() { return this.value + ' tahun'; } }
 		   };
 		   var credits = {
 		      enabled: false
 		   };
 		   var series= [{
 		      name: 'New UMKM',
-		            data: [5, 3, 4, 7, 2]
+		            data: [{{ $period->implode('newUmkm', ', ') }}]
 		        }, {
 		            name: 'UMKM',
-		            data: [-2, -2, -3, -2, -1]
+		            data: [{{ $period->implode('umkm', ', ') }}]
 		        }
 		   ];     
 		      
@@ -180,10 +180,10 @@
 		      type: 'pie',
 		      name: 'New UMKM vs UMKM',
 		      data: [
-		         ['UMKM',       54.8],
+		         ['UMKM', {{ count($umkm) }}],
 		         {
 		            name: 'New UMKM',
-		            y: 12.8,
+		            y: {{ count($newUmkm) }},
 		            sliced: true,
 		            selected: true
 		         },
