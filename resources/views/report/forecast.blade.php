@@ -230,14 +230,16 @@
 		      text: 'Pendanaan Bank'   
 		   };
 		   var xAxis = {
-		     categories: ['Bank1', 'Bank2', 'Bank3', 'Bank4', 'Bank5'],
+		     categories: [{!! $banks->implode('name', ', ') !!}],
 		      title: {
 		         text: null
 		      }
 		   };
 		   var yAxis = {
 		      type: 'logarithmic',
-		      minorTickInterval: 1
+			   title: {
+				   text: 'UMKM Yang Didanai'
+			   }
 		   };
 		   var tooltip = {
 		      headerFormat: '<b>{series.name}</b><br>',
@@ -252,8 +254,7 @@
 		   };
 		   var series= [{
 		         name: 'Pendanaan',
-		         data: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
-		         pointStart: 1
+		         data: [{!! $banks->implode('count', ', ') !!}]
 		      }
 		   ];     
 		      

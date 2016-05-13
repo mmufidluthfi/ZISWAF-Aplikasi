@@ -241,7 +241,11 @@ Route::get('/person/dashboard', function () {
 // });
 
 Route::get('/report/forecast', function () {
-    return view('report.forecast');
+    $banks = DB::select('SELECT CONCAT("\'", name, "\'") AS name, COUNT(*) AS count FROM users JOIN pendanaan_bank ON users.id = pendanaan_bank.id_person GROUP BY id');
+
+    return view('report.forecast', [
+        'banks' => collect($banks)
+    ]);
 });
 
 Route::get('/report/data-browser/','mmsreportController@getdatabrowser');
