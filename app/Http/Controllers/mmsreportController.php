@@ -101,8 +101,29 @@ class mmsreportController extends Controller
                         ->where('transaksi.status', '=', 1)
                         ->sum('transaksi.nominal');
 
+		$d = DB::select('SELECT kategori AS name, SUM(total_dana) AS total, MONTH(tgl_pendanaan) AS month FROM fund_ziswaf WHERE YEAR(tgl_pendanaan) = YEAR(NOW()) GROUP BY kategori, MONTH(tgl_pendanaan), YEAR(tgl_pendanaan)');
+
+		$s = collect([]);
+
+		foreach ($d as $r) {
+			if (!$s->contains('name', $r->name)) {
+				$s->push([
+					'name' => $r->name,
+					'data' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+				]);
+			}
+
+			$s = $s->map(function (&$item, $key) use ($r) {
+				if ($item['name'] === $r->name) {
+					$item['data'][$r->month - 1] = intval($r->total);
+				}
+
+				return $item;
+			});
+		}
+
         // return view('administrator.administrator-listdonasi')->withPendanaanadmin($pendanaanadmin);
-        return view('report.dashboard',['totalumkmterdaftar' => $totalumkmterdaftar], ['totalumkmterdaftarterdanai' => $totalumkmterdaftarterdanai])->withTotaltransaksi($totaltransaksi);
+        return view('report.dashboard',['totalumkmterdaftar' => $totalumkmterdaftar, 's' => $s], ['totalumkmterdaftarterdanai' => $totalumkmterdaftarterdanai])->withTotaltransaksi($totaltransaksi);
         // return view('report.data-browser')->withTotalnewumkm($totalnewumkm)->withTotallembaga($total;
     }
 }
